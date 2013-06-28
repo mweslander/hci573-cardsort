@@ -2,6 +2,4 @@
 
 /*
  * Login Page
- * 
- * @author Ann Greazel
  */
