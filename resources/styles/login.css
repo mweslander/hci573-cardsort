@@ -12,10 +12,17 @@ root {
 
 #loginform {
     display:block;
-    background-image:url('../images/linedpaper.png');	
+    background-image:url('../images/linedpaper.png');
+    float:left;
+    width: 9em;
+    padding: 1em;
+    margin:2em;
+    left:20em;
+    border-radius: 3px;
+    -moz-box-shadow: 10px 15px 30px #000;
+    -webkit-box-shadow: 10px 15px 30px #000;
+    box-shadow: 10px 15px 30px #000;	
 }
 
-p {
-    color: red;
-}
+
 
