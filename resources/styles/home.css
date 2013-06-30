@@ -1,0 +1,23 @@
+/* 
+    Document   : home.css
+    Created on : Jun 30, 2013, 3:45:14 PM
+    Author     : agreazel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+#home_content {
+	float: left;
+	width: 20em;
+	min-height: 25em;
+	background-image:url('../images/linedpaper.png');
+	padding: 2em;
+	border-radius: 3px;
+	-moz-box-shadow: 10px 15px 30px #000;
+	-webkit-box-shadow: 10px 15px 30px #000;
+	box-shadow: 10px 15px 30px #000;
+}
+
