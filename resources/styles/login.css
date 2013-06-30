@@ -1,0 +1,25 @@
+/* 
+    Document   : login
+    Created on : Jun 30, 2013, 3:58:26 PM
+    Author     : agreazel
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#loginform {
+    	min-height: 5em;
+	background-image:url('../images/linedpaper.png');
+	padding: 2em;
+	border-radius: .5em;
+	-moz-box-shadow: 10px 15px 30px #000;
+	-webkit-box-shadow: 10px 15px 30px #000;
+	box-shadow: 10px 15px 30px #000;
+	text-align: center;
+	width: 17em;
+	margin-top: 1em;
+}
+
