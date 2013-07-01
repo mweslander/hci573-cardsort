@@ -16,7 +16,7 @@ root {
     float:left;
     width: 9em;
     padding: 1em;
-    margin:2em;
+    margin-left:1em;
     left:20em;
     border-radius: 3px;
     -moz-box-shadow: 0 3px 10px #CCCCCC;
