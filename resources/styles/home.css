@@ -16,8 +16,8 @@ root {
 	background-image:url('../images/linedpaper.png');
 	padding: 2em;
 	border-radius: 3px;
-	-moz-box-shadow: 0px 20px 20px #666666;
-	-webkit-box-shadow: 0px 20px 20px #666666;
-	box-shadow: 0px 20px 20px #666666;
+	-moz-box-shadow: 0 3px 10px #CCCCCC;
+	-webkit-box-shadow: 0 3px 10px #CCCCCC;
+	box-shadow: 0 3px 10px #CCCCCC;
 }
 
