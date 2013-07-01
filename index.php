@@ -16,7 +16,14 @@
         <title>home</title>
         <link rel="stylesheet" type="text/css" href="resources/styles/main.css" />
     </head>
-</html>
-<?php
+    <body>
+        <div id="wrapper">
+        <div id="logo"></div>
+   <?php
     include 'includes/views/home.inc.php';
     include 'includes/views/login.inc.php';
+    ?>
+        </div>
+    </body>
+</html>
+

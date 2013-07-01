@@ -11,13 +11,14 @@ root {
 }
 #home_content {
 	float: left;
-	width: 20em;
+	width: 62%;
 	min-height: 25em;
 	background-image:url('../images/linedpaper.png');
 	padding: 2em;
 	border-radius: 3px;
+        -webkit-box-shadow: 0 3px 10px #CCCCCC;
 	-moz-box-shadow: 0 3px 10px #CCCCCC;
-	-webkit-box-shadow: 0 3px 10px #CCCCCC;
 	box-shadow: 0 3px 10px #CCCCCC;
+        margin: 1em 1em 0em 0em;
 }
 
