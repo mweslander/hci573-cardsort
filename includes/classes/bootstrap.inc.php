@@ -12,9 +12,9 @@
 
 class bootstrap {
     
-    private $controller = null;
-    private $method = null;    
-    private $params = array();
+    private $_controller = null;
+    private $_method = null;    
+    private $_params = array();
     
     
     
@@ -32,46 +32,46 @@ class bootstrap {
         $params = $url;
         //set params from url controller/method/args
         if(!empty($params['url'])){
-        $this->params = explode('/', $params['url']);
+        $this->_params = explode('/', $params['url']);
             //if method is empty set default method to index
-            if(empty($this->params[1])){
-                $this->params[1] = 'index';
+            if(empty($this->_params[1])){
+                $this->_params[1] = 'index';
             }
             //sets controller to default if controller is missing from url
             // ie... //method when it should have been /controller/method
-            if(empty($this->params[0])){
-                $this->params[0] = 'home';
+            if(empty($this->_params[0])){
+                $this->_params[0] = 'home';
             }
         }else{
             //set default controller/method
-            $this->params[0] = 'home';
-            $this->params[1] = 'index';            
+            $this->_params[0] = 'home';
+            $this->_params[1] = 'index';            
         }
     }
 
     private function setController(){       
         
-       $controller = $this->params[0];
+       $controller = $this->_params[0];
                 
        //At this point the controller should allows 
        //have a value comming from structureGet() 
        $controllerFile = strtolower($controller) . 'Controller.inc.php';
        if(!file_exists(CTRL_PATH . $controllerFile)){
                 $controller = 'homeController';                
-                $this->controller = new $controller;  
+                $this->_controller = new $controller;  
                 //we could set error here and not load homecontroller
                 return false;
        }         
        $controller = strtolower($controller) . 'Controller';
-       $this->controller = new $controller();    
+       $this->_controller = new $controller();    
        
     }
     
     private function setMethod(){
         
-        $this->method = $this->params[1];
-        $method = $this->method;
-        $controller = $this->controller;
+        $this->_method = $this->_params[1];
+        $method = $this->_method;
+        $controller = $this->_controller;
         
         //At this point Controller and method should 
         //always have a value either default home/index or whatever is in url
@@ -84,9 +84,9 @@ class bootstrap {
         }
         
         //check if method has arguments                
-        if(isset($this->params[2]) && !empty($this->params[2])){
+        if(isset($this->_params[2]) && !empty($this->_params[2])){
             //echo 'method exists and has args';
-            $controller->{$method}($this->params[2]);
+            $controller->{$method}($this->_params[2]);
             return FALSE;
         }
         
