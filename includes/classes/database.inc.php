@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Database Class
  * 
@@ -6,28 +7,25 @@
  * 
  */
 
+class Database {
 
-class Database 
-{
-    private static $db;
     
-    public static function init()
-    {
-        if(!self::$db)
-        {
-            try
-            {
-                $dsn = 'mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=UTF-8';
-                self::$db = new PDO($dsn, DB_USER,DB_PASS);
+    private static $db;
+
+    public static function init() {
+        if (!self::$db) {
+            try {
+                $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=UTF-8';
+                self::$db = new PDO($dsn, DB_USER, DB_PASS);
                 self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 self::$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-            } 
-            catch (PDOException $e)
-            {
+            } catch (PDOException $e) {
                 die('Connection error:' . $e->getMessage());
             }
-        } 
+        }
         return self::$db;
-    } 
-}    
+    }
+
+}
+
 // ending php tag omitted

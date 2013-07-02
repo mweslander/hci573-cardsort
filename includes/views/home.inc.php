@@ -3,12 +3,13 @@
 /*
  * Home
  */
+
 ?>
 
 <html>
     <head>
         <title>home</title>
-        <link rel="stylesheet" type="text/css" href="resources/styles/home.css" />
+        <link rel="stylesheet" type="text/css" href="<?php echo BASE; ?>/resources/styles/home.css" />
     </head>
     <body>
         

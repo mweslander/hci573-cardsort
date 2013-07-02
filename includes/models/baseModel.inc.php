@@ -1,16 +1,16 @@
 <?php
 
 /*
- * Base Controller
+ * Base Model
  */
 
-abstract class Basecontroller{
+abstract class Basemodel{
     
     public function __construct() {
-        
         
     }
     
     
     
 }
+

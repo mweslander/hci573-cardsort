@@ -25,19 +25,19 @@ defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 // Base in operating system -- This is for the FILE STRUCTURE, not the web host
 // Once this is defined, the rest of the constants dealing with FILE structure will work!
 // First it checks to see if it's defined, and if it's null it sets the constant
-defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT']);
+//defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT']);
     /* If you want to see what this means on your specific setup, uncomment the
     *  following echo line and navigate to this page in your browser in order to see
     *  what is going on.
     */
-// echo REL_BASE;
+//echo REL_BASE;
     /*  For me this is 'Users/Mweslander/hci573_cardsort' which points to the root
     *  directory of the uSort site which is exactly what I want. If you have your 
     *  folder nested somewhere else, for instance 'C:\apache\htdocs\usort\site' you
     *  may have to add additional parameters to this. I've added a commented example
     *  below. I use the directory separator as defined above.
     */
-// defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT'] . DS . 'usort' . DS . 'site');
+ defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT'] . DS . 'hci573-cardsort');
 
 // This makes it easier to get to the includes files
 // First it checks to see if it's defined, if not it defines it
@@ -86,7 +86,7 @@ defined('UXR_PATH') ? null : define('UXR_PATH', VIEW_PATH . 'uxr' . DS);
 // Base in the URL STRUCTURE, not the file system. Ex. http://usort.us
 // Once this is defined, the rest of the constants dealing with URL structure will work!
 // First it checks to see if it's defined, and if it's null it sets the constant
-defined ('BASE') ? null : define ("BASE", $_SERVER['HTTP_HOST']);
+//defined ('BASE') ? null : define ("BASE", $_SERVER['HTTP_HOST']);
    /*  If you want to see what this means on your specific setup, uncomment the
     *  following echo line and navigate to this page in your browser in order to see
     *  what is going on.
@@ -98,7 +98,7 @@ defined ('BASE') ? null : define ("BASE", $_SERVER['HTTP_HOST']);
     *  may have to add additional parameters to this. I've added a commented example
     *  below. I use the directory separator as defined above.
     */
-// defined ('BASE') ? null : define ("BASE", $_SERVER['HTTP_HOST'] . DS . 'usort' . DS . 'site');
+defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST'] . DS . 'hci573-cardsort');
 
 // This makes it easier to get to the client-side resource files
 // First it checks to see if it's defined, and if it's null it sets the constant
@@ -106,7 +106,7 @@ defined('RESOURCE_PATH') ? null : define('RESOURCE_PATH', BASE . DS .'resources'
 
 // This makes it easier to get to the css files
 // First it checks to see if it's defined, and if it's null it sets the constant
-defined('STYLE_PATH') ? null : define('STYLE_PATH', RESOURCE_PATH . DS . 'styles' . DS);
+defined('STYLE_PATH') ? null : define('STYLE_PATH', RESOURCE_PATH . 'styles' . DS);
 
 // This makes it easier to get to the javascript files
 // First it checks to see if it's defined, and if it's null it sets the constant

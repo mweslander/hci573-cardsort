@@ -12,7 +12,7 @@
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="resources/styles/login.css"/>
+        <link rel="stylesheet" type="text/css" href="<?php echo BASE; ?>/resources/styles/login.css"/>
     </head>
     <title></title>
     <body>
