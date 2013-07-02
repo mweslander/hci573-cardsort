@@ -27,7 +27,11 @@ class Installation
         // Then let's get a proper connection to the database
         $this->_database = Database::init();
         //createTables if they don't exist
-        // $this->_installTables();
+        $this->_install_tables();
+        
+        // Check to make sure database tables installed
+        // echo "Database Tables Installed";
+
     }
 
     // Install Database
@@ -79,21 +83,6 @@ class Installation
                 last_login datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
                 PRIMARY KEY (id)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        
-        // Use the database connection to perform the query
-        // Try connecting to the database
-        try 
-        {  
-            // This uses an empty connection
-            $this->_database->exec($users_sql) 
-            or die(print_r($this->_connection->errorInfo(), true));
-        }
-        // If the connection with the create database script didn't work
-        // Then throw an error
-        catch (PDOException $e) 
-        {
-            die("DB ERROR: ". $e->getMessage());
-        }
 
         // Card Sorts Table
         // Check to see if table exists, if not, create it
@@ -110,22 +99,6 @@ class Installation
                 PRIMARY KEY (id)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
-        // Use the database connection to perform the query
-        // Try connecting to the database
-        try 
-        {  
-            // This uses an empty connection
-            $this->_database->exec($cardsort_sql) 
-            or die(print_r($this->_connection->errorInfo(), true));
-        }
-        // If the connection with the create database script didn't work
-        // Then throw an error
-        catch (PDOException $e) 
-        {
-            die("DB ERROR: ". $e->getMessage());
-        }
-
-        
         // Cards Table
         // Check to see if table exists, if not, create it
         // The cards table has these parameters: id, cs_id, card_label
@@ -135,21 +108,6 @@ class Installation
                 card_label varchar(220) NOT NULL DEFAULT '',
                 PRIMARY KEY (id)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        
-        // Use the database connection to perform the query
-        // Try connecting to the database
-        try 
-        {  
-            // This uses an empty connection
-            $this->_database->exec($cards_sql) 
-            or die(print_r($this->_connection->errorInfo(), true));
-        }
-        // If the connection with the create database script didn't work
-        // Then throw an error
-        catch (PDOException $e) 
-        {
-            die("DB ERROR: ". $e->getMessage());
-        }
 
 
         // Demographics Table
@@ -162,7 +120,6 @@ class Installation
                 dmg_type ENUM ('string','int', 'date') NOT NULL DEFAULT 'string',
                 PRIMARY KEY (id)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        // Use the connection to perform the query
 
 
         // Categories Table
@@ -174,7 +131,6 @@ class Installation
                 cat_label varchar(220) NOT NULL DEFAULT '',
                 PRIMARY KEY (id)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        // Use the connection to perform the query
 
 
         // TEST SUBJECT POPULATED TABLES
@@ -191,7 +147,6 @@ class Installation
                 ts_email longblob,
                 PRIMARY KEY (id)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        // Use the connection to perform the query
 
 
         // Tests Table
@@ -203,7 +158,6 @@ class Installation
                 cs_finished datetime,
                 PRIMARY KEY (id)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        // Use the connection to perform the query
 
 
         // Test Cards Table
@@ -216,50 +170,80 @@ class Installation
                 test_category varchar(220) NOT NULL DEFAULT '',
                 PRIMARY KEY (id)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        // Use the connection to perform the query
 
 
 
         // Test Demographics Tables
-
-
+        //
+        //
         // Demographics that are strings 
         // Check to see if table exists, if not, create it
         // The cards table has these parameters: id, test_id, dmg_id, & dmg_value
-        $test_cards_sql = "CREATE TABLE IF NOT EXISTS usort_test_dmg_strings (
+        $test_dmg_strings_sql = "CREATE TABLE IF NOT EXISTS usort_test_dmg_strings (
                 id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
                 test_id bigint(20) UNSIGNED DEFAULT NULL,
                 dmg_id bigint(20) UNSIGNED DEFAULT NULL,
                 dmg_value varchar(220) NOT NULL DEFAULT '',
                 PRIMARY KEY (id)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        // Use the connection to perform the query
-
-
+        //
+        //
         // Demographics that are ints 
         // Check to see if table exists, if not, create it
         // The cards table has these parameters: id, test_id, dmg_id, & dmg_value
-        $test_cards_sql = "CREATE TABLE IF NOT EXISTS usort_test_dmg_ints (
+        $test_dmg_ints_sql = "CREATE TABLE IF NOT EXISTS usort_test_dmg_ints (
                 id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
                 test_id bigint(20) UNSIGNED DEFAULT NULL,
                 dmg_id bigint(20) UNSIGNED DEFAULT NULL,
                 dmg_value bigint(20),
                 PRIMARY KEY (id)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        // Use the connection to perform the query
-
-
+        //
+        //
         // Demographics that are dates & times 
         // Check to see if table exists, if not, create it
         // The cards table has these parameters: id, test_id, dmg_id, & dmg_value
-        $test_cards_sql = "CREATE TABLE IF NOT EXISTS usort_test_dmg_dates (
+        $test_dmg_dates_sql = "CREATE TABLE IF NOT EXISTS usort_test_dmg_dates (
                 id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
                 test_id bigint(20) UNSIGNED DEFAULT NULL,
                 dmg_id bigint(20) UNSIGNED DEFAULT NULL,
                 dmg_value datetime,
                 PRIMARY KEY (id)
               ) ENGINE=InnoDB DEFAULT CHARSET=utf8;";
-        // Use the connection to perform the query
+        
+        // Make an array of all the sql calls
+        $tables = array(
+            $users_sql, 
+            $cardsort_sql, 
+            $cards_sql, 
+            $dmgs_sql, 
+            $categories_sql, 
+            $test_subjects_sql, 
+            $tests_sql, 
+            $test_cards_sql, 
+            $test_dmg_strings_sql, 
+            $test_dmg_ints_sql, 
+            $test_dmg_dates_sql
+        );
+        
+        // Then loop through and install them
+        foreach ($tables as $table)
+        {
+            // Use the database connection to perform the query
+            // Try connecting to the database
+            try 
+            {  
+                // This uses an empty connection
+                $prepared = $this->_database->prepare($table);
+                $prepared->execute(); 
+            }
+            // If the connection with the create database script didn't work
+            // Then throw an error
+            catch (PDOException $e) 
+            {
+                die("DB ERROR: ". $e->getMessage());
+            }
+        } 
     }
     
     

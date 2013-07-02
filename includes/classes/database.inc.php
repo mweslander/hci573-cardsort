@@ -13,6 +13,7 @@ class Database {
 
     // Database connection
     private static $db;
+    private static $conn;
     
     // This function initializes a connection to the database
     public static function init() 
@@ -62,10 +63,10 @@ class Database {
                 $dsn = 'mysql:host=' . DB_HOST . ';charset=utf8';
                 // Set the static self database connection using the string above
                 // And the constants DB_USER and DB_PASS, located in sql.inc.php
-                self::$db = new PDO($dsn, DB_USER, DB_PASS);
+                self::$conn = new PDO($dsn, DB_USER, DB_PASS);
                 // Set $db attributes
-                self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                self::$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+                self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                self::$conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             } 
             // If the connection doesn't work, then throw an exception
             catch (PDOException $e) 
@@ -74,7 +75,7 @@ class Database {
             }
         }
         // Regardless, return the database connection or error
-        return self::$db;
+        return self::$conn;
     }
 }
 
