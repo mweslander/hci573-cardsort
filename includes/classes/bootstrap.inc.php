@@ -13,79 +13,87 @@
 class bootstrap {
     
     private $controller = null;
-
-
+    private $method = null;    
+    private $params = array();
+    
+    
+    
     public function __construct() {
-        
-        $this->getController($_GET);
-        
+        $this->structureGet($_GET);
+        $this->setController();
+        $this->setMethod();
         
         
     }
+    //Restructures GET into a params array 
+    //could also clean url in the future    
     
-    public function getController($url){
+    private function structureGet($url){
+        $params = $url;
+        //set params from url controller/method/args
+        if(!empty($params['url'])){
+        $this->params = explode('/', $params['url']);
+            //if method is empty set default method to index
+            if(empty($this->params[1])){
+                $this->params[1] = 'index';
+            }
+            //sets controller to default if controller is missing from url
+            // ie... //method when it should have been /controller/method
+            if(empty($this->params[0])){
+                $this->params[0] = 'home';
+            }
+        }else{
+            //set default controller/method
+            $this->params[0] = 'home';
+            $this->params[1] = 'index';            
+        }
+    }
+
+    private function setController(){       
         
-        //Bretts working on this
-        //Notes for me work on $url params and htaccess params
-        //split function into getController, getMethod, getArgs
+       $controller = $this->params[0];
+                
+       //At this point the controller should allows 
+       //have a value comming from structureGet() 
+       $controllerFile = strtolower($controller) . 'Controller.inc.php';
+       if(!file_exists(CTRL_PATH . $controllerFile)){
+                $controller = 'homeController';                
+                $this->controller = new $controller;  
+                //we could set error here and not load homecontroller
+                return false;
+       }         
+       $controller = strtolower($controller) . 'Controller';
+       $this->controller = new $controller();    
+       
+    }
+    
+    private function setMethod(){
         
+        $this->method = $this->params[1];
+        $method = $this->method;
+        $controller = $this->controller;
         
+        //At this point Controller and method should 
+        //always have a value either default home/index or whatever is in url
         
-        //Controller has been requested
-        if(!isset($url['c']) || empty($url['c'])){
-            //load default controller - ie home            
-            $controller = 'homecontroller';                
-            new $controller; 
-            return false;
+        //checks if method doesnt exist
+        if(!method_exists($controller, $method)){
+                   $controller->index();
+                   //we could set an error here and not load index method
+                   return FALSE;
         }
         
-       //The requested controller doesn't exist              
-       if(isset($url['c']) && !empty($url['c'])){
-           $controller_file_name = strtolower($url['c']) . 'Controller.inc.php'; 
-           if(!file_exists(CTRL_PATH . $controller_file_name)){
-                $controller = 'homecontroller';                
-                new $controller;  
-                return false;
-                // or we can call an error controller
-           }
-       }
-       
-       //Get the existing controller
-       if(isset($url['c']) && !empty($url['c'])){
-           $controller = ucwords(strtolower($url['c'])) . 'controller';
-           $this->controller = new $controller();
-           
-           //check if method has args
-           if(isset($_GET['a']) && !empty($url['a'])){
-               
-               //check is method doesn't exists
-               if(!method_exists($this->controller, $_GET['a'])){
-                   echo "Error: Method doesn't exist..Line 54 bootstrap";
-                   return FALSE;
-               }
-               //call controller with no methods, except the default
-               $this->controller->{$_GET['m']}($_GET['a']);
-               
-           //check method
-           }elseif(!isset($_GET['m']) && empty($url['m'])){
-               //check is method doesn't exists
-               if(!method_exists($this->controller, $_GET['a'])){
-                   echo "Error: Method doesn't exist..Line 64 bootstrap";
-                   return FALSE;
-               }
-               
-               $this->controller->{$_GET['m']};
-               
-           }else{
-               
-               $this->controller->index();
-           }
-           
-           
-           
-       }
+        //check if method has arguments                
+        if(isset($this->params[2]) && !empty($this->params[2])){
+            //echo 'method exists and has args';
+            $controller->{$method}($this->params[2]);
+            return FALSE;
+        }
+        
+        //echo 'method exists';
+        //call method in assigned controller
+        $controller->{$method}();
     }
-    
     
     
     
