@@ -23,46 +23,25 @@ abstract class BaseModel
         // using the static method from the database class
         $this->_db = Database::init();
     }  
-    
-    // Database call method
-    // I found myself re-using this a lot
-    // So I refactored and put it here
-    protected function _db_try($sql)
+   
+    // Find all 
+    // Used to find every row in a specific table in the database
+    public static function find_all()
     {
-        // Use the database connection to perform the query
-        // Try connecting to the database
-        try 
-        {  
-            // Prepare the sql 
-            $prepared = $this->_db->prepare($sql);
-            $prepared->execute(); 
-        }
-        // If the connection with the create database script didn't work
-        // Then throw an error
-        catch (PDOException $e) 
-        {
-            die("DB ERROR: ". $e->getMessage());
-        }
+        return static::find_by_sql("SELECT * FROM " . static::$table_name);
     }
- 
-// THESE FUNCTIONS WON'T WORK UNTIL I FIGURE OUT THE FETCH ARRAY IN PDO    
-//    // Find all 
-//    // Used to find every row in a specific table in the database
-//    public static function find_all()
-//    {
-//        return static::find_by_sql("SELECT * FROM " . static::$table_name);
-//    }
-//    
-//    // Find by id
-//    public static function finc_by_id($id=0)
-//    {
-//        // Prepare SQL
-//        $sql  = "SELECT * FROM " . static::$table_name;
-//        $sql .= " WHERE id=" . $id . " LIMIT 1";
-//        // Use find_by_sql function
-//        $result_array = static::find_by_sql($sql);
-//        // $found = 
-//    }
+    
+    // Find by id
+    public static function find_by_id($id=0)
+    {
+        // Prepare SQL
+        $sql  = "SELECT * FROM " . static::$table_name;
+        $sql .= " WHERE id=" . $id . " LIMIT 1";
+        // Use find_by_sql function
+        $result_array = static::find_by_sql($sql);
+        // $found = $result_array->fetch(PDO::FETCH_ASSOC);
+        return !empty($result_array) ? array_shift($result_array) : false;
+    }
     
     
     // Find by SQL
@@ -75,23 +54,24 @@ abstract class BaseModel
         {  
             // This prepares the sql for the query
             $prepared = $this->_db->prepare($sql);
-            // Get the result set back
-            $result_set = $prepared->execute();
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// THE FOLLOWING WILL NOT WORK UNTIL I FIGURE OUT THE FETCH ARRAY EQUIVALENT IN PDO
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
-            // Set an empty object_array
-            $object_array = array();
-            // Turn the object into an array
-            while ( $row = $result_set->fetch_array()) 
+            // If this worked
+            if ($prepared)
             {
-                // Uses instantiate method below to make objects
-                // out of results
-                $object_array[] = self::_instantiate($row);
+                // Get the result set back
+                $result_set = $prepared->execute(); 
+                // Set an empty object_array
+                $object_array = array();
+                // Turn the row into an associative array
+                // with a key of column name and a value of the row
+                while ( $row = $result_set->fetch(PDO::FETCH_ASSOC)) 
+                {
+                    // Use instantiate method below to make objects
+                    // out of results and add them to the object array
+                    $object_array[] = self::_instantiate($row);
+                }
+                // Return the object array
+                return $object_array; 
             }
-            // Return the object array
-            return $object_array; 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
             
         }
         // If the connection with the create database script didn't work
@@ -99,6 +79,22 @@ abstract class BaseModel
         catch (PDOException $e) 
         {
             die("DB ERROR: ". $e->getMessage());
+        }
+    }
+    
+    // Count all method
+    // Counts all the rows in a given db table
+    public static function count_all()
+    {
+        $sql = "SELECT COUNT(*) FROM " . static::$table_name;
+        $prepared = $this->_db->prepare($sql);
+        // If this worked
+        if ($prepared)
+        {
+            // Get the result set back
+            $result_set = $prepared->execute();
+            $row = $result_set->fetch(PDO::FETCH_ASSOC);
+            return array_shift($row);
         }
     }
     
@@ -181,7 +177,23 @@ abstract class BaseModel
         
         // Use the database connection to perform the query
         // Try connecting to the database
-        $this->_db_try($sql);
+        try 
+        {  
+            // Prepare the sql 
+            $prepared = $this->_db->prepare($sql);
+            if ($prepared)
+            {
+                $prepared->execute(); 
+                $this->id = $prepared->lastInsertId();
+                return true;
+            }
+        }
+        // If the connection with the create database script didn't work
+        // Then throw an error
+        catch (PDOException $e) 
+        {
+            die("DB ERROR: ". $e->getMessage());
+        }
     }
     
     // Update Method 
@@ -206,7 +218,22 @@ abstract class BaseModel
         
         // Use the database connection to perform the query
         // Try connecting to the database
-        $this->_db_try($sql);
+        try 
+        {  
+            // Prepare the sql 
+            $prepared = $this->_db->prepare($sql);
+            if ($prepared)
+            {
+                $prepared->execute(); 
+                return true;
+            }
+        }
+        // If the connection with the create database script didn't work
+        // Then throw an error
+        catch (PDOException $e) 
+        {
+            die("DB ERROR: ". $e->getMessage());
+        }
     }
     
     // Delete Method
@@ -223,6 +250,10 @@ abstract class BaseModel
         {  
             // Prepare the sql 
             $del = $this->_db->prepare($sql);
+            if ($del)
+            {
+                $del->execute(); 
+            }
             $del->execute(); 
             return ($del->rowCount() == 1) ? true : false;
         }
