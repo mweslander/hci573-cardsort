@@ -30,6 +30,7 @@ class bootstrap {
         //split function into getController, getMethod, getArgs
         
         
+        
         //Controller has been requested
         if(!isset($url['c']) || empty($url['c'])){
             //load default controller - ie home            
