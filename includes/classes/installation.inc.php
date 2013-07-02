@@ -31,7 +31,6 @@ class Installation
         
         // Check to make sure database tables installed
         // echo "Database Tables Installed";
-
     }
 
     // Install Database
@@ -89,7 +88,7 @@ class Installation
         // The card_sorts table has these parameters: id, user_id, cs_name, cs_type, & cs_password
         // The id is the primary key, the name is varchar, the type is enum, researcher_id
         // is an int and password is hashed and encrypted using the CS_PWD_SALT
-        $cardsort_sql = "CREATE TABLE IF NOT EXISTS usort_cardsort (
+        $cardsort_sql = "CREATE TABLE IF NOT EXISTS usort_cardsorts (
                 id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
                 user_id bigint(20) UNSIGNED DEFAULT NULL,
                 cs_name varchar(220) NOT NULL DEFAULT '',
