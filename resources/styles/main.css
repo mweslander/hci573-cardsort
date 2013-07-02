@@ -2,22 +2,41 @@
     Document   : main
     Created on : Jun 28, 2013, 2:43:11 PM
     Author     : agreazel
-    Description:
-        Main styles for all of the site.
+    Description: Main styles for all of the site.
 */
 
-root { 
+/* 
+
+** TABLE OF CONTENTS
+================================================================================
+** 1. MAIN 
+** 2. HOME 
+** 3. LOGIN 
+
+*/
+
+
+/*
+** 1. MAIN
+================================================================================
+*/
+root 
+{ 
     display: block;
 }
 
-body {
+body 
+{
     background-image:url('../images/retina_dust.png');
 }
-h1{
+
+h1
+{
     color: red;   
 }
 
-#logo {
+#logo 
+{
     background-image: url('../images/usort_logo.png');
     background-repeat:no-repeat;
     width:200px;
@@ -25,7 +44,8 @@ h1{
     /*margin-left: 25em;*/
 }
 
-#wrapper {
+#wrapper 
+{
     margin-left:auto;
     margin-right:auto;
     min-width:0%;
@@ -34,3 +54,45 @@ h1{
     height:100%;
 }
 
+
+/*
+** 2. HOME
+================================================================================
+*/
+
+#home_content 
+{
+    float: left;
+    width: 62%;
+    min-height: 25em;
+    background-image:url('../images/linedpaper.png');
+    padding: 2em;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 3px 10px #CCCCCC;
+    -moz-box-shadow: 0 3px 10px #CCCCCC;
+    box-shadow: 0 3px 10px #CCCCCC;
+    margin: 1em 1em 0em 0em;
+}
+
+
+
+/*
+** 3. LOGIN
+================================================================================
+*/
+
+#loginform 
+{
+    display:block;
+    background-image:url('../images/linedpaper.png');
+    float:left;
+    width: 9em;
+    padding: 1em;
+    /*margin:2em 0 0 1em;*/
+    /*left:20em;*/
+    border-radius: 3px;
+    -webkit-box-shadow: 0 3px 10px #CCCCCC;
+    -moz-box-shadow: 0 3px 10px #CCCCCC;
+    box-shadow: 0 3px 10px #CCCCCC;
+    margin: 1em 0em 0em 0em;
+}

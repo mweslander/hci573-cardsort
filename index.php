@@ -18,7 +18,7 @@
 require_once 'includes/constants/paths.inc.php';
 // Require the path to the database (we may not need this if it's included in
 // all of the classes that use the database)
-// CONST_PATH and DS(DIRECTORY_SEPARATOR) are defined in paths.inc.php
+// CONST_PATH is defined in paths.inc.php
 require_once (CONST_PATH . 'sql.inc.php');
 
 
@@ -27,7 +27,7 @@ require_once (CONST_PATH . 'sql.inc.php');
 // =============================================================================
 
 // Include the HTML header - Contained in Includes / Views / Templates
-// LAYOUT_PATH and DS(DIRECTORY_SEPARATOR) are defined in paths.inc.php
+// LAYOUT_PATH is defined in paths.inc.php
 include (LAYOUT_PATH . 'header.inc.php');
 
 // Include the Home and Login Views
@@ -94,10 +94,12 @@ include (LAYOUT_PATH . 'footer.inc.php');
         
 //Load bootstrap - This class with check if the systems is ready, 
 //get IP Address, and the URL to direct the controllers and methods        
-try {
-
+try 
+{
     new bootstrap();
-} catch (ErrorException $e) {
+} 
+catch (ErrorException $e) 
+{
     return "Error: " . $e;
 }
 

@@ -6,17 +6,9 @@
 
 ?>
 
-<html>
-    <head>
-        <title>home</title>
-        <link rel="stylesheet" type="text/css" href="<?php echo BASE; ?>/resources/styles/home.css" />
-    </head>
-    <body>
-        
-        <div id="home_content">
-            <p>Home content goes here. Probably a couple paragraphs about
-                program and a link to view demo.</p>
-        </div>
-    </body>
-</html>
-
+<!-- Header is already included -->        
+<div id="home_content">
+    <p>Home content goes here. Probably a couple paragraphs about
+        program and a link to view demo.</p>
+</div>
+<!-- Footer is already included -->
