@@ -86,7 +86,7 @@ defined('UXR_PATH') ? null : define('UXR_PATH', VIEW_PATH . 'uxr' . DS);
 // Base in the URL STRUCTURE, not the file system. Ex. http://usort.us
 // Once this is defined, the rest of the constants dealing with URL structure will work!
 // First it checks to see if it's defined, and if it's null it sets the constant
-// defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST']);
+//defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST']);
    /*  If you want to see what this means on your specific setup, uncomment the
     *  following echo line and navigate to this page in your browser in order to see
     *  what is going on.
@@ -102,7 +102,7 @@ defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST'] . DS
 
 // This makes it easier to get to the client-side resource files
 // First it checks to see if it's defined, and if it's null it sets the constant
-defined('RESOURCE_PATH') ? null : define('RESOURCE_PATH' . '/resources/');
+defined('RESOURCE_PATH') ? null : define('RESOURCE_PATH', BASE . '/resources/');
 
 // This makes it easier to get to the css files
 // First it checks to see if it's defined, and if it's null it sets the constant
@@ -114,7 +114,7 @@ defined('JS_PATH') ? null : define('JS_PATH', RESOURCE_PATH . 'scripts/');
 
 // This makes it easier to get to the images
 // First it checks to see if it's defined, and if it's null it sets the constant
-defined('IMG_PATH') ? null : define('IMG_PATH', RESOURCE_PATH .'images/');
+defined('IMG_PATH') ? null : define('IMG_PATH', RESOURCE_PATH .'images/' );
 
 
 // SELF
