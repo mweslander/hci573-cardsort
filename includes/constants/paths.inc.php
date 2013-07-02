@@ -86,7 +86,7 @@ defined('UXR_PATH') ? null : define('UXR_PATH', VIEW_PATH . 'uxr' . DS);
 // Base in the URL STRUCTURE, not the file system. Ex. http://usort.us
 // Once this is defined, the rest of the constants dealing with URL structure will work!
 // First it checks to see if it's defined, and if it's null it sets the constant
-// defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST']);
+//defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST']);
    /*  If you want to see what this means on your specific setup, uncomment the
     *  following echo line and navigate to this page in your browser in order to see
     *  what is going on.
