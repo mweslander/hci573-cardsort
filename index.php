@@ -21,7 +21,7 @@ require_once 'includes/constants/paths.inc.php';
 // CONST_PATH is defined in paths.inc.php
 require_once (CONST_PATH . 'sql.inc.php');
 
-
+echo STYLE_PATH;
 
 // VIEW
 // =============================================================================
