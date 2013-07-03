@@ -5,10 +5,11 @@
  */
 
 abstract class Basecontroller{
+    protected $_pageTemplate;
     
     public function __construct() {
-        
-        
+        $this->_pageTemplate = new PageTemplate();
+                
     }
     
     

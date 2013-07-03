@@ -8,7 +8,10 @@ class LoginController extends Basecontroller {
         parent::__construct();
     }
 
-    public function index(){        
-        echo "inside logincontroller index";        
+    public function index(){
+        //set variables before calling render
+        $this->_pageTemplate->title = 'Login Page';
+        $this->_pageTemplate->render('login',TRUE);
+                    
     }
 }

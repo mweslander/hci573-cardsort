@@ -8,8 +8,13 @@ class HomeController extends Basecontroller{
     
     //default method for controller
     public function index(){
-        echo 'inside homecontroller index';
+        //set variables before calling render
+        $this->_pageTemplate->title = 'Home Page';
+        $this->_pageTemplate->render('home',TRUE);
+                
     }
+    
+    
     
     
     
