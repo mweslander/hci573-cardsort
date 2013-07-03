@@ -2,7 +2,7 @@
 <header>
     DEMO
 </header>
-<section>
+<section id="demo">
     <form id="demoform" name="demo" action="#"  method="post">
         <p>
             Name: DEMO<br />
@@ -18,21 +18,35 @@
 <header>
     USER REGISTER
 </header>
-<section>
-    <form id="registerForm" name="register" action="#"  method="post">
-        <label for="reg_user_name">User Name</label><input type="text" name="reg_user_name"></input>
-        <label for="reg_user_password">User Password</label><input type="password" name="reg_user_password"></input>
-        <label for="reg_user_first_name">First Name</label><input type="text" name="reg_user_first_name"></input>
-        <label for="reg_user_last_name">Last Name</label><input type="text" name="reg_user_last_name"></input>
-        <label for="reg_user_email">Email</label><input type="text" name="reg_user_email"></input>
-        <button id="btnRegister">Register</button>
+<section id="register">
+    <div id="register_error"> <!-- This is used for displaying errors returned from AJAX -->
+        <div></div>
+    </div>
+    <form id="registerForm"> <!-- We don't need a name, action or method here because JavaScript will take care of it -->
+        <!-- User Name -->
+        <label for="register_user_name">User Name</label>
+        <input type="text" id="register_user_name" name="register_user_name" autofocus />
+        <!-- Password -->
+        <label for="register_user_password">User Password</label>
+        <input type="password" id="register_user_password" name="register_user_password" />
+        <!-- First Name -->
+        <label for="register_user_first_name">First Name</label>
+        <input type="text" id="register_user_first_name" name="register_user_first_name" />
+        <!-- Last Name -->
+        <label for="register_user_last_name">Last Name</label>
+        <input type="text" id="register_user_last_name" name="register_user_last_name" />
+        <!-- Email -->
+        <label for="register_user_email">Email</label>
+        <input type="email" id="register_user_email" name="register_user_email" />
+        <!-- Submit button -->
+        <input id="submit_register" type="submit" value="Register" />
     </form>
 </section>
 
 <header>
     LOGIN
 </header>
-<section>
+<section id="login">
     <form id="loginform" name="login" action="#"  method="post">
         <label for="log_name">User Name</label><input type="text" name="log_name"></input>
         <label for="log_user_password">User Password</label><input type="password" name="log_user_password"></input>  

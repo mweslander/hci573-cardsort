@@ -25,7 +25,7 @@ defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 // Base in operating system -- This is for the FILE STRUCTURE, not the web host
 // Once this is defined, the rest of the constants dealing with FILE structure will work!
 // First it checks to see if it's defined, and if it's null it sets the constant
-// defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT']);
+//defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT']);
     /* If you want to see what this means on your specific setup, uncomment the
     *  following echo line and navigate to this page in your browser in order to see
     *  what is going on.

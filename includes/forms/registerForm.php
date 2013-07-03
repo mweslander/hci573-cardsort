@@ -32,7 +32,7 @@ if (isset($_POST))
     // Set the parameters
     
     // Check if the username is set
-    if (isset($_POST['register_user_name']))
+    if (!empty($_POST['register_user_name']))
     {
         // Assign the post variable to reg_user_name
         $reg_user_name = Commons::filter_string($_POST['register_user_name']);
@@ -44,9 +44,9 @@ if (isset($_POST))
     }
     
     // Check if the password is set
-    if (isset($_POST['register_password']))
+    if (!empty($_POST['register_user_password']))
     {
-        $reg_user_password = Commons::filter_string($_POST['register_password']);
+        $reg_user_password = Commons::filter_string($_POST['register_user_password']);
     }
     else
     {
@@ -55,9 +55,9 @@ if (isset($_POST))
     }
     
     // Check if the email is set
-    if (isset($_POST['register_email']))
+    if (!empty($_POST['register_user_email']))
     {
-        $reg_user_email = Commons::filter_string($_POST['register_email']);
+        $reg_user_email = Commons::filter_string($_POST['register_user_email']);
     }
     else
     {
@@ -66,9 +66,9 @@ if (isset($_POST))
     }
 
     // Check if the first name is set
-    if (isset($_POST['register_first_name']))
+    if (!empty($_POST['register_user_first_name']))
     {
-        $reg_user_first_name = Commons::filter_string($_POST['register_first_name']);
+        $reg_user_first_name = Commons::filter_string($_POST['register_user_first_name']);
     }
     else
     {
@@ -77,9 +77,9 @@ if (isset($_POST))
     }
     
     // Check if the last name is set
-    if (isset($_POST['register_last_name']))
+    if (!empty($_POST['register_user_last_name']))
     {
-        $reg_user_last_name = Commons::filter_string($_POST['register_last_name']);
+        $reg_user_last_name = Commons::filter_string($_POST['register_user_last_name']);
     }
     else
     {

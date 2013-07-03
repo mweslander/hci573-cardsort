@@ -12,6 +12,7 @@
 ** 1. MAIN 
 ** 2. HOME 
 ** 3. LOGIN 
+** 4. REGISTER
 
 */
 
@@ -97,8 +98,10 @@ h1
     margin: 1em 0em 0em 0em;
 }
 
-
-/****** REGISTER *****/
+/*
+** 4. REGISTER
+================================================================================
+*/
 
 #registerForm, #demoform 
 {
@@ -115,6 +118,8 @@ h1
     box-shadow: 0 3px 10px #CCCCCC;
     margin: 1em 0em 0em 0em;
 }
-/****** REGISTER *****/
 
-
+.registration_input_error
+{
+    border: 2px solid #E02626;
+}
