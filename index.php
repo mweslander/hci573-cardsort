@@ -28,14 +28,14 @@ require_once (CONST_PATH . 'sql.inc.php');
 
 // Include the HTML header - Contained in Includes / Views / Templates
 // LAYOUT_PATH is defined in paths.inc.php
-include (LAYOUT_PATH . 'header.inc.php');
+//include (LAYOUT_PATH . 'header.inc.php');
 
 // Include the Home and Login Views
-include (VIEW_PATH .  'home.inc.php');
-include (VIEW_PATH . 'login.inc.php');
+//include (VIEW_PATH .  'home.inc.php');
+//include (VIEW_PATH . 'login.inc.php');
 
 // Include the HTML footer - Contained in Includes / Views / Templates
-include (LAYOUT_PATH . 'footer.inc.php');
+//include (LAYOUT_PATH . 'footer.inc.php');
 
 
 
