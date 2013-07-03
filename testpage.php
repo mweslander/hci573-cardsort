@@ -38,12 +38,24 @@ require_once 'includes/models/testModel.inc.php';
 require_once 'includes/models/testSubjectModel.inc.php';
 require_once 'includes/models/userModel.inc.php';
 
+/*
+ * THIS IS HOW TO REGISTER A NEW USER
+ * make sure you run the installation before using this script
+ * get rid of the var_dumps on lines 52 & 67 to use on a page
+ * 
+*/
+
+// 
+if (isset($_POST))
+{
+    
+}
+
 // Whenever we want to interact with a user, we need to instantiate a user object
 // This is how you do that:
 $user = new UserModel();
 // Notice how (in the browser) there is nothing in this object.
 var_dump($user); // This is a very useful variable dump function that shows you what is in your variable
-
 
 // This is how you assign values to the object
 $user->user_name = "mweslander";
@@ -62,5 +74,32 @@ var_dump($user);
 
 // Now we can test the registration SQL for the user
 // This is how you call a method (function) from within a class
-//$user->register();
+$reg_returned = $user->register();
 
+// If the registration returned an error
+if (!empty($reg_returned['error']))
+{
+    // Then loop through the multi-dimensional array
+    foreach ($reg_returned['error'] as $key=>$value)
+    {
+        // And echo the error and value
+        echo $key. " : " . $value;
+    }
+}
+// Otherwise if the registration returned a message
+elseif (!empty($reg_returned['message']))
+{
+    // Then print out the message
+    echo $reg_returned['message'];
+}
+// Otherwise if the registration didn't return anything
+else
+{
+    // We have a big problem with the registration method
+    // Print this statement for our own debugging
+    echo "Something really weird happened. Sorry, try it again?";
+}
+
+/*
+ * THIS IS THE END OF THE USER REGISTRATION
+ */
