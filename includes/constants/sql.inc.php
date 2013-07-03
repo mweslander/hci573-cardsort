@@ -11,9 +11,9 @@ defined('DB_NAME')   ? null : define('DB_NAME', 'hci573usort');
 // User ID 
 //defined('USER_ID_SALT') ? null : define('USER_ID_SALT', 'b1yerEb2W110z6e4qINQw36PKFMoAoz5');
 // User Password
-defined('USR_PWD_SALT') ? null : define('USR_PWD_SALT', '1G3MLgL1UTzpKu4QE2LX7naS0Z8JwvrR');
+defined('USER_PWD_SALT') ? null : define('USER_PWD_SALT', '1G3MLgL1UTzpKu4QE2LX7naS0Z8JwvrR');
 // User Email
-defined('USR_EMAIL_SALT') ? null : define('USR_EMAIL_SALT', '435rjgS35rthEv6R472yMydwJSpr2P1p');
+defined('USER_EMAIL_SALT') ? null : define('USER_EMAIL_SALT', '435rjgS35rthEv6R472yMydwJSpr2P1p');
 // Card Srt Password
 defined('CS_PWD_SALT') ? null : define('CS_PWD_SALT', 'HePai3EaS7uc970fnTo38I7LCr48lAQs');
 // Test Subject Email
