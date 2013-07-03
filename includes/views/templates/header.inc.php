@@ -3,11 +3,12 @@
 /*
  * Header
  */
-?>
+ 
+?>       
 <!DOCTYPE html>
 <html>
     <head>
-        <title><?php // echo $title; ?>uSort</title><!-- When this php is ready, delete this comment and text after php tag -->
+        <title><?php echo $title ?></title>
         <link rel="stylesheet" type="text/css" href="<?php echo STYLE_PATH . "main.css"; ?>"/>
     </head>
     <body>
