@@ -18,9 +18,23 @@
 
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+require_once 'includes/constants/paths.inc.php';
+require_once 'includes/constants/sql.inc.php';
+require_once "includes/classes/database.inc.php";
+require_once 'includes/models/baseModel.inc.php';
+require_once 'includes/models/cardModel.inc.php';
+require_once 'includes/models/cardSortModel.inc.php';
+require_once 'includes/models/categoryModel.inc.php';
+require_once 'includes/models/demographicModel.inc.php';
+require_once 'includes/models/testCardModel.inc.php';
+require_once 'includes/models/testDmgModel.inc.php';
+require_once 'includes/models/testDmgDateModel.inc.php';
+require_once 'includes/models/testDmgIntModel.inc.php';
+require_once 'includes/models/testDmgStringModel.inc.php';
+require_once 'includes/models/testModel.inc.php';
+require_once 'includes/models/testSubjectModel.inc.php';
+require_once 'includes/models/userModel.inc.php';
 
 
+$user = new UserModel();
+var_dump($user);

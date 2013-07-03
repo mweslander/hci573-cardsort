@@ -7,7 +7,7 @@
  * 
  */
 
-require_once ('../constants/sql.inc.php');
+//require_once ('../constants/sql.inc.php');
 
 class Database {
 

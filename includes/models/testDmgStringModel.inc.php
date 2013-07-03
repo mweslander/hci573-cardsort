@@ -9,7 +9,7 @@
  * @author Michael Weslander
  */
 
-class TestDmgIntModel extends TestDmgModel
+class TestDmgStringModel extends TestDmgModel
 {
     // Static Parameters
     protected static $table_name = 'usort_test_dmg_strings';

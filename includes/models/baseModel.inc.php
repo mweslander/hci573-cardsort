@@ -254,7 +254,6 @@ abstract class BaseModel
             {
                 $del->execute(); 
             }
-            $del->execute(); 
             return ($del->rowCount() == 1) ? true : false;
         }
         // If the connection with the create database script didn't work
