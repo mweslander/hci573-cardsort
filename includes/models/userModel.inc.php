@@ -50,7 +50,7 @@ class UserModel extends BaseModel
         if(empty($this->user_name) || strlen($this->user_name) < 4)
         {
             // put an error in the array
-            $error['username'] = "You must enter a longer username.";
+            $error['user_name'] = "You must enter a longer username.";
         }
         // Otherwise the user_name is valid
         else
@@ -136,19 +136,20 @@ class UserModel extends BaseModel
             // Then turn the array into a string in order to use it in our SQL statement
             $db_fields_list = implode(', ', $all_fields );
 
-            // SQL for inserting a new user into the database
+            // Prepare an array for binding parameters
+            $reg_values = array($valid_user, $this->user_role, $this->first_name, $this->last_name );
+            
+            // Prepare the SQL statement
             $sql  = "INSERT INTO " . static::$table_name . " (";
             $sql .= $db_fields_list;
-            $sql .= ") VALUES ('";
-            $sql .= $valid_user . "', "; 
-            $sql .= $hashed_pass . ", '"; // Because of AES_ENCRYPT, don't add single quotes
-            $sql .= $this->user_role . "', "; 
-            $sql .= $encrypted_email . ", '"; // Because of AES_ENCRYPT, don't add single quotes
-            $sql .= $this->first_name . "', '";
-            $sql .= $this->last_name . "', ";
-            $sql .= $this->activation_code . ")";
-            // If the query works, then return the id and true
-            var_dump($sql);
+            $sql .= ") VALUES (";
+            $sql .= "?, "; // user_name
+            $sql .= $hashed_pass . ", "; // Because of AES_ENCRYPT, don't prepare this
+            $sql .= "?, "; // user_role
+            $sql .= $encrypted_email . ", "; // Because of AES_ENCRYPT, don't prepare this
+            $sql .= "?, "; // first_name
+            $sql .= "?, "; // last_name
+            $sql .= $this->activation_code . ")"; // This is an int and we generate it
 
             // Use the database connection to perform the query
             // Try connecting to the database
@@ -158,7 +159,7 @@ class UserModel extends BaseModel
                 $prepared = $this->_db->prepare($sql);
                 if ($prepared)
                 {
-                    $prepared->execute(); 
+                    $prepared->execute($reg_values); 
                     $this->id = $this->_db->lastInsertId();
                     $message = "Registration Successful!";
                 }
@@ -205,8 +206,8 @@ class UserModel extends BaseModel
     private function _check_user_name_email_input($valid_user, $encrypted_email)
     {   
         $sql  = "SELECT user_name, user_email FROM " . static::$table_name;
-        $sql .= " WHERE user_name = '" . $valid_user;
-        $sql .= "' OR user_email = " . $encrypted_email;
+        $sql .= " WHERE user_name = ?";
+        $sql .= " OR user_email = " . $encrypted_email;
 
         // Use the database connection to perform the query
         // Try connecting to the database
@@ -218,7 +219,7 @@ class UserModel extends BaseModel
             if ($prepared)
             {
                 // Execute the statement
-                $prepared->execute(); 
+                $prepared->execute(array($valid_user)); 
                 // Get the row count
                 $results = $prepared->rowCount();
                 // If any rows are returned ( ie >0 )
