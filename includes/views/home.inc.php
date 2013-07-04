@@ -1,5 +1,33 @@
 <!-- Header is already included --> 
 <header>
+    DROP DOWN DEMO TEST
+</header>
+<nav>
+	<ul>
+		<li id="demo">
+			<a id="login-trigger" href="#">
+				Demo <span>▼</span>
+			</a>
+			<div id="login-content">
+				<form name="demo" action="#"  method="post">
+					<fieldset id="inputs">
+						<input id="username" type="text" name="log_name" placeholder="Demo Name" required>   
+                                                <input id="password" type="password" name="log_user_password" placeholder="Demo Password" required>
+					</fieldset>
+					<fieldset id="actions">
+						<input type="submit" id="submit" value="Start the Demo">
+					</fieldset>
+				</form>
+			</div>                     
+		</li>
+		
+	</ul>
+</nav>
+
+
+
+
+<header>
     DEMO
 </header>
 <section id="demo">
