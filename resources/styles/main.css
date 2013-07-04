@@ -64,7 +64,7 @@ h1
 #home_content 
 {
     float: left;
-    width: 62%;
+    width: 56%;
     min-height: 25em;
     background-image:url('../images/linedpaper.png');
     padding: 2em;
@@ -72,7 +72,8 @@ h1
     -webkit-box-shadow: 0 3px 10px #CCCCCC;
     -moz-box-shadow: 0 3px 10px #CCCCCC;
     box-shadow: 0 3px 10px #CCCCCC;
-    margin: 1em 1em 0em 0em;
+    margin-left: 20%;
+    clear:both;
 }
 
 
@@ -82,28 +83,13 @@ h1
 ================================================================================
 */
 
-#loginform 
-{
-    display:block;
-    background-image:url('../images/linedpaper.png');
-    float:left;
-    width: 9em;
-    padding: 1em;
-    /*margin:2em 0 0 1em;*/
-    /*left:20em;*/
-    border-radius: 3px;
-    -webkit-box-shadow: 0 3px 10px #CCCCCC;
-    -moz-box-shadow: 0 3px 10px #CCCCCC;
-    box-shadow: 0 3px 10px #CCCCCC;
-    margin: 1em 0em 0em 0em;
-}
 
 /*
 ** 4. REGISTER
 ================================================================================
 */
 
-#registerForm, #demoform 
+/*#registerForm, #demoform 
 {
     display:block;
     background-image:url('../images/linedpaper.png');
@@ -112,25 +98,22 @@ h1
     padding: 1em;
     /*margin:2em 0 0 1em;*/
     /*left:20em;*/
-    border-radius: 3px;
+    /*border-radius: 3px;
     -webkit-box-shadow: 0 3px 10px #CCCCCC;
     -moz-box-shadow: 0 3px 10px #CCCCCC;
     box-shadow: 0 3px 10px #CCCCCC;
     margin: 1em 0em 0em 0em;
-}
+}*/
 
 .registration_input_error
 {
     border: 2px solid #E02626;
 }
 
-/*
-** 5. DROP DOWN DEMO TEST
-================================================================================
-*/
+
 
 nav ul {
-  margin: 0;
+  margin-right: .25em;
   padding: 0;
   list-style: none;
   position: relative;
@@ -146,7 +129,7 @@ nav li {
   float: left;          
 }
 
-nav #demo {
+nav #demo, nav #register, nav #login {
   border-right: 1px solid #ddd;
   -moz-box-shadow: 1px 0 0 #fff;
   -webkit-box-shadow: 1px 0 0 #fff;
@@ -157,17 +140,17 @@ nav #demo {
   background-color: #ccc;
 }
 
-nav #login-trigger {
+nav #demo-trigger, nav #register-trigger, nav #login-trigger {
   -moz-border-radius: 3px 0 0 3px;
   -webkit-border-radius: 3px 0 0 3px;
   border-radius: 3px 0 0 3px;
   color:#666666;
 }
-#login-trigger {
+#demo-trigger, #register-trigger, #login-trigger {
     text-decoration: none;
 }
 
-nav #login-content {
+nav #demo-content, nav #register-content, nav #login-content {
   display: none;
   position: absolute;
   top: 35px;
@@ -189,7 +172,7 @@ nav #login-content {
   border-radius: 3px 0 3px 3px;
 }
 
-nav li #login-content {
+nav li #demo-content, nav li #register-content, nav li #login-content {
   right: 0;
   width: 250px;  
 }
@@ -227,11 +210,11 @@ nav li #login-content {
 
 /*--------------------*/
 
-#demo #actions {
+#demo #actions, #register #actions, #login #actions {
   margin: 10px 0 0 0;
 }
 
-#demo #submit {		
+#demo #submit, #register #submit, #login #submit {		
   background-color: #00adef;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#7fd0ea), to(#00adef));
   background-image: -webkit-linear-gradient(top, #7fd0ea, #00adef);
@@ -253,11 +236,11 @@ nav li #login-content {
   width: 150px;
   cursor: pointer;
   font: bold 14px Arial, Helvetica;
-  color: #fff;
+  color: #fff ;
 }
 
-#demo #submit:hover,
-#demo #submit:focus {		
+#demo #submit,#register #submit, #login #submit:hover,
+#demo #submit, #register #submit:focus {		
   background-color: #0d7899;
   background-image: -webkit-gradient(linear, left top, left bottom, from(#d14545), to(#00adef));
   background-image: -webkit-linear-gradient(top, #7fd0ea, #00adef);
@@ -267,23 +250,23 @@ nav li #login-content {
   background-image: linear-gradient(top, #7fd0ea, #00adef);
 }	
 
-#demo #submit:active {		
+#demo #submit, #register #submit, #login #submit:active {		
   outline: none;
   -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) inset;		
 }
 
-#demo #submit::-moz-focus-inner {
+#demo #submit, #register #submit, #login #submit::-moz-focus-inner {
   border: none;
 }
 
-#demo label {
+#demo label, #register label, #login label {
   float: right;
   line-height: 30px;
 }
 
-#demo label input {
+#demo label input, #register label input, #login label input {
   position: relative;
   top: 8px;
   right: 8px;
