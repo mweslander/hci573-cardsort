@@ -15,7 +15,12 @@ class UxrController extends Basecontroller {
             $this->_pageTemplate->title = 'UXR Page';
             $this->_pageTemplate->render('/uxr/home', TRUE);
         } else {
-            echo " you haven't logged in";
+            
+            //render 404 Error Page
+            $this->_pageTemplate->render('404_page',TRUE);
+            
+            
+            
         }
     }
 
