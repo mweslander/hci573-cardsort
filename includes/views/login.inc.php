@@ -11,7 +11,7 @@
 
 
 <!-- Header is already included --> 
-<form id="loginform">
+<form id="loginform" method='post' action='?url=login/login'>
     <table>
         <tr>
             <td>Username/Email:</td>
