@@ -129,6 +129,14 @@ class LoginController extends Basecontroller {
         echo json_encode($data_return);
     }
     
+    public function logout(){
+        
+        AuthSession::destroySession();
+        header('location: .?url=login');
+       
+        
+    }
+    
     public function activate(){
         $error = array();
         $message = array();
