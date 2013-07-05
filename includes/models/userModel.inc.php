@@ -235,6 +235,7 @@ class UserModel extends BaseModel {
                 //Check if this is the users first time logging in.
                 if($data['num_logins'] <! 0){
                     //User has never loggedin, check activation key
+                    
                     $message['activation'] = 'You still need to activate your account';
                     
                 }else{
@@ -256,6 +257,7 @@ class UserModel extends BaseModel {
                     //Execute Statement
                     $stmt->execute();
                     
+                    $message['loggedin'] = 'Glad to see you again';
                 }
              
             }else{
@@ -334,8 +336,10 @@ class UserModel extends BaseModel {
                     $stmt->execute();
                     
                     //set message
-                    $message['activation'] = 'Congrates you have activated your account';
                     
+                    $message['activation'] = 'Congrates you have activated your account';
+                    header('location: ?url=uxr');
+                    exit();
         }else{
             $error = 'Activation Code is not Correct!';
         }
