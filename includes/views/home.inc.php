@@ -9,7 +9,7 @@
 				Login <span>&#x25bc;</span>
 			</a>
 			<div id="login-content">
-				<form name="loginForm" action="#"  method="post">
+				<form name="loginForm" action="?url=login/login"  method="post">
 					<fieldset id="inputs">
 						<input type="text" id="username"  name="log_name" placeholder="User Name" required>   
                                                 <input type="password" id="password"  name="log_user_password" placeholder="User Password" required>
