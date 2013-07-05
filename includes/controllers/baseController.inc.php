@@ -9,7 +9,7 @@ abstract class Basecontroller{
     
     public function __construct() {
         $this->_pageTemplate = new PageTemplate();
-                
+         AuthSession::initSession();        
     }
     
     
