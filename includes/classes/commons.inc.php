@@ -27,4 +27,9 @@ class Commons
         return $string;
     }
     
+    //Check for valid email
+    public static function check_email($email) {
+        return preg_match('/^\S+@[\w\d.-]{2,}\.[\w]{2,6}$/iU', $email) ? TRUE : FALSE;
+    }
+    
 }
