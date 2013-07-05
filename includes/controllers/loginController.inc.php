@@ -82,6 +82,7 @@ class LoginController extends Basecontroller {
                         $this->_pageTemplate->title = 'Activation Page';
                         $this->_pageTemplate->render('/uxr/activation', TRUE);
                         //set session activated to false
+                        AuthSession::setSession('loggedin', TRUE);
                         AuthSession::setSession('activated', FALSE);   
                     }elseif(!empty($log_returned['message']['loggedin'])){
                         //User is all ready activated
@@ -132,7 +133,7 @@ class LoginController extends Basecontroller {
     public function logout(){
         
         AuthSession::destroySession();
-        header('location: .?url=login');
+        header('location: ?url=');
        
         
     }
@@ -166,7 +167,9 @@ class LoginController extends Basecontroller {
                     /***********************************
                     ****************TO DO *************
                     ***************************************/
-                        
+                 //AuthSession::setSession('activated', TRUE); 
+                 AuthSession::destroySession();  
+                 header('location: ?url=');
                 }
             
         }else {
