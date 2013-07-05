@@ -10,14 +10,18 @@ class LoginController extends Basecontroller {
         //set variables before calling render
         $this->_pageTemplate->title = 'Login Page';
         $this->_pageTemplate->render('login', TRUE);
+        
+        AuthSession::setSession('loggedin', False);
+        AuthSession::setSession('activated', FALSE);
     }
 
     public function login() {
 
         $error = array();
         $message = array();
-
-
+        
+        
+       
         //Check for POST Data
         if (isset($_POST)) {
 
@@ -26,17 +30,17 @@ class LoginController extends Basecontroller {
 
             // Set the parameters
             // Check if the username is set
-            if (!empty($_POST['log_name'])) {
+            if (isset($_POST['login_name'])) {
                 // Assign the post variable to reg_user_name
-                $log_name = Commons::filter_string($_POST['log_name']);
+                $log_name = Commons::filter_string($_POST['login_name']);
             } else {
                 // Otherwise add an error to the array
                 $err['log_name'] = "Please enter a username";
             }
 
             // Check if the password is set
-            if (!empty($_POST['log_user_password'])) {
-                $log_user_password = Commons::filter_string($_POST['log_user_password']);
+            if (isset($_POST['login_user_password'])) {
+                $log_user_password = Commons::filter_string($_POST['login_user_password']);
             } else {
                 // Otherwise add an error to the array
                 $err['password'] = "Please enter a password";
@@ -77,15 +81,22 @@ class LoginController extends Basecontroller {
                         //redirect user to activation page
                         $this->_pageTemplate->title = 'Activation Page';
                         $this->_pageTemplate->render('/uxr/activation', TRUE);
-                    }else{
+                        //set session activated to false
+                        AuthSession::setSession('activated', FALSE);   
+                    }elseif(!empty($log_returned['message']['loggedin'])){
                         //User is all ready activated
                         //redirect user to uxr secure page
                         
                         /***********************************
-                        ****************TO DO *************
+                        ****************Start SESSION go to SECURE PAGE *************
                         ***************************************/
-                        
-                        
+                     AuthSession::setSession('loggedin', TRUE);
+                     AuthSession::setSession('activated', TRUE);
+                     
+                     
+                       
+                     header("location: ?url=uxr"); 
+                       
                     }
 
 
