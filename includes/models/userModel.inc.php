@@ -338,8 +338,7 @@ class UserModel extends BaseModel {
                     //set message
                     
                     $message['activation'] = 'Congrates you have activated your account';
-                    header('location: ?url=uxr');
-                    exit();
+                   
         }else{
             $error = 'Activation Code is not Correct!';
         }
