@@ -128,17 +128,17 @@ var_dump($_SESSION);
                     </tr>
                 </thead>
                 <tbody id="dmgAdditions">
-                    <tr id="noDmgs">
-                        <td>(example: Occupation)</td>
-                        <td>(example: Text)</td>
+                    <tr class="noDmgs">
+                        <td>Ex: Occupation</td>
+                        <td>Text</td>
                     </tr>
-                    <tr id="noDmgs">
-                        <td>(example: Approximate Income)</td>
-                        <td>(example: Number)</td>
+                    <tr class="noDmgs">
+                        <td>Ex: Approximate Income</td>
+                        <td>Number</td>
                     </tr>
-                    <tr id="noDmgs">
-                        <td>(example: Birthday)</td>
-                        <td>(example: Date)</td>
+                    <tr class="noDmgs">
+                        <td>Ex: Birthday</td>
+                        <td>Date</td>
                     </tr>
                 </tbody>
             </table>
