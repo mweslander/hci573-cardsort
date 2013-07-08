@@ -112,6 +112,11 @@ class LoginController extends Basecontroller {
                         ***************************************/
                      AuthSession::setSession('loggedin', TRUE);
                      AuthSession::setSession('activated', TRUE);
+                     
+                     if(!empty($log_returned['message']['id'])){
+                         AuthSession::setSession('uid', $log_returned['message']['id']);
+                     }
+                     
   
                      header("location: ?url=uxr");  
                     }
