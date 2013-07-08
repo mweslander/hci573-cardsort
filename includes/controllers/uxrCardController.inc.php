@@ -1,10 +1,9 @@
 <?php
 
 /*
- * UxrCardsortController class
+ * UxrCardController class
  * 
- * This class handles AJAX calls for creating and updating Cardsorts from the
- * UXR side
+ * This class handles AJAX calls for cards for a specific cardsort
  * 
  * @author Michael Weslander
  */
@@ -17,12 +16,12 @@ require_once (CONST_PATH . 'sql.inc.php');
 require_once (CLASS_PATH . 'database.inc.php');
 require_once (CLASS_PATH . 'commons.inc.php');
 require_once (MODEL_PATH . 'baseModel.inc.php');
-require_once (MODEL_PATH . 'CardsortModel.inc.php');
+require_once (MODEL_PATH . 'CardModel.inc.php');
 require_once (CTRL_PATH . 'baseController.inc.php');
 
-class UxrCardsortController extends Basecontroller
+class UxrCardController extends Basecontroller
 {
-    private $_model = 'CardsortModel';
+    private $_model = 'CardModel';
     
     public function __construct() {
         // I don't think we really need to construct the Basecontroller here
@@ -30,15 +29,15 @@ class UxrCardsortController extends Basecontroller
         // The Basecontroller is creating a new page template, and this
         // particular page doesn't need a template per-se, or it might, I'm not
         // exactly sure. Basically I will be running a function that checks the
-        // post data, sends it to the CardsortModel, gets info from the CardsortModel
+        // post data, sends it to the UserModel, gets info from the UserModel
         // then sends info back to the page that called it.
         // parent::__construct();        
         
-       $this->create_cardsort();
+       $this->create_card();
     }
     
     // Registration function
-    public function create_cardsort()
+    public function create_card()
     {
         // First set empty error and message arrays
         $error = array();
@@ -52,84 +51,54 @@ class UxrCardsortController extends Basecontroller
             $err = array();
             
             // Check to make sure we're on the right page
-            // This one is cardsort
-            if ($_POST['add'] == 'cardsort')
+            // This one is category
+            if ($_POST['add'] == 'card')
             {
                 // Set the parameters
                 
                 // Check if the user_id is set
-                if (isset($_POST['user_id']))
+                if (isset($_POST['cs_id']))
                 {
                     // Assign the post variable to user_id
-                    $user_id = Commons::filter_string($_POST['user_id']);
+                    $cs_id = Commons::filter_string($_POST['cs_id']);
                 }
                 else
                 {
                     // Otherwise add an error to the array
-                    $err['user_id'] = "No user_id, this shouldn't happen. Please try logging out and back in";
+                    $err['cs_id'] = "No cardsort id, this shouldn't happen. Please try logging out and back in";
                 }
 
                 // Check if the cardsort_name is set
-                if (isset($_POST['cardsort_name']))
+                if (isset($_POST['card_label']))
                 {
-                    $cardsort_name = Commons::filter_string($_POST['cardsort_name']);
+                    $card_label = Commons::filter_string($_POST['card_label']);
                 }
                 else
                 {
                     // Otherwise add an error to the array
-                    $err['cardsort_name'] = "Please enter a name for your cardsort";
-                }
-
-                // Check if the cardsort_type is set
-                if (isset($_POST['cardsort_type']))
-                {
-                    $cardsort_type = Commons::filter_string($_POST['cardsort_type']);
-                }
-                else
-                {
-                    // Otherwise add an error to the array
-                    $err['cardsort_type'] = "This shouldn't happen, but please select a cardsort type";
-                }
-
-                // Check if the password is set
-                if (isset($_POST['password']))
-                {
-                    $password = Commons::filter_string($_POST['password']);
-                }
-                else
-                {
-                    // Otherwise add an error to the array
-                    $password = NULL;
+                    $err['card_label'] = "Please enter a label for your card";
                 }
 
                 // If the error array is empty, then begin processing
                 if (empty($err))
                 {
-                    // Whenever we want to interact with a user, we need to instantiate a Cardsort object
+                    // Whenever we want to interact with a user, we need to instantiate a user object
                     // This is how you do that:
-                    $cardsort = new CardsortModel();
-                    // Check to see if the cardsort id is set
-                    if (isset($_POST['cs_id']))
-                    {
-                        // Assign the post variable to the cardsort object
-                        $cardsort->id = Commons::filter_string($_POST['cs_id']);
-                    }
-                    
+                    $card = new CardModel();
+                    // Notice how (in the browser) there is nothing in this object.
+                    // var_dump($user); // This is a very useful variable dump function that shows you what is in your variable
+
                     // This is how you assign values to the object
-                    $cardsort->user_id = $user_id; // User id of the UXR who created the cardsort
-                    $cardsort->cs_name = $cardsort_name; // Name of the cardsort
-                    $cardsort->cs_type = $cardsort_type; // type of the cardsort
-                    $cardsort->cs_password = $password; // Password, NULL if not selected by user (optional)
-                    
-                    // Now we can test the SQL for the cardsort
+                    $card->cs_id = $cs_id; // ID of the cardsort
+                    $card->card_label = $card_label; // Label of the category
+
+                    // Now we can test the SQL for the category
                     // This is how you call a method (function) from within a class
-                    $cardsort->save();
+                    $card->save();
                     
                     $message['completed'] = "yes";
-                    $message['cs_id'] = $cardsort->id;
-                    $message['cs_name'] = $cardsort->cs_name;
-                    $message['cs_type'] = $cardsort->cs_type;
-                    $message['cs_password'] = $cardsort->cs_password;
+                    $message['card_id'] = $card->id;
+                    $message['card_label'] = $card->card_label;
                 }
                 // Otherwise there was an error in the post variables
                 else
@@ -154,7 +123,7 @@ class UxrCardsortController extends Basecontroller
         );
         // JSON encode the data return array to make it easy to use
         echo json_encode($data_return);
-    }  
+    }   
 }
 
-$uxr_cardsort = new UxrCardsortController();
+$cardsort_card = new UxrCardController();

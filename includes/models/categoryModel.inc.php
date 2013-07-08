@@ -26,6 +26,8 @@ class CategoryModel extends BaseModel
         parent::__construct();
     }
     
+    // Uses methods from the BaseModel
+    
     // Create Method
     
     // Update Method

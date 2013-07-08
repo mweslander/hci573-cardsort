@@ -102,8 +102,8 @@ var_dump($_SESSION);
         <!-- Categories -->
         <div id="uxrViewCategories">
             <h2>Categories</h2>
-            <div>
-                <span>None</span>
+            <div id="catAdditions">
+                <span id="noCat"></span><!-- Defined in uxrSort.js -->
             </div>
             <hr>
         </div>
@@ -111,8 +111,8 @@ var_dump($_SESSION);
         <!-- Cards -->
         <div id="uxrViewCards">
             <h2>Cards</h2>
-            <div>
-                <span>None</span>
+            <div id="cardAdditions">
+                <span id="noCards"></span><!-- Defined in uxrSort.js -->
             </div>
             <hr>
         </div>
@@ -120,10 +120,17 @@ var_dump($_SESSION);
         <!-- Demographics -->
         <div id="uxrViewDemographics">
             <h2>Demographics</h2>
-            <div>
-                <span>Label</span>
-                <span>Type</span>
-            </div>
+            <table id="demoAdditions">
+                <thead>
+                    <tr>
+                        <th>Label</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
             <hr>
         </div>   
         <!-- Password -->

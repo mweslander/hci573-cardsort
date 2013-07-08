@@ -12,6 +12,8 @@ $(document).ready(function(){
     // Set empty errors & messages
     var csError;
     var csMessage;
+    var catCount = 0;
+    var cardCount = 0;
     
     addCardsort();
     addCategory();
@@ -23,6 +25,8 @@ $(document).ready(function(){
     showCardsortPassword(null);
     showCardAdd(cs_id);
     showDemographicsAdd(cs_id);
+    showAddedCategories(catCount);
+    showAddedCards(cardCount);
     
     
     
@@ -61,10 +65,10 @@ $(document).ready(function(){
                 datastring += "&cs_id="+cs_id;
             }
             
-            console.log(datastring);
             $.ajax({
+                // Post
                 type: "POST",
-                //url: "includes/forms/registerForm.php",
+                // to this location
                 url: "includes/controllers/uxrCardsortController.inc.php",
                 data: datastring,
                 success: function(data)
@@ -107,26 +111,12 @@ $(document).ready(function(){
             
             console.log(datastring);
             
-        });
-    }
-    
-    // Add a new category function
-    function addCategory()
-    {
-        $('#uxrCardsortCategories').submit(function(event)
-        {
-            // Prevent the page from reloading
-            event.preventDefault();
-            // Get the variables
-            var cardsortCategoryLabel = $('#cardsortCategoryLabel').val();
-            var datastring = "add=category"+"&cs_id="+cs_id+"&category_label="+cardsortCategoryLabel;
-                    
-            console.log(datastring);
-            
             $.ajax({
+                // Post
                 type: "POST",
-                //url: "includes/forms/registerForm.php",
-                url: "includes/controllers/uxrCategoryController.inc.php",
+                // To this location
+                url: "includes/controllers/uxrCardController.inc.php",
+                // The datastring defined above
                 data: datastring,
                 success: function(data)
                 {
@@ -142,6 +132,50 @@ $(document).ready(function(){
                     {
                         // csMessage.category_label
                         // append a new category div to the view!!
+                        cardCount++;
+                        showAddedCards(cardCount, csMessage.card_label);
+                    }
+
+                }
+            }); // End of AJAX call
+            
+        });
+    }
+    
+    // Add a new category function
+    function addCategory()
+    {
+        $('#uxrCardsortCategories').submit(function(event)
+        {
+            // Prevent the page from reloading
+            event.preventDefault();
+            // Get the variables
+            var cardsortCategoryLabel = $('#cardsortCategoryLabel').val();
+            var datastring = "add=category"+"&cs_id="+cs_id+"&category_label="+cardsortCategoryLabel;
+            
+            $.ajax({
+                // Post
+                type: "POST",
+                // To this location
+                url: "includes/controllers/uxrCategoryController.inc.php",
+                // The datastring defined above
+                data: datastring,
+                success: function(data)
+                {
+                    // Parse the JSON data
+                    var msg = jQuery.parseJSON(data);
+
+                    // Assign a new value to error, using the msg object
+                    csError = msg.error;
+                    csMessage = msg.message;
+                    // Check and display errors and messages
+                    
+                    if (!(jQuery.isEmptyObject(csMessage)))
+                    {
+                        // csMessage.category_label
+                        // append a new category div to the view!!
+                        catCount++;
+                        showAddedCategories(catCount, csMessage.category_label);
                     }
 
                 }
@@ -225,7 +259,7 @@ $(document).ready(function(){
         }
     }
     
-    // Add demogrpahics display function
+    // Add demographics display function
     function showDemographicsAdd(cs_id)
     {
         if (cs_id === 0)
@@ -239,4 +273,33 @@ $(document).ready(function(){
             $('#uxrViewDemographics').show();
         }
     }
+    
+    // Add category display function
+    function showAddedCategories(catCount, category)
+    {
+        if (catCount === 0)
+        {
+            $('#noCat').show().html("None");
+        }
+        else
+        {
+            $('#noCat').hide();
+            $('<span>'+category+'</span><br>').appendTo('#catAdditions');
+        }
+    }
+    
+    // Add card display function
+    function showAddedCards(cardCount, card_label)
+    {
+        if (cardCount === 0)
+        {
+            $('#noCard').show().html("None");
+        }
+        else
+        {
+            $('#noCard').hide();
+            $('<span>'+card_label+'</span><br>').appendTo('#cardAdditions');
+        }
+    }
+    
 });
