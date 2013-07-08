@@ -43,16 +43,23 @@ h1
 
 #logo 
 {
-
+    float: left;
     background-repeat:no-repeat;
     width:200px;
     height:106px;
     /*margin-left: 25em;*/
 }
+#logo img{
+    border: none;
+}
 /* BRETTS CHANGES - DONT HAVE TO USE */
 #wrapper{
     margin: 0 auto;
-    width: 40%;
+    width: 90%;
+}
+#inner_wrap{
+    margin: 0 auto;
+    width: 40%;    
 }
 .demo_two{
     margin-right: 20px;
@@ -192,7 +199,7 @@ nav #demo-trigger, nav #register-trigger, nav #login-trigger {
 
 nav #demo-content, nav #register-content, nav #login-content {
     display: none;
-    position: absolute;
+    /*position: absolute;*/
     top: 35px;
     right: 0;
     z-index: 999;    
@@ -321,13 +328,45 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
 #uxrControl
 {
     background-color: #CCCCCC;
-    width: 30%;
+    width: 20%;
     float: left;
 }
 
 #uxrView
 {
     background-color: #DDDDDD;
-    width: 70%;
+    width: 80%;
     float: left;
+}
+
+
+/*
+* Member Menu - 
+*/
+#member_menu{
+    float: right;
+}
+#member_menu ul{
+   list-style-type: none;
+    
+}
+#member_menu ul li{    
+    float:left;
+    background-color: gainsboro;
+    margin: 5px;
+    padding: 5px;
+}
+#member_menu ul li a{
+    color: grey;
+    width: 50px;
+    height:50px;
+    text-decoration: none;
+    
+}
+#member_menu ul li a:hover{
+    color: white;
+   
+    text-decoration: none;
+    
+    
 }
