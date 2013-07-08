@@ -20,6 +20,16 @@
 // php DIRECTORY_SEPARATOR
 defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
 
+// QUICK CHANGE for DEVELOPMENT
+
+// For Mike (refer to lines (28 and 89)
+//defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT']);
+//defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST']);
+
+// For Brett and Ann (refer to lines 40 and 101)
+defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT'] . DS . 'hci573-cardsort');
+defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST'] . DS . 'hci573-cardsort');
+
 // FILE STRUCTURE
 // =============================================================================
 // Base in operating system -- This is for the FILE STRUCTURE, not the web host
@@ -122,12 +132,3 @@ defined('IMG_PATH') ? null : define('IMG_PATH', RESOURCE_PATH .'images/' );
 define ("SELF", $_SERVER['PHP_SELF']);
 
 
-// QUICK CHANGE for DEVELOPMENT
-
-// For Mike (refer to lines (28 and 89)
-//defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT']);
-//defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST']);
-
-// For Brett and Ann (refer to lines 40 and 101)
-defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT'] . DS . 'hci573-cardsort');
-defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST'] . DS . 'hci573-cardsort');

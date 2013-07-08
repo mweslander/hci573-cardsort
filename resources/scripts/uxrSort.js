@@ -14,6 +14,7 @@ $(document).ready(function(){
     var csMessage;
     var catCount = 0;
     var cardCount = 0;
+    var dmgsCount = 0;
     
     addCardsort();
     addCategory();
@@ -25,10 +26,11 @@ $(document).ready(function(){
     showCardsortPassword(null);
     showCardAdd(cs_id);
     showDemographicsAdd(cs_id);
+    
+    // These set defaults of none to the view
     showAddedCategories(catCount);
     showAddedCards(cardCount);
-    
-    
+    showAddedDemographics(dmgsCount);
     
     // FUNCTIONS!!!
     
@@ -109,7 +111,7 @@ $(document).ready(function(){
             var cardsortCardLabel = $('#cardsortCardLabel').val();
             var datastring = "add=card"+"&cs_id="+cs_id+"&card_label="+cardsortCardLabel;
             
-            console.log(datastring);
+            // console.log(datastring);
             
             $.ajax({
                 // Post
@@ -128,10 +130,10 @@ $(document).ready(function(){
                     csMessage = msg.message;
                     // Check and display errors and messages
                     
+                    // If the csMessage object isn't empty then do this
                     if (!(jQuery.isEmptyObject(csMessage)))
                     {
-                        // csMessage.category_label
-                        // append a new category div to the view!!
+                        // append a new card div to the view!!
                         cardCount++;
                         showAddedCards(cardCount, csMessage.card_label);
                     }
@@ -170,9 +172,9 @@ $(document).ready(function(){
                     csMessage = msg.message;
                     // Check and display errors and messages
                     
+                    // If the csMessage object isn't empty, then do this
                     if (!(jQuery.isEmptyObject(csMessage)))
                     {
-                        // csMessage.category_label
                         // append a new category div to the view!!
                         catCount++;
                         showAddedCategories(catCount, csMessage.category_label);
@@ -197,7 +199,36 @@ $(document).ready(function(){
             var datastring = "add=demographic"+"&cs_id="+cs_id+"&demographics_label="+cardsortDemographicsLabel+"&demographics_type="+cardsortDemographicsType;
                     
             console.log(datastring);
-        });
+            
+            
+            $.ajax({
+                // Post
+                type: "POST",
+                // To this location
+                url: "includes/controllers/uxrDmgsController.inc.php",
+                // The datastring defined above
+                data: datastring,
+                success: function(data)
+                {
+                    // Parse the JSON data
+                    var msg = jQuery.parseJSON(data);
+
+                    // Assign a new value to error, using the msg object
+                    csError = msg.error;
+                    csMessage = msg.message;
+                    // Check and display errors and messages
+                    
+                    // If the csMessage object isn't empty, then do this
+                    if (!(jQuery.isEmptyObject(csMessage)))
+                    {
+                        // append a new category div to the view!!
+                        dmgsCount++;
+                        showAddedDemographics(dmgsCount, csMessage.dmg_label, csMessage.dmg_type);
+                    }
+
+                }
+            }); // End of AJAX call
+        }); // End of submit function
     } // End of addDemographic function
     
     // Name of the cardsort display function
@@ -302,4 +333,17 @@ $(document).ready(function(){
         }
     }
     
+    // Add Demographics display function
+    function showAddedDemographics(dmgsCount, dmg_label, dmg_type)
+    {
+        if (dmgsCount === 0)
+        {
+            $('#noDmgs').show();
+        }
+        else
+        {
+            $('#noCard').hide();
+            $('<tr><td>'+dmg_label+'</td><td>'+dmg_type+'</td></tr>').appendTo('#dmgAdditions');
+        }
+    }
 });
