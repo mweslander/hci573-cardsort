@@ -258,6 +258,8 @@ class UserModel extends BaseModel {
                     $stmt->execute();
                     
                     $message['loggedin'] = 'Glad to see you again';
+                    //pull id into session
+                    $message['id'] = $id;
                 }
              
             }else{
