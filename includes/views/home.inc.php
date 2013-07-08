@@ -1,4 +1,3 @@
-<div id="inner_wrap">
 <section>    
     <p>Create a usability study for your web site, quick,
         simple, and accurately with uSort. A card sorting exercise.       
@@ -44,20 +43,19 @@
         <div id="register-content">
             <form id="registerForm"  >
                 <fieldset id="inputs">
-                    First Name 
-                    <input type="text" id="register_user_first_name" name="register_user_first_name" placeholder="First Name" required /><br />
-                    Last Name 
-                    <input type="text" id="register_user_last_name" name="register_user_last_name" placeholder="Last Name" required /><br />
-                    Email 
-                    <input type="email" id="register_user_email" name="register_user_email" placeholder="Email" required /><br />
                     User Name 
-                    <input type="text" id="register_user_name" name="register_user_name" autofocus placeholder="Type a Username" required /><br />
+                    <input type="text" id="register_user_name" name="register_user_name" autofocus placeholder="Type a Username" required />
                     Password 
-                    <input type="password" id="register_user_password" name="register_user_password" placeholder="Type a Password" required /><br />
-                    
+                    <input type="password" id="register_user_password" name="register_user_password" placeholder="Type a Password" required />
+                    First Name 
+                    <input type="text" id="register_user_first_name" name="register_user_first_name" placeholder="First Name" required />
+                    Last Name 
+                    <input type="text" id="register_user_last_name" name="register_user_last_name" placeholder="Last Name" required />
+                    Email 
+                    <input type="email" id="register_user_email" name="register_user_email" placeholder="Email" required />
                 </fieldset>
                 <fieldset id="actions">
-                    
+                    Submit button 
                     <input type="submit" id="submit_register" value="Register"/>
                 </fieldset>
             </form>
