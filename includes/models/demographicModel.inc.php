@@ -28,6 +28,8 @@ class DemographicModel extends BaseModel
         parent::__construct();
     }
     
+    
+    
     // Create Method
     
     // Update Method

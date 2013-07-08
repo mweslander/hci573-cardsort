@@ -33,7 +33,25 @@ class UxrDmgsController extends Basecontroller
         // then sends info back to the page that called it.
         // parent::__construct();        
         
-       $this->create_demographic();
+       $this->demographic_handling();
+    }
+    
+    public function demographic_handling()
+    {
+        // This runs a series of checks to make sure that the post data
+        // behaves properly
+        if (isset($_POST['add']))
+        {
+            $this->create_demographic();
+        }
+        elseif (isset($_POST['delete']))
+        {
+            $this->delete_demographic();
+        }
+        elseif (isset($_POST['rows']))
+        {
+            $this->retrieve_rows();
+        }
     }
     
     // Registration function
@@ -136,7 +154,108 @@ class UxrDmgsController extends Basecontroller
         );
         // JSON encode the data return array to make it easy to use
         echo json_encode($data_return);
-    }   
+    }
+    
+    public function delete_demographic()
+    {
+        // First set empty error and message arrays
+        $error = array();
+        $message = array();
+        
+        // This runs a series of checks to make sure that the post data
+        // behaves properly
+        if (isset($_POST['delete']))
+        {
+            // If the post ID is set
+            if($_POST['id'])
+            {
+                // Then make the id variable == to the post
+                $id = $_POST['id'];
+                // And then use the time class to delete the row from the database
+                $dmg = new DemographicModel();
+                $dmg->id = $id;
+                
+                if ($dmg->delete())
+                {
+                    $message['deleted'] = "yes";
+                }
+                else
+                {
+                    $error['database'] = "Deletion was not completed";
+                }
+                
+            }
+            else
+            {
+                $error['post_type'] = "Wrong type of post!";
+            }
+        }
+        else
+        {
+            $error['post'] = "Post not set";
+        }
+        
+        // Return the data in an array
+        $data_return = array(
+            "error" => $error,
+            "message" => $message
+        );
+        // JSON encode the data return array to make it easy to use
+        echo json_encode($data_return);
+    }
+    
+    public function retrieve_rows()
+    {
+        // First set empty error and message arrays
+        $error = array();
+        $message = array();
+
+        // Check if the cs_id is set
+        if (isset($_POST['cs_id']))
+        {
+            // Assign the post variable to cs_id
+            $cs_id = Commons::filter_string($_POST['cs_id']);
+        }
+        else
+        {
+            // Otherwise add an error to the array
+            $err['cs_id'] = "No cardsort id, this shouldn't happen. Please try logging out and back in";
+        }
+
+        // If the error array is empty, then begin processing
+        if (empty($err))
+        {
+            // Find all the rows for this user in the dmgs table in the database
+            $dmgs = DemographicModel::find_all_by_cs_id($cs_id);
+            
+            // Then for each time
+            foreach ($dmgs as $dmg)
+            {
+                $dmg_array = array();
+                
+                $dmg_array['id'] = $dmg->id;
+                $dmg_array['dmg_label'] = $dmg->dmg_label;
+                $dmg_array['dmg_type'] = $dmg->dmg_type;
+                
+                // Pass this back to the page
+                $message[] = $dmg_array;
+            }
+        }
+        // Otherwise there was an error in the post variables
+        else
+        {
+            // Set error equal to err
+            $error = $err;
+        }
+        
+        // Return the data in an array
+        $data_return = array(
+            "error" => $error,
+            "message" => $message
+        );
+        // JSON encode the data return array to make it easy to use
+        echo json_encode($data_return);
+    }
 }
 
 $cardsort_dmg = new UxrDmgsController();

@@ -125,20 +125,24 @@ var_dump($_SESSION);
                     <tr>
                         <th>Label</th>
                         <th>Type</th>
+                        <th>Delete</th>
                     </tr>
                 </thead>
                 <tbody id="dmgAdditions">
                     <tr class="noDmgs">
                         <td>Ex: Occupation</td>
                         <td>Text</td>
+                        <td>Delete</td>
                     </tr>
                     <tr class="noDmgs">
                         <td>Ex: Approximate Income</td>
                         <td>Number</td>
+                        <td>Delete</td>
                     </tr>
                     <tr class="noDmgs">
                         <td>Ex: Birthday</td>
                         <td>Date</td>
+                        <td>Delete</td>
                     </tr>
                 </tbody>
             </table>

@@ -32,6 +32,10 @@ $(document).ready(function(){
     showAddedCards(cardCount);
     showAddedDemographics(dmgsCount);
     
+    // These are the deletion functions
+    deleteDmg();
+    
+    
     // FUNCTIONS!!!
     
     // Add a new cardsort function
@@ -241,7 +245,7 @@ $(document).ready(function(){
                                 type = "Text";    
                         } // End of switch statement
                         
-                        showAddedDemographics(dmgsCount, csMessage.dmg_label, type);
+                        showAddedDemographics(dmgsCount, csMessage.dmg_id, csMessage.dmg_label, type);
                     }
                 } // End of success processing
             }); // End of AJAX call
@@ -351,7 +355,7 @@ $(document).ready(function(){
     }
     
     // Add Demographics display function
-    function showAddedDemographics(dmgsCount, dmg_label, dmg_type)
+    function showAddedDemographics(dmgsCount, dmg_id, dmg_label, dmg_type)
     {
         if (dmgsCount === 0)
         {
@@ -360,7 +364,106 @@ $(document).ready(function(){
         else
         {
             $('.noDmgs').hide();
-            $('<tr><td>'+dmg_label+'</td><td>'+dmg_type+'</td></tr>').appendTo('#dmgAdditions');
+            $('<tr id='+dmg_id+'><td>'+dmg_label+'</td><td>'+dmg_type+'</td><td class="dmg_delete">X</td></tr>').appendTo('#dmgAdditions');
         }
     }
+    
+    // This is for when you click the delete button in the dmgs table
+    function deleteDmg()
+    {
+        $('#dmgAdditions').on('click','td.dmg_delete', function()
+        {
+            var currentRow = $(this);
+            // We set a new variable to the rows id
+            var useThisID = $(this).parent().attr('id');
+            // Then we use the deleteTime function to remove the time with this id from the database
+            deleteDatabaseDmg(useThisID, currentRow);
+
+            // Need to find a way to show the deletion
+            
+        });
+    }
+    
+    
+    // Delete a single dmg row from the database
+    function deleteDatabaseDmg(id, currentRow)
+    {
+        // set the data string
+        var datastring = 'delete=dmg'+'&id=' + id;
+        // make sure they want to do it
+        if(confirm("Sure you want to delete this value? There is NO undo!"))
+        {
+            // ajax call
+            $.ajax({
+                type: "POST",
+                url: "includes/controllers/uxrDmgsController.inc.php",
+                data: datastring,
+                success: function()
+                {
+                    currentRow.parent().remove();
+                    dmgsCount--;
+                }
+             });
+             
+        }
+        // Stop the page from refreshing
+        return false;
+    }
+    
+    
+    
 });
+
+
+// TEST FUNCTIONS
+
+
+
+// Get all the demographic rows for a specific cardsort
+// Type must be uppercase to make the correct url
+// Types can be: Card, Cardsort, Category and Dmgs
+function displayDatabaseValues(type, cs_id)
+{
+    var datastring = 'rows='+type+'&cs_id='+cs_id;
+
+    // ajax call
+    $.ajax({
+        type: "POST",
+        url: "includes/controllers/uxr"+type+"Controller.inc.php",
+        data: datastring,
+        success: function(data)
+        {
+            // Parse the JSON data
+            var msg = jQuery.parseJSON(data);
+
+            // Assign a new value to error, using the msg object
+            csError = msg.error;
+            csMessage = msg.message;
+
+            if (!(jQuery.isEmptyObject(csMessage)))
+            {
+
+            }
+        }
+     });
+}
+
+
+// Add Demographics display function
+function showAddedDemographics2(dmgsCount, dmg_id, dmg_label, dmg_type)
+{
+    if (dmgsCount === 0)
+    {
+        $('.noDmgs').show();
+    }
+    else
+    {
+        $('.noDmgs').hide();
+        var type = "Dmg";
+
+        var objectArray = displayDatabaseValues(type, cs_id);
+        console.log(objectArray);
+
+        // $('<tr id='+dmg_id+'><td>'+dmg_label+'</td><td>'+dmg_type+'</td><td class="dmg_delete">X</td></tr>').appendTo('#dmgAdditions');
+    }
+}

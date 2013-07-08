@@ -31,6 +31,13 @@ abstract class BaseModel
         return static::find_by_sql("SELECT * FROM " . static::$table_name);
     }
     
+    // Find all by cs_id
+    // Used to find every row in a specific table in the database
+    public static function find_all_by_cs_id($id = 0)
+    {
+        return static::find_by_sql("SELECT * FROM " . static::$table_name . " WHERE cs_id=" . $id);
+    }
+    
     // Find by id
     public static function find_by_id($id=0)
     {
