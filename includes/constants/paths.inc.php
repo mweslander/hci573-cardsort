@@ -37,7 +37,7 @@ defined('DS') ? null : define('DS', DIRECTORY_SEPARATOR);
     *  may have to add additional parameters to this. I've added a commented example
     *  below. I use the directory separator as defined above.
     */
-//defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT'] . DS . 'hci573-cardsort');
+defined ('REL_BASE') ? null : define ("REL_BASE", $_SERVER['DOCUMENT_ROOT'] . DS . 'hci573-cardsort');
 
 // This makes it easier to get to the includes files
 // First it checks to see if it's defined, if not it defines it
@@ -98,7 +98,7 @@ defined('UXR_PATH') ? null : define('UXR_PATH', VIEW_PATH . 'uxr' . DS);
     *  may have to add additional parameters to this. I've added a commented example
     *  below. I use the directory separator as defined above.
     */
-//defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST'] . DS . 'hci573-cardsort');
+defined ('BASE') ? null : define ("BASE", "http://" . $_SERVER['HTTP_HOST'] . DS . 'hci573-cardsort');
 
 // This makes it easier to get to the client-side resource files
 // First it checks to see if it's defined, and if it's null it sets the constant
