@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="utf-8" />
         <title><?php echo $title ?></title>
         
         <!-- Stylesheets -->
@@ -15,6 +16,10 @@
         
         <!-- JavaScript -->
         <script src="<?php echo JS_PATH . "jquery-1.9.1.min.js"; ?>"></script>
+        
+        <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+        
         <script src="<?php echo JS_PATH . "register.js"; ?>"></script>
         <script src="<?php echo JS_PATH . "uxrSort.js"; ?>"></script>
     </head>
