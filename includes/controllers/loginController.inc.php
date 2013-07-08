@@ -2,11 +2,13 @@
 
 class LoginController extends Basecontroller {
 
-    public function __construct() {
+    public function __construct() 
+    {
         parent::__construct();
     }
 
-    public function index() {
+    public function index() 
+    {
         //set variables before calling render
         $this->_pageTemplate->title = 'Login Page';
         $this->_pageTemplate->render('login', TRUE);
@@ -15,7 +17,8 @@ class LoginController extends Basecontroller {
         AuthSession::setSession('activated', FALSE);
     }
 
-    public function login() {
+    public function login() 
+    {
 
         $error = array();
         $message = array();
@@ -23,43 +26,54 @@ class LoginController extends Basecontroller {
         
        
         //Check for POST Data
-        if (isset($_POST)) {
+        if (isset($_POST)) 
+        {
 
             // Set an empty error
             $err = array();
 
             // Set the parameters
             // Check if the username is set
-            if (isset($_POST['login_name'])) {
+            if (isset($_POST['login_name'])) 
+            {
                 // Assign the post variable to reg_user_name
                 $log_name = Commons::filter_string($_POST['login_name']);
-            } else {
+            } 
+            else 
+            {
                 // Otherwise add an error to the array
                 $err['log_name'] = "Please enter a username";
             }
 
             // Check if the password is set
-            if (isset($_POST['login_user_password'])) {
+            if (isset($_POST['login_user_password'])) 
+            {
                 $log_user_password = Commons::filter_string($_POST['login_user_password']);
-            } else {
+            } 
+            else 
+            {
                 // Otherwise add an error to the array
                 $err['password'] = "Please enter a password";
             }
 
             // If the error array is empty, then begin processing
 
-            if (empty($err)) {
+            if (empty($err)) 
+            {
                 //Call new user object
                 $user = new UserModel();
                 //Check if log_name is a email - return TRUE or FALSE
                 $name = Commons::check_email($log_name);
-                if ($name) {
+                if ($name) 
+                {
                     $user->user_email = $log_name;
                     $user->user_password = $log_user_password;
 
                     //Call userModel Login Method
                     $log_returned = $user->login();
-                } else {
+                } 
+                else 
+                {
                     //log_name is a user name
                     $user->user_name = $log_name;
                     $user->user_password = $log_user_password;
@@ -70,21 +84,26 @@ class LoginController extends Basecontroller {
                 
                 
                 // If the registration returned an error
-                if (!empty($log_returned['error'])) {
+                if (!empty($log_returned['error'])) 
+                {
                     // Set the error to 
                     $error = $log_returned['error'];
                 }
                 // Otherwise if the registration returned a message
-                elseif (!empty($log_returned['message'])) {
+                elseif (!empty($log_returned['message'])) 
+                {
                                        
-                    if(!empty($log_returned['message']['activation'])){
+                    if(!empty($log_returned['message']['activation']))
+                    {
                         //redirect user to activation page
                         $this->_pageTemplate->title = 'Activation Page';
                         $this->_pageTemplate->render('/uxr/activation', TRUE);
                         //set session activated to false
                         AuthSession::setSession('loggedin', TRUE);
                         AuthSession::setSession('activated', FALSE);   
-                    }elseif(!empty($log_returned['message']['loggedin'])){
+                    }
+                    elseif(!empty($log_returned['message']['loggedin']))
+                    {
                         //User is all ready activated
                         //redirect user to uxr secure page
                         
@@ -93,30 +112,30 @@ class LoginController extends Basecontroller {
                         ***************************************/
                      AuthSession::setSession('loggedin', TRUE);
                      AuthSession::setSession('activated', TRUE);
-                     
-                     
-                       
-                     header("location: ?url=uxr"); 
-                       
+  
+                     header("location: ?url=uxr");  
                     }
-
-
+                    
                     // Then print out the message
                     $message = $log_returned['message'];                    
                 }
                 // Otherwise if the registration didn't return anything
-                else {
+                else 
+                {
                     // We have a big problem with the registration method
                     // Print this statement for our own debugging
                     $error['weird'] = "Something really weird happened. Sorry, try it again?";
                 }
             }
             // Otherwise there was an error in the post variables
-            else {
+            else 
+            {
 
                 $error = $err;
             }
-        } else {
+        } 
+        else 
+        {
 
             $error['post'] = "Post not set";
         }
@@ -130,19 +149,18 @@ class LoginController extends Basecontroller {
         echo json_encode($data_return);
     }
     
-    public function logout(){
-        
+    public function logout()
+    {      
         AuthSession::destroySession();
-        header('location: ?url=');
-       
-        
+        header('location: ?url='); 
     }
     
     public function activate(){
         $error = array();
         $message = array();
         
-        if(isset($_POST['activate_av_code']) && !empty($_POST['activate_av_code'] )){
+        if(isset($_POST['activate_av_code']) && !empty($_POST['activate_av_code'] ))
+        {
             //call new user Model
             $user = new UserModel();
             //Set activate var in userModel
@@ -172,7 +190,9 @@ class LoginController extends Basecontroller {
                  header('location: ?url=');
                 }
             
-        }else {
+        }
+        else 
+        {
             //activation post had no data
             $error['post'] = "Post not set";
         }

@@ -147,7 +147,7 @@ abstract class BaseModel
         {
             if (property_exists($this, $field)) 
             {
-                $attributes['field'] = $this->field;
+                $attributes[$field] = $this->$field;
             }
         }
         return $attributes;
@@ -184,7 +184,7 @@ abstract class BaseModel
             if ($prepared)
             {
                 $prepared->execute(); 
-                $this->id = $prepared->lastInsertId();
+                $this->id = $this->_db->lastInsertId();
                 return true;
             }
         }
@@ -212,9 +212,11 @@ abstract class BaseModel
         {
             $attribute_pairs[] = "{$key}='{$value}'";
         }
-        $sql  = "UPDATE " . static::$table_name . " SET";
+        $sql  = "UPDATE " . static::$table_name . " SET ";
         $sql .= join(", ", $attribute_pairs);
         $sql .= " WHERE id=" . $this->id;
+        
+        //var_dump($sql);
         
         // Use the database connection to perform the query
         // Try connecting to the database

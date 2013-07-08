@@ -29,6 +29,10 @@ class CardsortModel extends BaseModel
         parent::__construct();
     }
     
+    // These are inherited from BaseModel
+    
+    // Save Method
+    
     // Create Method
     
     // Update Method

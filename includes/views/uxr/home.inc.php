@@ -37,11 +37,17 @@ var_dump($_SESSION);
         <br>
         <!-- Type of Cardsort (open / closed) -->
         <label>Cardsort Type</label>
-        <input id="openCardsort" type="radio" name="cardsortType" value="open" /><label for="openCardsort">Open</label>
+        <input id="openCardsort" type="radio" name="cardsortType" value="open" checked /><label for="openCardsort">Open</label>
         <input id="closedCardsort" type="radio" name="cardsortType" value="closed" /><label for="closedCardsort">Closed</label>
         <br>
+        <p>If you would like your Cardsort to be password protected, enter it here. Note: this is a very low level of security, you will send the same password to all your participants in a given cardsort.</p>
+        <label for="uxrCardsortPassword">Password?</label>
+        <input id="yesPassword" type="radio" name="passwordToggle" value="yes" /><label for="yesPassword">Yes</label>
+        <input id="noPassword" type="radio" name="passwordToggle" value="no" checked /><label for="noPassword">No</label>
+        <input id="uxrCardsortPassword" name="uxrCardSortPassword" type="text" />
+        <br>
         <!-- Add Cardsort -->
-        <input id ="addCardsortName" type="submit" value="Create Cardsort" />  
+        <input id ="addCardsortName" type="submit" value="Create / Update" />  
     </form>
     <hr>
     
@@ -72,20 +78,12 @@ var_dump($_SESSION);
         <br>
         <label for="cardsortDemographicsType">Type:</label> 
         <!-- Radio buttons for type of data -->
-        <input id="demographicsString" type="radio" name="demographicsType" value="string" /><label for="demographicsString">Text</label>
+        <input id="demographicsString" type="radio" name="demographicsType" value="string" checked /><label for="demographicsString">Text</label>
         <input id="demographicsInt" type="radio" name="demographicsType" value="int" /><label for="demographicsInt">Number</label>
         <input id="demographicsDate" type="radio" name="demographicsType" value="date" /><label for="demographicsDate">Date</label>
         <br>
         <input id ="addCardsortDemographic" type="submit" value="Add" />
     </form>
-    <!-- Password protected? -->
-    <form id="uxrCardsortPassword">
-        <h3>Password</h3>
-        <p>If you would like your Cardsort to be password protected, enter it here. Note: this is a very low level of security, you will send the same password to all your participants in a given cardsort.</p>
-        <input id="uxrCardsortPassword" type="text" />
-        <input id ="addCardsortPassword" type="submit" value="Add" />
-    </form>
-  
 </section>
 
 
@@ -97,8 +95,8 @@ var_dump($_SESSION);
     <form id="cardsortFullDetail">
         <!-- These details will be updated when the UXR adds a cardsort -->
         <div id="uxrViewDetails">
-            <h2>Cardsort View</h2>
-            <p>Open Sort</p>
+            <h2>Cardsort Name: <span></span></h2> <!-- Defined in uxrSort.js -->
+            <p>Cardsort Type: <span></span></p><!-- Defined in uxrSort.js -->
         </div>
         <hr>
         <!-- Categories -->
