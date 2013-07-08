@@ -26,6 +26,11 @@ root
     display: block;
 }
 
+.clear
+{
+    clear: both;
+}
+
 body 
 {
     background-image:url('../images/retina_dust.png');
@@ -305,4 +310,24 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
     position: relative;
     top: 8px;
     right: 8px;
+}
+
+
+/*
+** 4. UXR AREA
+================================================================================
+*/
+
+#uxrControl
+{
+    background-color: #CCCCCC;
+    width: 30%;
+    float: left;
+}
+
+#uxrView
+{
+    background-color: #DDDDDD;
+    width: 70%;
+    float: left;
 }

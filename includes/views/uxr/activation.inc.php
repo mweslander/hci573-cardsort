@@ -18,16 +18,16 @@ if ($loggedin == TRUE) :
         Activate Your Account
     </header>
     <section id="activate">        
-            <div id="message_error"> <!-- This is used for displaying errors returned from AJAX -->
-                <div></div>
-            </div>
-            <form id='activationForm' action="?url=login/activate" method="post">
-                <label for="activate_av_code">Enter Your Activation Code</label>
-                <input id="activate_av_code" name="activate_av_code" type="text"></input>
-                <button >Active</button>
-            </form>
+        <div id="message_error"> <!-- This is used for displaying errors returned from AJAX -->
+            <div></div>
+        </div>
+        <form id='activationForm' action="?url=login/activate" method="post">
+            <label for="activate_av_code">Enter Your Activation Code</label>
+            <input id="activate_av_code" name="activate_av_code" type="text"></input>
+            <button >Active</button>
+        </form>
 
-        </section>
+    </section>
 
     <?php endif; ?>
 <?php 

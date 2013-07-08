@@ -140,7 +140,7 @@ $(document).ready(function()
         {
             // Fade in the error
             $('#register_error div').fadeTo("slow",1.0)
-                                .append('<p>'+ error.email +'</p>');
+                                    .append('<p>'+ error.email +'</p>');
             // Add a red border to the input
             $('#register_email').addClass('registration_input_error');
         }
@@ -155,7 +155,7 @@ $(document).ready(function()
         {
             // Fade in the error
             $('#register_error div').fadeTo("slow",1.0)
-                                .append('<p>'+ error.first_name +'</p>');
+                                    .append('<p>'+ error.first_name +'</p>');
             // Add a red border to the input
             $('#register_first_name').addClass('registration_input_error');
         }
@@ -169,7 +169,7 @@ $(document).ready(function()
         {
             // Fade in the error
             $('#register_error div').fadeTo("slow",1.0)
-                                .append('<p>'+ error.last_name +'</p>');
+                                    .append('<p>'+ error.last_name +'</p>');
             // Add a red border to the input
             $('#register_last_name').addClass('registration_input_error');
         }
@@ -198,6 +198,7 @@ $(document).ready(function()
     }
     
 });
+
 
 $(document).ready(function(){
 	$('#register-trigger').click(function(){

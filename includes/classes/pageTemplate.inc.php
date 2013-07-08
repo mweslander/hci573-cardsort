@@ -1,14 +1,22 @@
 <?php
 
+/*
+ * Page template class
+ * 
+ * This is where the pages get loaded up spliced together
+ * 
+ */
 
-class PageTemplate {
+class PageTemplate 
+{
 
     //storages all vars in here 
     //until rendering the page
     private $vars = array();
     
     //loads the vars array with set
-    public function __set($name, $value) {
+    public function __set($name, $value) 
+    {
         //creates a storage array for variables
         //to be passed to the view
         $this->vars[$name] = $value;
@@ -16,8 +24,8 @@ class PageTemplate {
     
     //renders the view and passes vars into views page 
     //call vars by key name
-    public function render($file, $template){
-        
+    public function render($file, $template)
+    { 
         //pass public vars into view page files
         //by key name, don't call array use key name as string  
         foreach ($this->vars as $key => $value)
@@ -32,14 +40,15 @@ class PageTemplate {
             require VIEW_PATH. 'templates/header.inc.php';
             require VIEW_PATH . $file . '.inc.php';
             require VIEW_PATH . 'templates/footer.inc.php';
-        } else {
+        } 
+        else 
+        {
             //no template -- you will have to build the html file in the required file
             require VIEW_PATH . $file . '.inc.php';
         }
         
     }
-            
-    function __construct() {}
     
-
+    // Empty constructor
+    function __construct() {}
 }
