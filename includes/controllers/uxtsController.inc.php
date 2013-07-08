@@ -19,7 +19,7 @@ class UxtsController extends Basecontroller
         parent::__construct();
     }
 
-    public function index($args) 
+    public function index($args=null) 
     {
         //check SESSION before loading SECURE PAGE
         //Check session['loggedin'] and session['activated']
@@ -33,6 +33,7 @@ class UxtsController extends Basecontroller
             
           echo $args;  
             
+          echo AuthSession::getSession('uid');
             
             
             
