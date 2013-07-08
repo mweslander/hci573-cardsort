@@ -4,6 +4,9 @@
  * UXR Home
  */
 
+echo "Variables needed from session: user_id<br>";
+$user_id = 6;
+echo "test user_id = " . $user_id;
 
 var_dump($_SESSION);
 
@@ -23,40 +26,66 @@ var_dump($_SESSION);
 ?>
 <section id="uxrControl">
     <h2>Control Box</h2>
-    <form id="uxrCardsortControl">
+    
+    <!-- Name and type of Cardsort -->
+    <form id="uxrCardsortDetails">  
         <!-- Name of Cardsort -->
-        <h3><label for="cardsortName">Cardsort Name</label></h3>
-        <input id="cardsortName" type="text" />
+        <h3>Cardsort Details</h3>
+        <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id; ?>" />
+        <label for="cardsortName">Cardsort Name</label>
+        <input id="cardsortName" name="cardsortName" type="text" />
+        <br>
         <!-- Type of Cardsort (open / closed) -->
-        <h3>Cardsort Type</h3>
+        <label>Cardsort Type</label>
         <input id="openCardsort" type="radio" name="cardsortType" value="open" /><label for="openCardsort">Open</label>
         <input id="closedCardsort" type="radio" name="cardsortType" value="closed" /><label for="closedCardsort">Closed</label>
-        <!-- Cardsort categories (if closed is chosen above) -->
+        <br>
+        <!-- Add Cardsort -->
+        <input id ="addCardsortName" type="submit" value="Create Cardsort" />  
+    </form>
+    <hr>
+    
+    <!-- Cardsort categories (if closed is chosen above) -->   
+    <!-- This form submits to an AJAX page which adds the category -->
+    <form id="uxrCardsortCategories">
         <h3>Categories</h3>
-        <!-- This is where the dynamically created inputs will go -->
-        <!-- This form submits to an AJAX page which adds the category -->
-        <form id="uxrCardsortCategories">
-            <input id="cardsortCategoryLabel" type="text" />
-            <input id ="addCardsortCategory" type="submit" value="Add" />
-        </form>
-        <!-- Demographics needed -->
+        <input id="cardsortCategoryLabel" type="text" />
+        <input id ="addCardsortCategory" type="submit" value="Add" />
+    </form>
+    <hr>
+    
+    <!-- Cardsort cards -->   
+    <!-- This form submits to an AJAX page which adds the card -->
+    <form id="uxrCardsortCards">
+        <h3>Cards</h3>
+        <input id="cardsortCardLabel" type="text" />
+        <input id ="addCardsortCard" type="submit" value="Add" />
+    </form>
+    <hr>
+    
+    <!-- Demographics needed -->    
+    <!-- This form submits to an AJAX page which adds the demographic -->
+    <form id="uxrCardsortDemographics">
         <h3>Demographics</h3>
-        <!-- This is where the dynamically created inputs will go -->
-        <!-- This form submits to an AJAX page which adds the demographic -->
-        <form id="uxrCardsortDemographics">
-            <label for="cardsortDemographicsLabel">Label</label> 
-            <input id="cardsortDemographicsLabel" type="text" />
-            <label for="cardsortDemographicsType">Type</label> 
-            <select id="cardsortDemographicsType"> <!-- This might be better as radio buttons -->
-                <option value="string">Text</option>
-                <option value="int">Number</option>
-                <option value="date">Date</option>
-            </select> 
-            <input id ="addCardsortDemographic" type="submit" value="Add" />
-        </form>
-        <!-- Password protected? -->
-        <input id ="createCardsort" type="submit" value="Create Cardsort" />
-    </form>  
+        <label for="cardsortDemographicsLabel">Label:</label> 
+        <input id="cardsortDemographicsLabel" type="text" />
+        <br>
+        <label for="cardsortDemographicsType">Type:</label> 
+        <!-- Radio buttons for type of data -->
+        <input id="demographicsString" type="radio" name="demographicsType" value="string" /><label for="demographicsString">Text</label>
+        <input id="demographicsInt" type="radio" name="demographicsType" value="int" /><label for="demographicsInt">Number</label>
+        <input id="demographicsDate" type="radio" name="demographicsType" value="date" /><label for="demographicsDate">Date</label>
+        <br>
+        <input id ="addCardsortDemographic" type="submit" value="Add" />
+    </form>
+    <!-- Password protected? -->
+    <form id="uxrCardsortPassword">
+        <h3>Password</h3>
+        <p>If you would like your Cardsort to be password protected, enter it here. Note: this is a very low level of security, you will send the same password to all your participants in a given cardsort.</p>
+        <input id="uxrCardsortPassword" type="text" />
+        <input id ="addCardsortPassword" type="submit" value="Add" />
+    </form>
+  
 </section>
 
 
@@ -65,7 +94,50 @@ var_dump($_SESSION);
 // We need our main content area that functions in conjunction with the sidebar
 ?>
 <section id="uxrView">
-    <h2>Cardsort View</h2>
+    <form id="cardsortFullDetail">
+        <!-- These details will be updated when the UXR adds a cardsort -->
+        <div id="uxrViewDetails">
+            <h2>Cardsort View</h2>
+            <p>Open Sort</p>
+        </div>
+        <hr>
+        <!-- Categories -->
+        <div id="uxrViewCategories">
+            <h2>Categories</h2>
+            <div>
+                <span>None</span>
+            </div>
+        </div>
+        <hr>
+        <!-- Cards -->
+        <div id="uxrViewCards">
+            <h2>Cards</h2>
+            <div>
+                <span>None</span>
+            </div>
+        </div>
+        <hr>
+        <!-- Demographics -->
+        <div id="uxrViewDemographics">
+            <h2>Demographics</h2>
+            <div>
+                <span>Label</span>
+                <span>Type</span>
+            </div>
+        </div>
+        <hr>
+        <!-- Password -->
+        <div id="uxrViewPassword">
+            <h2>Password</h2>
+            <div>
+                <span>None</span>
+            </div>
+        </div>
+        <hr>
+        <!-- Create URL -->
+        <input id="createURL" type="submit" value="Create URL" />
+        
+    </form>
 </section>
 
 <div class="clear"></div>
