@@ -390,3 +390,11 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
     font-size: 1.2em; 
     width: 180px; 
 }
+
+.ui-state-highlight, 
+.ui-widget-content .ui-state-highlight, 
+.ui-widget-header .ui-state-highlight {
+    background: url("images/ui-bg_glass_55_fbf9ee_1x400.png") repeat-x scroll 50% 50% #FBF9EE;
+    border: 1px solid #7fd0ea;
+    color: #363636;
+}
