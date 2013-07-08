@@ -14,6 +14,7 @@
 ** 3. LOGIN 
 ** 4. REGISTER
 
+
 */
 
 
@@ -369,4 +370,23 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
     text-decoration: none;
     
     
+}
+
+
+#sortable1, #sortable2, #sortable3, #sortable4, #sortable5 
+{
+    list-style-type: none; 
+    margin: 0; padding: 0; 
+    float: left; 
+    margin-right: 10px; 
+    background: #eee; 
+    padding: 5px; 
+    width: 200px;
+}
+#sortable1 li, #sortable2 li, #sortable3 li, #sortable4 li, #sortable5 li   
+{ 
+    margin: 5px; 
+    padding: 5px; 
+    font-size: 1.2em; 
+    width: 180px; 
 }
