@@ -6,11 +6,8 @@
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-<link rel="stylesheet" href="/resources/demos/style.css" />
-<style>
-#sortable1, #sortable2, #sortable3 { list-style-type: none; margin: 0; padding: 0; float: left; margin-right: 10px; background: #eee; padding: 5px; width: 143px;}
-#sortable1 li, #sortable2 li, #sortable3 li { margin: 5px; padding: 5px; font-size: 1.2em; width: 120px; }
-</style>
+<link rel="stylesheet" href="resources/styles/main.css" />
+
 <script>
 $(function() {
 $( "ul.droptrue" ).sortable({
@@ -20,26 +17,34 @@ $( "ul.dropfalse" ).sortable({
 connectWith: "ul",
 dropOnEmpty: false
 });
-$( "#sortable1, #sortable2, #sortable3" ).disableSelection();
+$( "#sortable1, #sortable2, #sortable3, #sortable4, #sortable5, #sortable6" ).disableSelection();
 });
 </script>
 </head>
 <body>
 <ul id="sortable1" class="droptrue">
-<li class="ui-state-default">Can be dropped..</li>
-<li class="ui-state-default">..on an empty list</li>
-<li class="ui-state-default">Item 3</li>
-<li class="ui-state-default">Item 4</li>
-<li class="ui-state-default">Item 5</li>
+<li class="ui-state-default">News</li>
+<li class="ui-state-default">Rock solid staff</li>
+<li class="ui-state-default">Step 01</li>
+<li class="ui-state-default">Step 02</li>
+<li class="ui-state-default">Step 03</li>
+<li class="ui-state-default">Portfolio</li>
+<li class="ui-state-default">Location</li>
+<li class="ui-state-default">Office Hours</li>
 </ul>
 <ul id="sortable2" class="dropfalse">
-<li class="ui-state-highlight">Cannot be dropped..</li>
-<li class="ui-state-highlight">..on an empty list</li>
-<li class="ui-state-highlight">Item 3</li>
-<li class="ui-state-highlight">Item 4</li>
-<li class="ui-state-highlight">Item 5</li>
+<li class="ui-state-highlight">About Us</li>
 </ul>
-<ul id="sortable3" class="droptrue">
+    
+<ul id="sortable3" class="dropfalse">
+<li class="ui-state-highlight">Features</li>
+</ul>
+    
+<ul id="sortable4" class="dropfalse">
+<li class="ui-state-highlight">How to Get Started</li>
+</ul>
+
+<ul id="sortable5" class="droptrue">
 </ul>
 <br style="clear: both;" />
 </body>
