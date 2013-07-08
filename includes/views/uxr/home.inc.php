@@ -47,9 +47,9 @@ var_dump($_SESSION);
         <input id="uxrCardsortPassword" name="uxrCardSortPassword" type="text" />
         <br>
         <!-- Add Cardsort -->
-        <input id ="addCardsortName" type="submit" value="Create / Update" />  
+        <input id ="addCardsortName" type="submit" value="Create / Update" /> 
+        <hr>
     </form>
-    <hr>
     
     <!-- Cardsort categories (if closed is chosen above) -->   
     <!-- This form submits to an AJAX page which adds the category -->
@@ -57,17 +57,17 @@ var_dump($_SESSION);
         <h3>Categories</h3>
         <input id="cardsortCategoryLabel" type="text" />
         <input id ="addCardsortCategory" type="submit" value="Add" />
+        <hr>
     </form>
-    <hr>
-    
+
     <!-- Cardsort cards -->   
     <!-- This form submits to an AJAX page which adds the card -->
     <form id="uxrCardsortCards">
         <h3>Cards</h3>
         <input id="cardsortCardLabel" type="text" />
         <input id ="addCardsortCard" type="submit" value="Add" />
+        <hr>
     </form>
-    <hr>
     
     <!-- Demographics needed -->    
     <!-- This form submits to an AJAX page which adds the demographic -->
@@ -105,16 +105,18 @@ var_dump($_SESSION);
             <div>
                 <span>None</span>
             </div>
+            <hr>
         </div>
-        <hr>
+        
         <!-- Cards -->
         <div id="uxrViewCards">
             <h2>Cards</h2>
             <div>
                 <span>None</span>
             </div>
+            <hr>
         </div>
-        <hr>
+        
         <!-- Demographics -->
         <div id="uxrViewDemographics">
             <h2>Demographics</h2>
@@ -122,16 +124,14 @@ var_dump($_SESSION);
                 <span>Label</span>
                 <span>Type</span>
             </div>
-        </div>
-        <hr>
+            <hr>
+        </div>   
         <!-- Password -->
         <div id="uxrViewPassword">
             <h2>Password</h2>
-            <div>
-                <span>None</span>
-            </div>
+            <p><span></span></p><!-- Defined in uxrSort.js -->
+            <hr>
         </div>
-        <hr>
         <!-- Create URL -->
         <input id="createURL" type="submit" value="Create URL" />
         

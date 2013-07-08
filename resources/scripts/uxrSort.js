@@ -20,6 +20,11 @@ $(document).ready(function(){
     
     showCardsortType('open');
     showCardsortName(0);
+    showCardsortPassword(null);
+    showCardAdd(cs_id);
+    showDemographicsAdd(cs_id);
+    
+    
     
     // FUNCTIONS!!!
     
@@ -77,6 +82,9 @@ $(document).ready(function(){
                         cs_id = csMessage.cs_id;
                         showCardsortName(csMessage.cs_name);
                         showCardsortType(csMessage.cs_type);
+                        showCardsortPassword(csMessage.cs_password);
+                        showCardAdd(cs_id);
+                        showDemographicsAdd(cs_id);
                     }
 
                 }
@@ -114,8 +122,33 @@ $(document).ready(function(){
             var datastring = "add=category"+"&cs_id="+cs_id+"&category_label="+cardsortCategoryLabel;
                     
             console.log(datastring);
+            
+            $.ajax({
+                type: "POST",
+                //url: "includes/forms/registerForm.php",
+                url: "includes/controllers/uxrCategoryController.inc.php",
+                data: datastring,
+                success: function(data)
+                {
+                    // Parse the JSON data
+                    var msg = jQuery.parseJSON(data);
+
+                    // Assign a new value to error, using the msg object
+                    csError = msg.error;
+                    csMessage = msg.message;
+                    // Check and display errors and messages
+                    
+                    if (!(jQuery.isEmptyObject(csMessage)))
+                    {
+                        // csMessage.category_label
+                        // append a new category div to the view!!
+                    }
+
+                }
+            }); // End of AJAX call
         });
     } // end of addCategory function
+    
     
     // Add a new demographic function
     function addDemographic()
@@ -152,11 +185,58 @@ $(document).ready(function(){
         if (cs_type === 'closed')
         {
             $('p > span','#uxrViewDetails').html("Closed Sort");
+            $('#uxrViewCategories').show();
+            $('#uxrCardsortCategories').show();
         }
         else
         {
             $('p > span','#uxrViewDetails').html("Open Sort");
+            $('#uxrViewCategories').hide();
+            $('#uxrCardsortCategories').hide();
         }
     }
     
+    // Password display function
+    function showCardsortPassword(cs_password)
+    {
+        if (cs_password === null)
+        {
+            $('#uxrViewPassword').hide();
+        }
+        else
+        {
+            $('#uxrViewPassword').show();
+            $('p > span','#uxrViewPassword').html(cs_password);
+        }
+    }
+    
+    // Add card display function
+    function showCardAdd(cs_id)
+    {
+        if (cs_id === 0)
+        {
+            $('#uxrCardsortCards').hide();
+            $('#uxrViewCards').hide();
+        }
+        else
+        {
+            $('#uxrCardsortCards').show();
+            $('#uxrViewCards').show();
+        }
+    }
+    
+    // Add demogrpahics display function
+    function showDemographicsAdd(cs_id)
+    {
+        if (cs_id === 0)
+        {
+            $('#uxrCardsortDemographics').hide();
+            $('#uxrViewDemographics').hide();
+        }
+        else
+        {
+            $('#uxrCardsortDemographics').show();
+            $('#uxrViewDemographics').show();
+        }
+    }
 });
