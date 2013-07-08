@@ -16,12 +16,12 @@ require_once (CONST_PATH . 'sql.inc.php');
 require_once (CLASS_PATH . 'database.inc.php');
 require_once (CLASS_PATH . 'commons.inc.php');
 require_once (MODEL_PATH . 'baseModel.inc.php');
-require_once (MODEL_PATH . 'CardModel.inc.php');
+require_once (MODEL_PATH . 'demographicModel.inc.php');
 require_once (CTRL_PATH . 'baseController.inc.php');
 
-class UxrCardController extends Basecontroller
+class UxrDmgsController extends Basecontroller
 {
-    private $_model = 'CardModel';
+    private $_model = 'DemographicModel';
     
     public function __construct() {
         // I don't think we really need to construct the Basecontroller here
@@ -33,11 +33,11 @@ class UxrCardController extends Basecontroller
         // then sends info back to the page that called it.
         // parent::__construct();        
         
-       $this->create_card();
+       $this->create_demographic();
     }
     
     // Registration function
-    public function create_card()
+    public function create_demographic()
     {
         // First set empty error and message arrays
         $error = array();
@@ -52,14 +52,14 @@ class UxrCardController extends Basecontroller
             
             // Check to make sure we're on the right page
             // This one is category
-            if ($_POST['add'] == 'card')
+            if ($_POST['add'] == 'demographic')
             {
                 // Set the parameters
                 
-                // Check if the user_id is set
+                // Check if the cs_id is set
                 if (isset($_POST['cs_id']))
                 {
-                    // Assign the post variable to user_id
+                    // Assign the post variable to cs_id
                     $cs_id = Commons::filter_string($_POST['cs_id']);
                 }
                 else
@@ -68,37 +68,50 @@ class UxrCardController extends Basecontroller
                     $err['cs_id'] = "No cardsort id, this shouldn't happen. Please try logging out and back in";
                 }
 
-                // Check if the cardsort_name is set
-                if (isset($_POST['card_label']))
+                // Check if the dmgs_label is set
+                if (isset($_POST['dmgs_label']))
                 {
-                    $card_label = Commons::filter_string($_POST['card_label']);
+                    $dmg_label = Commons::filter_string($_POST['dmgs_label']);
                 }
                 else
                 {
                     // Otherwise add an error to the array
-                    $err['card_label'] = "Please enter a label for your card";
+                    $err['dmgs_label'] = "Please enter a label for your demographic value";
                 }
 
+                // Check if the cardsort_name is set
+                if (isset($_POST['dmgs_type']))
+                {
+                    $dmg_type = Commons::filter_string($_POST['dmgs_type']);
+                }
+                else
+                {
+                    // Otherwise add an error to the array
+                    $err['dmgs_type'] = "This shouldn't happen, but please select a type for your demographic value";
+                }
+                
                 // If the error array is empty, then begin processing
                 if (empty($err))
                 {
                     // Whenever we want to interact with a user, we need to instantiate a user object
                     // This is how you do that:
-                    $card = new CardModel();
+                    $dmg = new DemographicModel();
                     // Notice how (in the browser) there is nothing in this object.
                     // var_dump($user); // This is a very useful variable dump function that shows you what is in your variable
 
                     // This is how you assign values to the object
-                    $card->cs_id = $cs_id; // ID of the cardsort
-                    $card->card_label = $card_label; // Label of the category
+                    $dmg->cs_id = $cs_id; // ID of the cardsort
+                    $dmg->dmg_label = $dmg_label; // Label of the category
+                    $dmg->dmg_type = $dmg_type;
 
                     // Now we can test the SQL for the category
                     // This is how you call a method (function) from within a class
-                    $card->save();
+                    $dmg->save();
                     
                     $message['completed'] = "yes";
-                    $message['card_id'] = $card->id;
-                    $message['card_label'] = $card->card_label;
+                    $message['dmg_id'] = $dmg->id;
+                    $message['dmg_label'] = $dmg->dmg_label;
+                    $message['dmg_type'] = $dmg->dmg_type;
                 }
                 // Otherwise there was an error in the post variables
                 else
@@ -126,4 +139,4 @@ class UxrCardController extends Basecontroller
     }   
 }
 
-$cardsort_card = new UxrCardController();
+$cardsort_dmg = new UxrDmgsController();

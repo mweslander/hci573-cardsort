@@ -194,9 +194,9 @@ $(document).ready(function(){
             // Prevent the page from reloading
             event.preventDefault();
             // Get the variables
-            var cardsortDemographicsLabel = $('#cardsortDemographicsLabel').val();
-            var cardsortDemographicsType = $('input[name=demographicsType]:checked', '#uxrCardsortDemographics').val();
-            var datastring = "add=demographic"+"&cs_id="+cs_id+"&demographics_label="+cardsortDemographicsLabel+"&demographics_type="+cardsortDemographicsType;
+            var cardsortDmgsLabel = $('#cardsortDemographicsLabel').val();
+            var cardsortDmgsType = $('input[name=demographicsType]:checked', '#uxrCardsortDemographics').val();
+            var datastring = "add=demographic"+"&cs_id="+cs_id+"&dmgs_label="+cardsortDmgsLabel+"&dmgs_type="+cardsortDmgsType;
                     
             console.log(datastring);
             
@@ -223,10 +223,27 @@ $(document).ready(function(){
                     {
                         // append a new category div to the view!!
                         dmgsCount++;
-                        showAddedDemographics(dmgsCount, csMessage.dmg_label, csMessage.dmg_type);
+                        
+                        var type;
+                        // Switch the cases from the database
+                        // to make the output more understandable
+                        // for the uxr
+                        switch(csMessage.dmg_type)
+                        {
+                            case 'int':
+                                type = "Number";
+                                break;
+                            case 'date':
+                                type = "Date";
+                                break;
+                            // String is the default case
+                            default:
+                                type = "Text";    
+                        } // End of switch statement
+                        
+                        showAddedDemographics(dmgsCount, csMessage.dmg_label, type);
                     }
-
-                }
+                } // End of success processing
             }); // End of AJAX call
         }); // End of submit function
     } // End of addDemographic function
@@ -324,11 +341,11 @@ $(document).ready(function(){
     {
         if (cardCount === 0)
         {
-            $('#noCard').show().html("None");
+            $('#noCards').show().html("None");
         }
         else
         {
-            $('#noCard').hide();
+            $('#noCards').hide();
             $('<span>'+card_label+'</span><br>').appendTo('#cardAdditions');
         }
     }
@@ -338,11 +355,11 @@ $(document).ready(function(){
     {
         if (dmgsCount === 0)
         {
-            $('#noDmgs').show();
+            $('.noDmgs').show();
         }
         else
         {
-            $('#noCard').hide();
+            $('.noDmgs').hide();
             $('<tr><td>'+dmg_label+'</td><td>'+dmg_type+'</td></tr>').appendTo('#dmgAdditions');
         }
     }
