@@ -3,7 +3,7 @@
 /*
  * UX TEST SUBJECT Controller
  * 
- * This is where the magic happens for the User Experience Researcher.
+ * This is where the magic happens for the User Experience Test Subject.
  * 
  */
 

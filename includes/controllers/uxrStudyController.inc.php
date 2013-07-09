@@ -90,6 +90,8 @@ class UxrStudyController extends Basecontroller
             // Get the Cards for the selected study
             $cards = CardModel::find_all_by_cs_id($cardsort->id);
             
+            echo "<header><h2>Name of Study: ". $cardsort->cs_name . "</h2></header>";
+            
             if(isset($cards))
             {  
                 echo "<ul class='sortable' class='droptrue'>";

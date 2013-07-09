@@ -428,6 +428,11 @@ $(document).ready(function(){
             $('#cardsortEdit').show();
             // Then, hide the Studies
             $('#myStudiesList').hide();
+            // Then hide the study view
+            $('#cardsortViewStudy').hide();
+            // Then show the edit view
+            $('#cardsortViewDetails').show();
+            
         });
     }
     
