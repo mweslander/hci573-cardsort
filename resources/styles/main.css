@@ -62,6 +62,11 @@ h2
     color:white;
 }
 
+h5 {
+    font-family: Arial, Gadget, sans-serif;
+    color: gray;
+}
+
 #top-bar
 {
     background-image:url('../images/subtle_surface.png');
@@ -91,7 +96,10 @@ h2
 }
 #inner_wrap{
     margin: 0 auto;
-    width: 40%;    
+    padding:2em;
+    width: 40%;
+    border-radius: 0em 0em 2em 2em;
+    
 }
 .demo_two{
     background-color:gray;
@@ -122,7 +130,12 @@ h2
     cursor: pointer;
 }
 footer{
-    margin-top: 50px;
+    margin-top: 4em;
+    background-image:url('../images/subtle_surface.png');
+    padding: 1em;
+    padding-left: 2em;
+    border-radius: 0em 0em 0em 0em;
+    
 }
 #main_nav h1{
     padding-left: 20px;
