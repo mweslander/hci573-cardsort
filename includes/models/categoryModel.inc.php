@@ -32,4 +32,13 @@ class CategoryModel extends BaseModel
     
     // Update Method
     
+    public function list_categorys_by_study(){
+        
+        $stmt = $this->_db->prepare("SELECT * FROM usort_categories
+                                            WHERE cs_id = :ctid");
+        $stmt->bindParam(':ctid', $this->cs_id);
+        $stmt->execute();
+        $list = $stmt->fetchAll();
+        return $list;
+    }
 }

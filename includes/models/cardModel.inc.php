@@ -32,4 +32,15 @@ class CardModel extends BaseModel
     
     // Delete Method
     
+    public function list_cards_by_study(){
+        
+        $stmt = $this->_db->prepare("SELECT * FROM usort_cards
+                                            WHERE cs_id = :csid");
+        $stmt->bindParam(':csid', $this->cs_id);
+        $stmt->execute();
+        $list = $stmt->fetchAll();
+        return $list;
+    }
+        
+    
 }

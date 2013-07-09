@@ -31,9 +31,12 @@
     </section>
     <section class='Controlls'>
         <h3>Controls</h3>
+        <input type='text'/>
+        <button action='?url=uxts/addCard'>Add Card</button>
+        <input type='text'/>
+        <button action='?url=uxts/addCard'>Add Category</button>
+        
         <ul>
-            <li><a href='' >Add New Card</a></li>
-            <li><a href='' >Add New Catogry</a></li>
             <li><a href='' >Save for later</a></li>
             <li><a href='' >Finished</a></li>
             
@@ -46,10 +49,8 @@
 // THIRD
 // We need our main content area that functions in conjunction with the sidebar
 
-if(isset($card['StudyName'])){
-    $studyName = $card['StudyName'];            
-}else{
-    $studyName ="";
+if(!isset($studyName)){
+    $studyName = "";            
 }
 ?>
 <section id="uxrView">
@@ -63,20 +64,20 @@ if(isset($card['StudyName'])){
          // DUMP THE TEST SUBJECTS CARDS HERE
          //var_dump($card);
          //Set list of cards to page var card
-                if(isset($card['label'])){
-                    
+         
+                if(isset($card)){
+                   
                     echo "<ul class='sortable' class='droptrue'>";
-                    foreach ($card['label'] as $value) {
-                        
-                        echo "<li class='ui-state-default'>$value</li>";
-                        
+                    foreach ($card as $key => $value) {                        
+                        echo "<li class='ui-state-default'>$value</li>";                        
                     }
                     echo '</ul>';
                 }
+                
                 //Set Category headers
-                if(isset($card['category'])){
+                if(isset($category)){
                     $i = 2;              
-                    foreach ($card['category'] as $value) {   
+                    foreach ($category as $value) {   
                         echo "<ul class='sortable sortableCol' class='dropfalse'>";    
                         echo "<li class='ui-state-highlight'>$value</li>"; 
                         echo '</ul>';

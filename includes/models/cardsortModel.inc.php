@@ -38,4 +38,18 @@ class CardsortModel extends BaseModel
     // Update Method
     
     // Delete Method
+    
+    public function list_of_study(){
+        
+        $stmt = $this->_db->prepare("SELECT * FROM usort_cardsorts
+                                            WHERE user_id = :uid");
+        $stmt->bindParam(':uid', $this->user_id);
+        $stmt->execute();
+        $list = $stmt->fetchAll();
+        return $list;
+        
+        
+    }
+    
+    
 }
