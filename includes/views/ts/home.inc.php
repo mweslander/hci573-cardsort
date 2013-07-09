@@ -6,9 +6,6 @@
   });
 </script>
 
-
-
-
 <section id="uxtsControl">
     <header>
     <h2>Control Box</h2>
@@ -76,23 +73,25 @@ if(!isset($studyName)){
          //var_dump($card);
          //Set list of cards to page var card
          
-                if(isset($card)){
+                if(isset($cards))
+                {
                    
                     echo "<ul class='sortable' class='droptrue'>";
-                    foreach ($card as $key => $value) {                        
-                        echo "<li class='ui-state-default'>$value</li>";                        
+                    foreach ($cards as $card) 
+                    {                        
+                        echo "<li class='ui-state-default'>$card->card_label</li>";                        
                     }
                     echo '</ul>';
                 }
                 
                 //Set Category headers
-                if(isset($category)){
-                    $i = 2;              
-                    foreach ($category as $value) {   
+                if(isset($categories))
+                {
+                    foreach ($categories as $category)
+                    {
                         echo "<ul class='sortable sortableCol' class='dropfalse'>";    
-                        echo "<li class='ui-state-highlight'>$value</li>"; 
+                        echo "<li class='ui-state-highlight'>$category->cat_label</li>"; 
                         echo '</ul>';
-                        $i++;
                     }
                 }
          ?>
