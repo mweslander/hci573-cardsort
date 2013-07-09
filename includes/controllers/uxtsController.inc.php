@@ -67,7 +67,14 @@ class UxtsController extends Basecontroller
                     $categories = CategoryModel::find_all_by_cs_id($cardsort->id);
                     //Set page var card to list of categoryies in study
                     $this->_pageTemplate->categories = $categories;
-                } // Otherwise the cardsort type is open
+                }// Otherwise the cardsort type is open
+                
+                // Either way, pass the cs_type to the page
+                $this->_pageTemplate->cs_type = $cardsort->cs_type;
+                
+                // Get all the demographics for the cardsort
+                $dmgs = DemographicModel::find_all_by_cs_id($cardsort->id);
+                $this->_pageTemplate->dmgs = $dmgs;
                 
                 $this->_pageTemplate->title = 'UX TEST SUBJECT';
                 $this->_pageTemplate->render('/ts/home', TRUE);
