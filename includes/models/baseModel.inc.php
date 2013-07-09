@@ -115,6 +115,31 @@ abstract class BaseModel
         }
     }
     
+    // Json to object array method
+    public static function jsonToObjects($result_set)
+    {
+        $decoded_results = json_decode($result_set, true);
+
+        foreach ($decoded_results as $value)
+        {
+            $value['card_id'];
+        }
+        
+//        // Set an empty object_array
+//        $object_array = array();
+//        // Turn the row into an associative array
+//        // with a key of column name and a value of the row
+//
+//        while ( $row = $decoded_results ) 
+//        {
+//            // Use instantiate method below to make objects
+//            // out of results and add them to the object array
+//            $object_array[] = self::_instantiate($row);
+//        }
+//        // Return the object array
+//        return $object_array; 
+    }
+    
     // Instantiate method
     // loops through the records and attributes
     // and instantiates an object of called class
@@ -282,6 +307,7 @@ abstract class BaseModel
             die("DB ERROR: ". $e->getMessage());
         }
     }
+
 }
 
 // PHP closing tag ommitted intentionally
