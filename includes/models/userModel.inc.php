@@ -9,7 +9,8 @@
  * @author Michael Weslander
  */
 
-class UserModel extends BaseModel {
+class UserModel extends BaseModel 
+{
 
     // Static Parameters
     protected static $table_name = 'usort_users';
@@ -190,7 +191,7 @@ class UserModel extends BaseModel {
         //check password
         if (empty($this->user_password) || strlen($this->user_password) < 4) {
             // put an error in the array
-            $error['user_password'] = "Password is in valid.";
+            $error['user_password'] = "Password is invalid.";
         } else {
             // Hash the password
             $hashed_pass = $this->_user_password_hash($this->user_password);

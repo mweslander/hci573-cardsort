@@ -340,6 +340,27 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
     float: left;
 }
 
+#studyList table
+{
+    width: 100%;
+    border: 1px solid #eee;
+}
+
+#studyList table th, #studyList table tr, #studyList table td
+{
+    text-align: left;
+    border: 1px solid #eee;
+}
+#studyList table tr:hover
+{
+    background-color: #ddd;
+}
+
+#studyList table td:hover
+{
+    background-color: #eee;
+}
+
 
 /*
 * Member Menu - 

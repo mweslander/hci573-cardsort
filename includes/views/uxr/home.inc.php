@@ -4,15 +4,6 @@
  * UXR Home
  */
 
-echo "Variables needed from session: user_id<br>";
-$user_id = 6;
-echo "test user_id = " . $user_id;
-
-var_dump($_SESSION);
-
-
-// echo "IN UXR PAGE";
-
 // FIRST
 // We need a header. This is included already from the views/templates/header.inc.php
 // using the uxrController.inc.php and the page template
@@ -26,64 +17,110 @@ var_dump($_SESSION);
 ?>
 <section id="uxrControl">
     <h2>Control Box</h2>
-    
-    <!-- Name and type of Cardsort -->
-    <form id="uxrCardsortDetails">  
-        <!-- Name of Cardsort -->
-        <h3>Cardsort Details</h3>
-        <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id; ?>" />
-        <label for="cardsortName">Cardsort Name</label>
-        <input id="cardsortName" name="cardsortName" type="text" />
-        <br>
-        <!-- Type of Cardsort (open / closed) -->
-        <label>Cardsort Type</label>
-        <input id="openCardsort" type="radio" name="cardsortType" value="open" checked /><label for="openCardsort">Open</label>
-        <input id="closedCardsort" type="radio" name="cardsortType" value="closed" /><label for="closedCardsort">Closed</label>
-        <br>
-        <p>If you would like your Cardsort to be password protected, enter it here. Note: this is a very low level of security, you will send the same password to all your participants in a given cardsort.</p>
-        <label for="uxrCardsortPassword">Password?</label>
-        <input id="yesPassword" type="radio" name="passwordToggle" value="yes" /><label for="yesPassword">Yes</label>
-        <input id="noPassword" type="radio" name="passwordToggle" value="no" checked /><label for="noPassword">No</label>
-        <input id="uxrCardsortPassword" name="uxrCardSortPassword" type="text" />
-        <br>
-        <!-- Add Cardsort -->
-        <input id ="addCardsortName" type="submit" value="Create / Update" /> 
-        <hr>
-    </form>
-    
-    <!-- Cardsort categories (if closed is chosen above) -->   
-    <!-- This form submits to an AJAX page which adds the category -->
-    <form id="uxrCardsortCategories">
-        <h3>Categories</h3>
-        <input id="cardsortCategoryLabel" type="text" />
-        <input id ="addCardsortCategory" type="submit" value="Add" />
-        <hr>
-    </form>
+    <button id="csEdit">Dashboard</button><button id="csList">Studies</button>
+    <!-- !!!!!!!!!!!! EDIT SECTION !!!!!!!!!!!! -->
+    <div id="cardsortEdit">
+        <!-- Name and type of Cardsort -->
+        <form id="uxrCardsortDetails">  
+            <!-- Name of Cardsort -->
+            <h3>Cardsort Details</h3>
+            <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id; ?>" />
+            <label for="cardsortName">Cardsort Name</label>
+            <input id="cardsortName" name="cardsortName" type="text" />
+            <br>
+            <!-- Type of Cardsort (open / closed) -->
+            <label>Cardsort Type</label>
+            <input id="openCardsort" type="radio" name="cardsortType" value="open" checked /><label for="openCardsort">Open</label>
+            <input id="closedCardsort" type="radio" name="cardsortType" value="closed" /><label for="closedCardsort">Closed</label>
+            <br>
+            <p>If you would like your Cardsort to be password protected, enter it here. Note: this is a very low level of security, you will send the same password to all your participants in a given cardsort.</p>
+            <label for="uxrCardsortPassword">Password?</label>
+            <input id="yesPassword" type="radio" name="passwordToggle" value="yes" /><label for="yesPassword">Yes</label>
+            <input id="noPassword" type="radio" name="passwordToggle" value="no" checked /><label for="noPassword">No</label>
+            <input id="uxrCardsortPassword" name="uxrCardSortPassword" type="text" />
+            <br>
+            <!-- Add Cardsort -->
+            <input id ="addCardsortName" type="submit" value="Create / Update" /> 
+            <hr>
+        </form>
 
-    <!-- Cardsort cards -->   
-    <!-- This form submits to an AJAX page which adds the card -->
-    <form id="uxrCardsortCards">
-        <h3>Cards</h3>
-        <input id="cardsortCardLabel" type="text" />
-        <input id ="addCardsortCard" type="submit" value="Add" />
-        <hr>
-    </form>
-    
-    <!-- Demographics needed -->    
-    <!-- This form submits to an AJAX page which adds the demographic -->
-    <form id="uxrCardsortDemographics">
-        <h3>Demographics</h3>
-        <label for="cardsortDemographicsLabel">Label:</label> 
-        <input id="cardsortDemographicsLabel" type="text" />
-        <br>
-        <label for="cardsortDemographicsType">Type:</label> 
-        <!-- Radio buttons for type of data -->
-        <input id="demographicsString" type="radio" name="demographicsType" value="string" checked /><label for="demographicsString">Text</label>
-        <input id="demographicsInt" type="radio" name="demographicsType" value="int" /><label for="demographicsInt">Number</label>
-        <input id="demographicsDate" type="radio" name="demographicsType" value="date" /><label for="demographicsDate">Date</label>
-        <br>
-        <input id ="addCardsortDemographic" type="submit" value="Add" />
-    </form>
+        <!-- Cardsort categories (if closed is chosen above) -->   
+        <!-- This form submits to an AJAX page which adds the category -->
+        <form id="uxrCardsortCategories">
+            <h3>Categories</h3>
+            <input id="cardsortCategoryLabel" type="text" />
+            <input id ="addCardsortCategory" type="submit" value="Add" />
+            <hr>
+        </form>
+
+        <!-- Cardsort cards -->   
+        <!-- This form submits to an AJAX page which adds the card -->
+        <form id="uxrCardsortCards">
+            <h3>Cards</h3>
+            <input id="cardsortCardLabel" type="text" />
+            <input id ="addCardsortCard" type="submit" value="Add" />
+            <hr>
+        </form>
+
+        <!-- Demographics needed -->    
+        <!-- This form submits to an AJAX page which adds the demographic -->
+        <form id="uxrCardsortDemographics">
+            <h3>Demographics</h3>
+            <label for="cardsortDemographicsLabel">Label:</label> 
+            <input id="cardsortDemographicsLabel" type="text" />
+            <br>
+            <label for="cardsortDemographicsType">Type:</label> 
+            <!-- Radio buttons for type of data -->
+            <input id="demographicsString" type="radio" name="demographicsType" value="string" checked /><label for="demographicsString">Text</label>
+            <input id="demographicsInt" type="radio" name="demographicsType" value="int" /><label for="demographicsInt">Number</label>
+            <input id="demographicsDate" type="radio" name="demographicsType" value="date" /><label for="demographicsDate">Date</label>
+            <br>
+            <input id ="addCardsortDemographic" type="submit" value="Add" />
+        </form>
+    </div> <!-- End of Cardsort Edit Div -->
+    <!-- !!!!!!!!!!!! END OF EDIT SECTION !!!!!!!!!!!! -->
+    <!-- !!!!!!!!!!!! STUDIES SECTION !!!!!!!!!!!! -->
+    <div id="myStudiesList">
+        <section class="ActiveStudies">
+            <h3>Your Studies</h3>
+            <div id='studyList'>
+                <?php  
+                    // DUMP THE TEST SUBJECTS STUDIES HERE
+                    //var_dump($study);
+                    if(isset($study))
+                    {
+                ?>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Study</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        <?php
+                                foreach ($study as $key => $value) 
+                                {
+
+                                    // echo "<li><a href='?url=uxts/index/$key'>". $value . "</a></li>";
+                                    echo "<tr id={$key}><td class='csListView'>{$value}</td><td class='csListEdit'>E</td><td class='csListDelete'>X</td></tr>";
+                                }
+                        ?>
+                    </tbody>
+                </table>
+                <?php
+                    }
+                    else
+                    {
+                        // echo "<li><a href='?url=uxr'>Start a study</a></li>"; 
+                        echo "<button id='startCsStudy'>Start a study</button>";
+                    }
+                ?>
+            </div>     
+        </section>
+    </div> <!-- End of myStudiesList Div -->
+    <!-- !!!!!!!!!!!! END STUDIES SECTION !!!!!!!!!!!! -->
 </section>
 
 
@@ -92,7 +129,8 @@ var_dump($_SESSION);
 // We need our main content area that functions in conjunction with the sidebar
 ?>
 <section id="uxrView">
-    <form id="cardsortFullDetail">
+    <!-- !!!!!!!!!!!! EDIT VIEW SECTION !!!!!!!!!!!! -->
+    <div id="cardsortViewDetails">
         <!-- These details will be updated when the UXR adds a cardsort -->
         <div id="uxrViewDetails">
             <h2>Cardsort Name: <span></span></h2> <!-- Defined in uxrSort.js -->
@@ -155,9 +193,13 @@ var_dump($_SESSION);
             <hr>
         </div>
         <!-- Create URL -->
-        <input id="createURL" type="submit" value="Create URL" />
-        
-    </form>
+        <button id="createURL">Create URL</button>
+    </div>
+    <!-- !!!!!!!!!!!! END EDIT VIEW SECTION !!!!!!!!!!!! -->
+    <!-- !!!!!!!!!!!! STUDIES VIEW SECTION !!!!!!!!!!!! -->
+    <div id="cardsortViewStudy">
+    </div>
+    <!-- !!!!!!!!!!!! END STUDIES VIEW SECTION !!!!!!!!!!!! -->
 </section>
 
 <div class="clear"></div>

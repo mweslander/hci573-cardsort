@@ -19,7 +19,7 @@ class UxrController extends Basecontroller
         parent::__construct();
     }
 
-    public function index() 
+    public function index($args = null) 
     {
         //check SESSION before loading SECURE PAGE
         //Check session['loggedin'] and session['activated']
@@ -27,6 +27,77 @@ class UxrController extends Basecontroller
         $activated = AuthSession::getSession('activated');
         if ($activated == TRUE && $loggedin == TRUE) 
         {
+            //Get user id from Session 
+            $user_id = AuthSession::getSession('uid');
+            
+            //Set page var user_id to $user_id
+            $this->_pageTemplate->user_id = $user_id;
+            
+            // Use $args to find the card sort study in the database, and return 
+            // it in two arrays. 
+            // Array(StudyName=>AmazonMenu,StudyID=>1234,Cards=>array(card1, card2, card3, etc))
+           
+            $cardsort = new CardsortModel();
+            $cardsort->user_id = $user_id;
+            $listStudy = $cardsort->list_of_study();
+
+            $i = 0;
+            if (!empty($listStudy)) 
+            {
+                //loop through to get the id and name of the studies
+                foreach ($listStudy as $value) {
+                    $studies[$listStudy[$i]['id']] = $listStudy[$i]['cs_name'];
+                    $i++;
+                }
+                //Set page var study to list of studies
+                $this->_pageTemplate->study = $studies;
+            }
+
+            //Get Cards for each study, when the used calls that study
+            $studyID = $args;
+            //Only load cards when a study has been clicked
+            if ($studyID !== Null) 
+            {
+                //Get the name of the study
+                $this->_pageTemplate->studyName = "Working On";
+                //Get the Cards for the selected study
+                $card = new CardModel();
+                $card->cs_id = $args;
+                $listCards = $card->list_cards_by_study();
+
+                $j = 0;
+                //loop through to get the id and name of the studies
+                if (!empty($listCards)) {
+                    foreach ($listCards as $value) {
+                        $cards[$listCards[$j]['id']] = $listCards[$j]['card_label'];
+                        $j++;
+                    }
+                    //Set page var card to list of cards in study
+                    $this->_pageTemplate->card = $cards;
+                }
+
+                //Get the categories for the selected study
+                $cat = new CategoryModel();
+                $cat->cs_id = $args;
+                $listCategorys = $cat->list_categorys_by_study();
+
+                $k = 0;
+                //loop through to get the id and name of the studies
+                if (!empty($listCategorys)) 
+                {
+                    foreach ($listCategorys as $value) 
+                    {
+                        $category[$listCategorys[$k]['id']] = $listCategorys[$k]['cat_label'];
+                        $k++;
+                    }
+
+                    //Set page var card to list of categoryies in study
+                    $this->_pageTemplate->category = $category;
+                }
+            }
+            
+            
+            
             $this->_pageTemplate->title = 'UXR Page';
             $this->_pageTemplate->render('/uxr/home', TRUE);
         } 
@@ -36,5 +107,56 @@ class UxrController extends Basecontroller
             $this->_pageTemplate->render('404_page',TRUE); 
         }
     }
+    
+    public function loadCardAndCategory($args=null)
+    {
+        //Get Cards for each study, when the used calls that study
+            $studyID = $args;
+            //Only load cards when a study has been clicked
+            if ($studyID !== Null) 
+            {
+                //Get the name of the study
+                $this->_pageTemplate->studyName = "Working On";
+                //Get the Cards for the selected study
+                $card = new CardModel();
+                $card->cs_id = $args;
+                $listCards = $card->list_cards_by_study();
 
-}
+                $i = 0;
+                //loop through to get the id and name of the studies
+                if (!empty($listCards)) 
+                {
+                    foreach ($listCards as $value) 
+                    {
+                        $cards[$listCards[$i]['id']] = $listCards[$i]['card_label'];
+                        $i++;
+                    }
+                    //Set page var card to list of cards in study
+                    $this->_pageTemplate->card = $cards;
+                }
+
+                //Get the categories for the selected study
+                $cat = new CategoryModel();
+                $cat->cs_id = $args;
+                $listCategorys = $cat->list_categorys_by_study();
+
+                $i = 0;
+                //loop through to get the id and name of the studies
+                if (!empty($listCategorys)) 
+                {
+                    foreach ($listCategorys as $value) 
+                    {
+                        $category[$listCategorys[$i]['id']] = $listCategorys[$i]['cat_label'];
+                        $i++;
+                    }
+
+                    //Set page var card to list of categoryies in study
+                    $this->_pageTemplate->category = $category;
+                }
+            }
+            else
+            {
+                // studyID is NULL
+            }
+    } // End of loadCardAndCategory function
+} // End of uxrController class

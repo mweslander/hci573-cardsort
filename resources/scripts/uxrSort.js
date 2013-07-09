@@ -35,6 +35,14 @@ $(document).ready(function(){
     // These are the deletion functions
     deleteDmg();
     
+    // Begin by hiding the Studies
+    $('#myStudiesList').hide();
+    $('#cardsortViewStudy').hide();
+    
+    // Then allow toggling by clicking on the (temp) navigation
+    showDashboardOnClick();
+    showStudiesOnClick();
+    
     
     // FUNCTIONS!!!
     
@@ -411,12 +419,70 @@ $(document).ready(function(){
     }
     
     
+    // Show the Dashboard on click
+    function showDashboardOnClick()
+    {
+        $('#csEdit').on('click', function()
+        {
+            // First, show the dashboard
+            $('#cardsortEdit').show();
+            // Then, hide the Studies
+            $('#myStudiesList').hide();
+        });
+    }
+    
+    // Show the studies
+    function showStudiesOnClick()
+    {
+        $('#csList').on('click', function()
+        {
+            // First, hide the dashboard
+            $('#cardsortEdit').hide();
+            // Then, show the Studies
+            $('#myStudiesList').show();
+            
+            // Then enable the study functions
+            viewStudyOnClick();
+        });
+    }
+    
+    // View a particular study on click
+    function viewStudyOnClick()
+    {
+        $('#studyList').on('click','td.csListView', function()
+        {
+            var currentRow = $(this);
+            // We set a new variable to the rows id
+            var useThisID = $(this).parent().attr('id');
+            // Then we use the deleteTime function to remove the time with this id from the database
+
+            var datastring = 'view=study&cs_id='+useThisID;
+            
+            $.ajax({
+                // Post
+                type: "POST",
+                // To this location
+                url: "includes/controllers/uxrStudyController.inc.php",
+                // The datastring defined above
+                data: datastring,
+                success: function(data)
+                {
+                    // First load up the view
+                    $('#cardsortViewStudy').html(data);
+                    // Then hide the edit view
+                    $('#cardsortViewDetails').hide();
+                    // And show the study view
+                    $('#cardsortViewStudy').show(); 
+                }
+            }); // End of AJAX call
+            
+        });
+    }
     
 });
 
 
 // TEST FUNCTIONS
-
 
 
 // Get all the demographic rows for a specific cardsort
