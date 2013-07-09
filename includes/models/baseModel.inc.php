@@ -59,25 +59,34 @@ abstract class BaseModel
         // Try connecting to the database
         try 
         {  
+            // Initiate the database ($this-> doesn't work because it's a static function)
+            $database = Database::init();
             // This prepares the sql for the query
-            $prepared = $this->_db->prepare($sql);
+            //$prepared = $this->_db->prepare($sql);
+            $prepared = $database->prepare($sql);
             // If this worked
             if ($prepared)
             {
                 // Get the result set back
-                $result_set = $prepared->execute(); 
-                // Set an empty object_array
-                $object_array = array();
-                // Turn the row into an associative array
-                // with a key of column name and a value of the row
-                while ( $row = $result_set->fetch(PDO::FETCH_ASSOC)) 
+                $result = $prepared->execute(); 
+                
+                if ($result)
                 {
-                    // Use instantiate method below to make objects
-                    // out of results and add them to the object array
-                    $object_array[] = self::_instantiate($row);
-                }
-                // Return the object array
-                return $object_array; 
+                    // Set an empty object_array
+                    $object_array = array();
+                    // Turn the row into an associative array
+                    // with a key of column name and a value of the row
+
+                    while ( $row = $prepared->fetch(PDO::FETCH_ASSOC)) 
+                    {
+                        // Use instantiate method below to make objects
+                        // out of results and add them to the object array
+                        $object_array[] = self::_instantiate($row);
+                    }
+                    // Return the object array
+                    return $object_array; 
+                    }
+
             }
             
         }
@@ -93,14 +102,15 @@ abstract class BaseModel
     // Counts all the rows in a given db table
     public static function count_all()
     {
+        $database = Database::init();
         $sql = "SELECT COUNT(*) FROM " . static::$table_name;
-        $prepared = $this->_db->prepare($sql);
+        $prepared = $database->prepare($sql);
         // If this worked
         if ($prepared)
         {
             // Get the result set back
             $result_set = $prepared->execute();
-            $row = $result_set->fetch(PDO::FETCH_ASSOC);
+            $row = $prepared->fetch(PDO::FETCH_ASSOC);
             return array_shift($row);
         }
     }
