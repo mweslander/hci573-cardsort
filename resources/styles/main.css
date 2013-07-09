@@ -38,39 +38,75 @@ body
     background-image:url('../images/retina_dust.png');
 }
 
+p 
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 130%;
+} 
+
+#home_p {
+    width: 72%;
+    margin-left: 9em;
+    margin-bottom: 2em;
+    color:#575757;
+}
+
 h1
 {
-    color: red;   
+    color: #FF5721; 
+    font-family: Arial, Gadget, sans-serif;
+}
+
+h2
+{
+    color:white;
+}
+
+#top-bar
+{
+    background-image:url('../images/subtle_surface.png');
+    width: auto;
+    height: 10em;
+    margin:-.5em;
+    margin-bottom:3em;
+    box-shadow: 0 3px 11px #CDCDCD;
 }
 
 #logo 
-{
-    float: left;
+{   
+    padding-top: 2em;
+    margin-left:auto;
+    margin-right:auto;
     background-repeat:no-repeat;
     width:200px;
     height:106px;
-    /*margin-left: 25em;*/
 }
 #logo img{
     border: none;
 }
 /* BRETTS CHANGES - DONT HAVE TO USE */
 #wrapper{
-    margin: 0 auto;
-    width: 90%;
+    margin: 0em auto;
+    width: 100%;
 }
 #inner_wrap{
     margin: 0 auto;
     width: 40%;    
 }
 .demo_two{
+    background-color:gray;
     margin-right: 20px;
-    border: solid 1px gray;
-    border-radius: 10px;
+    border: solid 2px #00adef;
+    border-radius: 2em 2em 2em 2em;
     width:200px;
     height:100px;
     float: left;
     cursor: pointer;
+}
+
+.demo_two:hover {
+    background-color:#00adef;
+    border-color:gray;
 }
 #login_content_two{
     float: left;
@@ -79,10 +115,10 @@ h1
 }
 .register_two{
     margin: 0 auto;
-    width: 100%;
-    height: 40px;
-    border: solid 1px gray;
-    border-radius: 10px;
+    width: 80%;
+    height: 5em;
+    border: solid 2px gray;
+    border-radius: 2em 2em 2em 2em;
     cursor: pointer;
 }
 footer{
@@ -93,16 +129,9 @@ footer{
     margin: 0px;
 }
 
-
-/*#wrapper 
-{
-    margin-left:auto;
-    margin-right:auto;
-    min-width:0%;
-    max-width:60%;
-    width:100%;
-    height:100%;
-}*/
+#main_nav {
+    margin-left: 10em;
+}
 
 
 /*
@@ -138,21 +167,24 @@ footer{
 ================================================================================
 */
 
-/*#registerForm, #demoform 
-{
-    display:block;
-    background-image:url('../images/linedpaper.png');
-    float:left;
-    width: 9em;
-    padding: 1em;
-    /*margin:2em 0 0 1em;*/
-/*left:20em;*/
-/*border-radius: 3px;
--webkit-box-shadow: 0 3px 10px #CCCCCC;
--moz-box-shadow: 0 3px 10px #CCCCCC;
-box-shadow: 0 3px 10px #CCCCCC;
-margin: 1em 0em 0em 0em;
-}*/
+
+#logSubmit {
+    background-color: #FF5721;
+    border-radius: .5em;
+    box-shadow: 0 3px 11px #CDCDCD;
+    border: 1px solid #ccc;
+    padding: .5em 1em;
+    color: white;
+    margin-left: 11.7em;
+    margin-top: -2em;
+    width:6em;
+
+}
+
+#logSubmit:hover {
+    font-weight: bold;
+}
+
 
 .registration_input_error
 {
@@ -185,18 +217,28 @@ nav #demo, nav #register, nav #login {
     box-shadow: 1px 0 0 #fff;
     padding: 8px;
     text-decoration: none;
-    border-radius: 5px 5px 0 0;
+    border-radius: 1.5em;
     background-color: #ccc;
 }
 
 nav #demo-trigger, nav #register-trigger, nav #login-trigger {
-    -moz-border-radius: 3px 0 0 3px;
-    -webkit-border-radius: 3px 0 0 3px;
-    border-radius: 3px 0 0 3px;
+    border-radius: 1.5em;
     color:#666666;
+    box-shadow: 0 3px 11px #CDCDCD;
 }
+
 #demo-trigger, #register-trigger, #login-trigger {
     text-decoration: none;
+}
+
+#register-trigger{
+    background-color:gray;
+    border: solid 2px #00adef;
+}
+
+#register-trigger:hover {
+    background-color:#00adef;
+    border-color:gray;
 }
 
 nav #demo-content, nav #register-content, nav #login-content {
@@ -218,7 +260,7 @@ nav #demo-content, nav #register-content, nav #login-content {
     box-shadow: 0 2px 2px -1px rgba(0,0,0,.9);
     -moz-border-radius: 3px 0 3px 3px;
     -webkit-border-radius: 3px 0 3px 3px;
-    border-radius: 3px 0 3px 3px;
+    border-radius: 3px 3px 3px 3px;
 }
 
 nav li #demo-content, nav li #register-content, nav li #login-content {
