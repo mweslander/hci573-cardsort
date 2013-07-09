@@ -44,6 +44,8 @@ class UxtsController extends Basecontroller
             {
                 // Initiate the cardsort
                 $cardsort = CardsortModel::find_by_id($cs_id);
+                // Set the id of the study
+                $this->_pageTemplate->cs_id = $cardsort->id;
                 //Get the name of the study
                 $this->_pageTemplate->studyName = $cardsort->cs_name;
             }
