@@ -98,12 +98,94 @@ class UxtsController extends Basecontroller {
     public function save() {
         
     }
+    public function loadCardAndCategory($args=null){
+        //Get Cards for each study, when the used calls that study
+            $studyID = $args;
+            //Only load cards when a study has been clicked
+            If ($studyID !== Null) {
+                //Get the name of the study
+                $this->_pageTemplate->studyName = "Working On";
+                //Get the Cards for the selected study
+                $card = new CardModel();
+                $card->cs_id = $args;
+                $listCards = $card->list_cards_by_study();
 
+                $i = 0;
+                //loop through to get the id and name of the studies
+                if (!empty($listCards)) {
+                    foreach ($listCards as $value) {
+                        $cards[$listCards[$i]['id']] = $listCards[$i]['card_label'];
+                        $i++;
+                    }
+                    //Set page var card to list of cards in study
+                    $this->_pageTemplate->card = $cards;
+                }
+
+                //Get the categories for the selected study
+                $cat = new CategoryModel();
+                $cat->cs_id = $args;
+                $listCategorys = $cat->list_categorys_by_study();
+
+                $i = 0;
+                //loop through to get the id and name of the studies
+                if (!empty($listCategorys)) {
+                    foreach ($listCategorys as $value) {
+                        $category[$listCategorys[$i]['id']] = $listCategorys[$i]['cat_label'];
+                        $i++;
+                    }
+
+                    //Set page var card to list of categoryies in study
+                    $this->_pageTemplate->category = $category;
+                }
+            }
+
+            
+        
+        
+    }
     public function addCard() {
-        echo "add";
+        
+        if(isset($_POST['add'])== 'card'){
+            
+            $cardId = Commons::filter_string($_POST['cs_id']);
+            $cardLabel = Commons::filter_string($_POST['card_label']);
+            
+            
+            $card = new CardModel();
+            $card->cs_id = $cardId;
+            $card->card_label = $cardLabel;
+            
+            $cardStatus = $card->save();
+            $args = $cardId;
+            $this->loadCardAndCategory($args);
+            $this->_pageTemplate->render('/ts/home', TRUE);
+        }
+        
+        $msg = $cardStatus;
+        
+        echo json_encode($msg);
+        
     }
 
-    public function addCatorgory() {
+    public function addCategory() {
+        
+        if(isset($_POST['add'])== 'category'){
+            
+            $catId = Commons::filter_string($_POST['cs_id']);
+            $catLabel = Commons::filter_string($_POST['category_label']);
+            
+            
+            $cat = new CategoryModel();
+            $cat->cs_id = $catId;
+            $cat->cat_label = $catLabel;
+            
+            $catStatus = $cat->save();
+            
+        }
+        
+        $msg = $catStatus;
+        
+        echo json_encode($msg);
         
     }
 

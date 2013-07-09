@@ -22,6 +22,7 @@
         
         <script src="<?php echo JS_PATH . "register.js"; ?>"></script>
         <script src="<?php echo JS_PATH . "uxrSort.js"; ?>"></script>
+        <script src="<?php echo JS_PATH . "uxtsSort.js"; ?>"></script>
     </head>
     <body>
         <div id="wrapper"><!-- Wrapper div closed in footer.inc.php -->

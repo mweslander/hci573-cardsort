@@ -26,7 +26,7 @@
                     echo "<li><a href='?url=uxts/index/$key'>". $value . "</a></li>";
                 }
                 }else{
-                    echo "<li><a href='?url='>Start a study</a></li>"; 
+                    echo "<li><a href='?url=uxr'>Start a study</a></li>"; 
                 }
             ?>
             </ul>
@@ -37,10 +37,14 @@
         //Hide Controls if there are now studys
         if(isset($study)){ ?>
             <h3>Controls</h3>
-            <input type='text'/>
-            <button action='?url=uxts/addCard'>Add Card</button>
-            <input type='text'/>
-            <button action='?url=uxts/addCard'>Add Category</button>
+            <form id="uxtsAddCard">
+                <input id='cardLabel' name='cardLabel' type='text'/>
+                <input  type='submit' value='Add Card'/>                
+            </form>
+            <form id='uxtsAddCategory'>
+                <input id='categoryLabel' name='categoryLabel' type='text'/>
+                <input  type='submit'value='Add Category'/>               
+            </form>
 
             <ul>
                 <li><a href='' >Save for later</a></li>
