@@ -17,6 +17,8 @@ require_once (CLASS_PATH . 'database.inc.php');
 require_once (CLASS_PATH . 'commons.inc.php');
 require_once (MODEL_PATH . 'baseModel.inc.php');
 require_once (MODEL_PATH . 'cardsortModel.inc.php');
+require_once (MODEL_PATH . 'cardModel.inc.php');
+require_once (MODEL_PATH . 'testCardModel.inc.php');
 require_once (MODEL_PATH . 'demographicModel.inc.php');
 require_once (CTRL_PATH . 'baseController.inc.php');
 
