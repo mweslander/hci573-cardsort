@@ -34,8 +34,11 @@ class CategoryModel extends BaseModel
     
     public function list_categorys_by_study(){
         
-        $stmt = $this->_db->prepare("SELECT * FROM usort_categories
-                                            WHERE cs_id = :ctid");
+        $stmt = $this->_db->prepare("SELECT usort_categories.id, usort_categories.cs_id, usort_categories.cat_label
+                                     FROM usort_categories
+                                     LEFT JOIN usort_cardsorts 
+                                     ON usort_categories.cs_id = usort_cardsorts.user_id
+                                     WHERE cs_id = :ctid");
         $stmt->bindParam(':ctid', $this->cs_id);
         $stmt->execute();
         $list = $stmt->fetchAll();

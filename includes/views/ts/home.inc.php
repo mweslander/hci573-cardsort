@@ -20,27 +20,34 @@
             <?php  
                 // DUMP THE TEST SUBJECTS STUDIES HERE
                 //var_dump($study);
-                if($study)
+                if(isset($study)){
                 foreach ($study as $key => $value) {
                     
                     echo "<li><a href='?url=uxts/index/$key'>". $value . "</a></li>";
+                }
+                }else{
+                    echo "<li><a href='?url='>Start a study</a></li>"; 
                 }
             ?>
             </ul>
         </div>     
     </section>
     <section class='Controlls'>
-        <h3>Controls</h3>
-        <input type='text'/>
-        <button action='?url=uxts/addCard'>Add Card</button>
-        <input type='text'/>
-        <button action='?url=uxts/addCard'>Add Category</button>
-        
-        <ul>
-            <li><a href='' >Save for later</a></li>
-            <li><a href='' >Finished</a></li>
-            
-        </ul>
+        <?php 
+        //Hide Controls if there are now studys
+        if(isset($study)){ ?>
+            <h3>Controls</h3>
+            <input type='text'/>
+            <button action='?url=uxts/addCard'>Add Card</button>
+            <input type='text'/>
+            <button action='?url=uxts/addCard'>Add Category</button>
+
+            <ul>
+                <li><a href='' >Save for later</a></li>
+                <li><a href='' >Finished</a></li>
+
+            </ul>
+        <?php }?>    
     </section>
 </section>
 

@@ -34,8 +34,12 @@ class CardModel extends BaseModel
     
     public function list_cards_by_study(){
         
-        $stmt = $this->_db->prepare("SELECT * FROM usort_cards
-                                            WHERE cs_id = :csid");
+        $stmt = $this->_db->prepare("SELECT usort_cards.id, usort_cards.cs_id, usort_cards.card_label 
+                                     FROM usort_cards
+                                     LEFT JOIN usort_cardsorts 
+                                     ON usort_cards.cs_id = usort_cardsorts.user_id
+                                     WHERE usort_cards.cs_id = :csid"
+                                    );
         $stmt->bindParam(':csid', $this->cs_id);
         $stmt->execute();
         $list = $stmt->fetchAll();

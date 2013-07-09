@@ -30,22 +30,21 @@ class UxtsController extends Basecontroller {
             // Use $args to find the card sort study in the database, and return 
             // it in two arrays. 
             // Array(StudyName=>AmazonMenu,StudyID=>1234,Cards=>array(card1, card2, card3, etc))
-
-
+           
             $cardsort = new CardsortModel();
             $cardsort->user_id = $user_id;
             $listStudy = $cardsort->list_of_study();
 
             $i = 0;
-            //loop through to get the id and name of the studies
-            foreach ($listStudy as $value) {
-                $studies[$listStudy[$i]['id']] = $listStudy[$i]['cs_name'];
-                $i++;
+            if (!empty($listStudy)) {
+                //loop through to get the id and name of the studies
+                foreach ($listStudy as $value) {
+                    $studies[$listStudy[$i]['id']] = $listStudy[$i]['cs_name'];
+                    $i++;
+                }
+                //Set page var study to list of studies
+                $this->_pageTemplate->study = $studies;
             }
-
-            
-            //Set page var study to list of studies
-            $this->_pageTemplate->study = $studies;
 
             //Get Cards for each study, when the used calls that study
             $studyID = $args;
@@ -60,13 +59,14 @@ class UxtsController extends Basecontroller {
 
                 $i = 0;
                 //loop through to get the id and name of the studies
-                foreach ($listCards as $value) {
-                    $cards[$listCards[$i]['id']] = $listCards[$i]['card_label'];
-                    $i++;
+                if (!empty($listCards)) {
+                    foreach ($listCards as $value) {
+                        $cards[$listCards[$i]['id']] = $listCards[$i]['card_label'];
+                        $i++;
+                    }
+                    //Set page var card to list of cards in study
+                    $this->_pageTemplate->card = $cards;
                 }
-                //Set page var card to list of cards in study
-                $this->_pageTemplate->card = $cards;
-
 
                 //Get the categories for the selected study
                 $cat = new CategoryModel();
@@ -75,7 +75,7 @@ class UxtsController extends Basecontroller {
 
                 $i = 0;
                 //loop through to get the id and name of the studies
-                if (!empty($listCategorys)){
+                if (!empty($listCategorys)) {
                     foreach ($listCategorys as $value) {
                         $category[$listCategorys[$i]['id']] = $listCategorys[$i]['cat_label'];
                         $i++;
