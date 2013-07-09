@@ -282,6 +282,7 @@ abstract class BaseModel
             die("DB ERROR: ". $e->getMessage());
         }
     }
+
 }
 
 // PHP closing tag ommitted intentionally

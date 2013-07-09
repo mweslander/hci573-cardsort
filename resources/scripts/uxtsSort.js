@@ -38,7 +38,8 @@ $(document).ready(function()
     {
         openSortColumns++;
         var add = "<ul id='openSortable"+openSortColumns+"' class='sortable sortableCol droptrue ui-sortable'></ul>";
-        $(add).appendTo("#uxtsCatArea");
+        //Need to recall sortable and connectWith
+        $(add).appendTo("#uxtsCatArea").sortable({connectWith: '.sortableCol'});
     }
     
 });
