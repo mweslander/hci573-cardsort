@@ -64,7 +64,7 @@
              <?php           
                     if(isset($cards))
                     {
-
+                        echo "<div id='uxtsCardCol' >";
                         echo "<ul class='sortable' class='droptrue'>";
                         foreach ($cards as $card) 
                         {                        
@@ -72,22 +72,27 @@
                         }
                         
                         echo '</ul>';
+                        echo "</div>";
                     }
 
                     // Set Category headers
                     if(isset($categories))
                     {
+                        echo "<div id='uxtsCatArea' class='uxtsClosedSort' >";
                         foreach ($categories as $category)
                         {
                             echo "<ul class='sortable sortableCol' class='dropfalse'>";    
                             echo "<li class='ui-state-highlight'>$category->cat_label</li>"; 
                             echo '</ul>';
                         }
+                        echo "</div>";
                     }
                     // Otherwise if we don't have any categories
                     else
                     {
-                        echo "<ul id=\"sortable2\" class=\"droptrue ui-sortable\"> </ul>";
+                        echo "<div id='uxtsCatArea' class='uxtsOpenSort' >";
+                        echo "<ul id='openSortable1' class='sortable sortableCol droptrue'> </ul>";
+                        echo "</div>";
                     }
              ?>
 

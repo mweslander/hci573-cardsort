@@ -13,7 +13,8 @@
 ** 2. HOME 
 ** 3. LOGIN 
 ** 4. REGISTER
-
+** 5. UXR AREA
+** 6. UXTS AREA
 
 */
 
@@ -322,7 +323,7 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
 
 
 /*
-** 4. UXR AREA
+** 5. UXR AREA
 ================================================================================
 */
 
@@ -438,3 +439,8 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
 .Controlls input{
     width: 50%;
 }
+
+/*
+** 6. UXTS AREA
+================================================================================
+*/

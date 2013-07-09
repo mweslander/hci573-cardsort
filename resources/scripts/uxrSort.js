@@ -483,7 +483,6 @@ $(document).ready(function(){
             
         });
     }
-    
 });
 
 
@@ -493,48 +492,48 @@ $(document).ready(function(){
 // Get all the demographic rows for a specific cardsort
 // Type must be uppercase to make the correct url
 // Types can be: Card, Cardsort, Category and Dmgs
-function displayDatabaseValues(type, cs_id)
-{
-    var datastring = 'rows='+type+'&cs_id='+cs_id;
-
-    // ajax call
-    $.ajax({
-        type: "POST",
-        url: "includes/controllers/uxr"+type+"Controller.inc.php",
-        data: datastring,
-        success: function(data)
-        {
-            // Parse the JSON data
-            var msg = jQuery.parseJSON(data);
-
-            // Assign a new value to error, using the msg object
-            csError = msg.error;
-            csMessage = msg.message;
-
-            if (!(jQuery.isEmptyObject(csMessage)))
-            {
-
-            }
-        }
-     });
-}
+//function displayDatabaseValues(type, cs_id)
+//{
+//    var datastring = 'rows='+type+'&cs_id='+cs_id;
+//
+//    // ajax call
+//    $.ajax({
+//        type: "POST",
+//        url: "includes/controllers/uxr"+type+"Controller.inc.php",
+//        data: datastring,
+//        success: function(data)
+//        {
+//            // Parse the JSON data
+//            var msg = jQuery.parseJSON(data);
+//
+//            // Assign a new value to error, using the msg object
+//            csError = msg.error;
+//            csMessage = msg.message;
+//
+//            if (!(jQuery.isEmptyObject(csMessage)))
+//            {
+//
+//            }
+//        }
+//     });
+//}
 
 
 // Add Demographics display function
-function showAddedDemographics2(dmgsCount, dmg_id, dmg_label, dmg_type)
-{
-    if (dmgsCount === 0)
-    {
-        $('.noDmgs').show();
-    }
-    else
-    {
-        $('.noDmgs').hide();
-        var type = "Dmg";
-
-        var objectArray = displayDatabaseValues(type, cs_id);
-        console.log(objectArray);
-
-        // $('<tr id='+dmg_id+'><td>'+dmg_label+'</td><td>'+dmg_type+'</td><td class="dmg_delete">X</td></tr>').appendTo('#dmgAdditions');
-    }
-}
+//function showAddedDemographics2(dmgsCount, dmg_id, dmg_label, dmg_type)
+//{
+//    if (dmgsCount === 0)
+//    {
+//        $('.noDmgs').show();
+//    }
+//    else
+//    {
+//        $('.noDmgs').hide();
+//        var type = "Dmg";
+//
+//        var objectArray = displayDatabaseValues(type, cs_id);
+//        console.log(objectArray);
+//
+//        // $('<tr id='+dmg_id+'><td>'+dmg_label+'</td><td>'+dmg_type+'</td><td class="dmg_delete">X</td></tr>').appendTo('#dmgAdditions');
+//    }
+//}
