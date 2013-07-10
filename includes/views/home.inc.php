@@ -46,15 +46,15 @@
         <div id="register-content">
             <form id="registerForm"  >
                 <fieldset id="inputs">
-                    <p>First Name</p> 
+                    First Name 
                     <input type="text" id="register_user_first_name" name="register_user_first_name" placeholder="First Name" required /><br />
-                    <p>Last Name</p> 
+                    Last Name 
                     <input type="text" id="register_user_last_name" name="register_user_last_name" placeholder="Last Name" required /><br />
-                    <p>Email</p> 
+                    Email 
                     <input type="email" id="register_user_email" name="register_user_email" placeholder="Email" required /><br />
-                    <p>User Name</p> 
+                    User Name 
                     <input type="text" id="register_user_name" name="register_user_name" autofocus placeholder="Type a Username" required /><br />
-                    <p>Password</p> 
+                    Password 
                     <input type="password" id="register_user_password" name="register_user_password" placeholder="Type a Password" required /><br />
                     
                 </fieldset>
