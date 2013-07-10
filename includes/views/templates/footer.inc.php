@@ -4,9 +4,7 @@
  */
 ?>
         <footer>
-            <div id="footer_info">
             Copyrighted by Brain Sweat.
-            </div>
         </footer>
 
             </div><!-- inner_wrap -->
