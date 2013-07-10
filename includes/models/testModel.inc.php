@@ -17,7 +17,7 @@ class TestModel extends BaseModel
     // Public Parameters
     public $id; // Database ID for usort_tests
     public $ts_id; // Test subject ID
-    public $cs_finished; // Datetime for when the test is completed
+    public $cs_finished; // Datetime for when the test is completed (BRETT - I used sql now())
 
     // Construtor Method
     public function __construct() 
@@ -31,5 +31,16 @@ class TestModel extends BaseModel
     // Update Method
     
     // Delete Method
+ 
     
+    public function saveTest(){
+            
+            $sql = "INSERT INTO " . static::$table_name . "(ts_id, cs_finished)
+                VALUES ($this->ts_id, now())";
+
+            $stmt = $this->_db->prepare($sql);
+            $stmt->execute();
+        
+        
+    }
 }

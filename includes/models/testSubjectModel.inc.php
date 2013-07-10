@@ -32,4 +32,30 @@ class TestSubjectModel extends BaseModel
     
     // Delete Method
     
+    
+    // This method creates a new Test Subject
+    public function saveTS(){
+        
+            $encryptEmail = "AES_ENCRYPT('" . $this->ts_email . "', '" . USER_EMAIL_SALT . "')";
+            $sql = "INSERT INTO " . static::$table_name . "(cs_id, ts_email)
+                VALUES (4, $encryptEmail )";
+
+            $stmt = $this->_db->prepare($sql);
+            $stmt->execute();
+    }
+
+
+
+    //This method check if the user has already been created
+    public function check_if_ts_user_exists($cs_id, $ts_email){
+                
+        $sql = "SELECT id, cs_id, AES_DECRYPT(ts_email,'" . USER_EMAIL_SALT . "') as ts_email
+                FROM " . static::$table_name . " WHERE cs_id = $cs_id 
+                AND ts_email = AES_ENCRYPT('".$ts_email. "','". USER_EMAIL_SALT ."')";
+        //var_dump($sql);
+        $stmt = $this->_db->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+        return $results;
+    }
 }
