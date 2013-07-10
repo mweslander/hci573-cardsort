@@ -1,12 +1,14 @@
 <div id="inner_wrap">
-<section>    
+<section>
+    <div id="home_p">
     <p>Create a usability study for your web site, quick,
         simple, and accurately with uSort. A card sorting exercise.       
     </p>
+    </div>
 </section>
 <nav>
     <div id='main_nav'>
-        <button id='demo-trigger' class='demo_two'>TRY OUR DEMO</button>
+        <button id='demo-trigger' class='demo_two'><h2>Try Our Demo</h2></button>
         <div id="demo-content">
             <form name="demo" action="?url=login/login"  method="post">
                 <fieldset id="inputs">
@@ -25,7 +27,7 @@
 
         
         <div id="login_content_two">
-            <h1>MEMBER LOGIN</h1>
+            <h1>Member Login</h1>
             <div id="message_error"> <!-- This is used for displaying errors returned from AJAX -->
                 <div></div>
             </div>
@@ -40,7 +42,7 @@
                 </fieldset>
             </form>
         </div>   
-        <button id='register-trigger' class='register_two'>Create your our account!!!</button>
+        <button id='register-trigger' class='register_two'><h2>Create your account</h2></button>
         <div id="register-content">
             <form id="registerForm"  >
                 <fieldset id="inputs">
