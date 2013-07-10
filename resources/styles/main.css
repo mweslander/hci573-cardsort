@@ -58,13 +58,6 @@ td {
     padding-right:1em;
 }
 
-#home_p {
-    width: 72%;
-    margin-left: 9em;
-    margin-bottom: 2em;
-    color:#575757;
-}
-
 h1
 {
     color: #FF5721; 
@@ -129,12 +122,11 @@ h6 {
     margin: 0em auto;
     width: 100%;
 }
-#inner_wrap{
-    margin: 0 auto;
-    padding:2em;
+
+#inner_wrap {
+    margin: 0 27% 0 auto;
+    padding: 0;
     width: 40%;
-    border-radius: 0em 0em 2em 2em;
-    
 }
 .demo_two{
     background-color:#00adef;
@@ -170,15 +162,14 @@ footer{
     padding: 1em;
     padding-left: 2em;
     border-radius: 0em 0em 0em 0em;
+    font-size:.75em;
+    color:gray;
+    font-family: Arial, Gadget, sans-serif;
     
 }
 #main_nav h1{
     padding-left: 20px;
     margin: 0px;
-}
-
-#main_nav {
-    margin-left: 10em;
 }
 
 
@@ -221,7 +212,7 @@ footer{
     border-radius: .5em;
     box-shadow: 0 3px 11px #CDCDCD;
     border: 1px solid #ccc;
-    padding: 0em 1em;
+    padding: 5px;
     color: white;
     margin-left: 7.7em;
     margin-top: -2em;
@@ -411,6 +402,18 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
     position: relative;
     top: 8px;
     right: 8px;
+    
+}
+
+#registerForm 
+{
+     font-family: Arial, Gadget, sans-serif;
+     color:gray;
+     text-align:right;
+}
+
+#register-content {
+    width: 343px;
 }
 
 
@@ -450,8 +453,8 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
 #uxrCardsortPassword, 
 #uxtsEmail, 
 #cardsortDemographicsLabel, 
-#cardsortCardLabel,
-input{
+#cardsortCardLabel
+{
     width:95%;
     height:2em;
     font-size:105%;
