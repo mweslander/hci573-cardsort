@@ -130,5 +130,3 @@ defined('IMG_PATH') ? null : define('IMG_PATH', RESOURCE_PATH .'images/' );
 // SELF
 // =============================================================================
 define ("SELF", $_SERVER['PHP_SELF']);
-
-

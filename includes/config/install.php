@@ -6,4 +6,8 @@
 
 require_once ('../classes/installation.inc.php');
 
-$install = new Installation();
+if ($install = new Installation())
+{
+    echo 'Database installed successfully<br>';
+    echo "<a href='../../'>Go to Site</a>";
+}
