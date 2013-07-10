@@ -121,6 +121,7 @@
             <br class="clear" />
         </section>
     </section>
+    <div class="clear"></div>
     <label for="uxtsFCSubmit">Have you completed the <em>About you</em> form and sorted all the cards?</label>
     <input id="uxtsFCSubmit" type="submit" value="Submit" />
 </form>

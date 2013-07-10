@@ -124,6 +124,13 @@ $(document).ready(function()
             });
             //console.log(dmgPairs);
             
+            // If the dmgPairs is empty, then send none
+            if (dmgPairs.length <= 0)
+            {
+                dmgPairs = "none";
+            }
+            
+            
             // Check to see if #unsortedCards has any li elements
             var sortComplete = $('#unsortedCards').has("li").length ? "incomplete" : "complete";
             // If there are li elements, it will come back 'incomplete'

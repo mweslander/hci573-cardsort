@@ -191,7 +191,7 @@ class UxtsCardsortController extends Basecontroller {
             
                 
                 
-            }
+        }
 
 
 
