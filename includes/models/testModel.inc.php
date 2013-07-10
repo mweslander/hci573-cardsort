@@ -40,7 +40,6 @@ class TestModel extends BaseModel
 
             $stmt = $this->_db->prepare($sql);
             $stmt->execute();
-        
-        
+            $this->id = $this->_db->lastInsertId();
     }
 }

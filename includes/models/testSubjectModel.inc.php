@@ -38,16 +38,30 @@ class TestSubjectModel extends BaseModel
         
             $encryptEmail = "AES_ENCRYPT('" . $this->ts_email . "', '" . USER_EMAIL_SALT . "')";
             $sql = "INSERT INTO " . static::$table_name . "(cs_id, ts_email)
-                VALUES (4, $encryptEmail )";
-
-            $stmt = $this->_db->prepare($sql);
-            $stmt->execute();
+                VALUES ($this->cs_id, $encryptEmail )";
+            try 
+            {
+                $stmt = $this->_db->prepare($sql);
+                if($stmt)
+                {
+                    $stmt->execute();
+                    $this->id = $this->_db->lastInsertId();
+                }
+            }
+            // If the connection with the create database script didn't work
+            // Then throw an error
+            catch (PDOException $e) {
+                die("DB ERROR: " . $e->getMessage());
+            }
     }
 
 
 
-    //This method check if the user has already been created
-    public function check_if_ts_user_exists($cs_id, $ts_email){
+    // This method check if the user has already been created
+    // Returns true or false
+    public function check_if_ts_user_exists($cs_id, $ts_email)
+    {
+
                 
 //        $sql = "SELECT id, cs_id, AES_DECRYPT(ts_email,'" . USER_EMAIL_SALT . "') as ts_email
 //                FROM " . static::$table_name . " WHERE cs_id = $cs_id 
@@ -56,15 +70,29 @@ class TestSubjectModel extends BaseModel
                 FROM " . static::$table_name . " WHERE cs_id = $cs_id 
                 AND ts_email = AES_ENCRYPT('".$ts_email. "','". USER_EMAIL_SALT ."')";
         // var_dump($sql);
-        $stmt = $this->_db->prepare($sql);
-        $stmt->execute();
-        if ($stmt->fetchColumn() > 0)
+        try 
         {
-            // Then we
+            $stmt = $this->_db->prepare($sql);
+            if($stmt)
+            {
+                $stmt->execute();
+                if ($stmt->fetchColumn() > 0)
+                {
+                    // Then we have a user and they need to enter a new email addree
+                    // or something
+                    return true;
+                }
+                else
+                {
+
+                    return false;
+                }
+            }
         }
-        else
-        {
-            echo "nah";
+        // If the connection with the create database script didn't work
+        // Then throw an error
+        catch (PDOException $e) {
+            die("DB ERROR: " . $e->getMessage());
         }
     }
 }

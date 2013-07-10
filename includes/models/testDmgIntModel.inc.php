@@ -18,7 +18,7 @@ class TestDmgIntModel extends TestDmgModel
     // Public Parameters
     public $id; // Database Key for usort_cards
     public $cs_id; // Cardsort ID
-    public $card_label; // Label of the card
+    public $dmg_id; // ID of the uxr defined demographic
     public $dmg_value; // Value of the Demographic (INTEGER)
 
     // Construtor Method

@@ -21,6 +21,10 @@ require_once (MODEL_PATH . 'cardModel.inc.php');
 require_once (MODEL_PATH . 'testCardModel.inc.php');
 require_once (MODEL_PATH . 'testSubjectModel.inc.php');
 require_once (MODEL_PATH . 'testModel.inc.php');
+require_once (MODEL_PATH . 'testDmgModel.inc.php');
+require_once (MODEL_PATH . 'testDmgDateModel.inc.php');
+require_once (MODEL_PATH . 'testDmgIntModel.inc.php');
+require_once (MODEL_PATH . 'testDmgStringModel.inc.php');
 require_once (MODEL_PATH . 'demographicModel.inc.php');
 require_once (CTRL_PATH . 'baseController.inc.php');
 
@@ -71,6 +75,7 @@ class UxtsCardsortController extends Basecontroller {
         if (isset($_POST['cs_id'])) {
             $cs_id = $_POST['cs_id'];
             $cardsort = CardsortModel::find_by_id($cs_id);
+            // Use cardsort->id
         } else {
             $error['cs_id'] = "No (cardsort) cs_id was sent";
         }
@@ -97,7 +102,7 @@ class UxtsCardsortController extends Basecontroller {
             // then there were no demographics added to the sort by the uxr
             if ($_POST['dmgs'] == 'none') {
                 // Set dmgs to null for processing later
-                $dmgs = null;
+                $raw_dmgs = null;
             }
             // Otherwise
             else {
@@ -110,102 +115,117 @@ class UxtsCardsortController extends Basecontroller {
 
 
         // If the error array is empty, then begin processing
-        if (empty($error)) {
-
-            //TestSubjectModel, 
-            //TestModel, 
-            //TestCardModel 
-            //testDmg models (date, int & string)
-            //*******************************************************
-            //Need to make sure only TestSubject and CS_ID are unique together - (TestSubjectModel)
-            //********************************************************                       
-            $user = new TestSubjectModel();
-            $user->cs_id = $cs_id;
-            $user->ts_email = $ts_email;
-
-            //Check if cs_id and ts_email already exist 
-            $rowUnique = $user->check_if_ts_user_exists($cs_id, $ts_email);
-
-            var_dump($rowUnique);
-            die;
-            if (!isset($rowUnique[0]) && sizeof($rowUnique) == 0) {
-                
-                //create new users                
-                $user->cs_id = $cs_id;
-                $user->ts_email = $ts_email;
-                $user->saveTS();
-                               
-                
-            } elseif (sizeof($rowUnique) > 1) {
-                $error = 'There are to many of the same users in the database';
-            }else{
-                $error = 'Something went wrong, try again';
-            }
+        if (empty($error)) 
+        {
             
-            //******************************************************
-            //GET TEST SUBJECTS ID FOR CURRENT TEST - (TestModel)
-            //This must be unquic in the usort_test_subjects Table
-            //******************************************************
-            //get the ts_id from the matching card sort id and test subject email
-            $findTestSubjectId = $user->check_if_ts_user_exists($cs_id, $ts_email);
-            //If the test subject exist in the db then add new test 
-            If(isset($findTestSubjectId[0])){
-            //Create timestamp for finishing the test
-            $test = new TestModel();
-            $test->ts_id = $findTestSubjectId[0]['id'];
-            //USEING SQL NOW()IN MODEL //$test->cs_finished = now();
-            $test->saveTest();
+            // Set an empty error array for this section
+            $err = array();                  
             
-            }
-           
-            //******************************************************
-            //GET CARDS TO SAVE - Loop through array and save (TestCardModel)
-            //
-            //******************************************************
-            
-            //Array Structure - array[0] => array(
-            //                                  [id]=>1,
-            //                                  [cs_id]=>4,
-            //                                  ['card_label']),
-            //                  array[1] => array(
-            //                                  [id]=>2,                
-            var_dump($raw_cards);
-            $decoded_cards = json_decode($raw_cards);
-            var_dump($decoded_cards);
-            
-            //Loop through $raw_cards to create array or save one card at a time
-//            foreach ($decoded_cards as $key => $value) {
-//                $arrCard[$key] = $value;
-//            }
-            foreach ($decoded_cards as $tsCard => $tsCategory)
+            // We need to make sure we have a cardsort id
+            if ($cardsort->id)
             {
-                $card = new TestCardModel;
-                $card->card_id = $tsCard;
-                $card->test_category = $tsCategory;
-                var_dump($card);
+                $test_subject = new TestSubjectModel();
+                $test_subject->cs_id = $cardsort->id;
+                $test_subject->ts_email = $ts_email;
+
+                // Check if cs_id and ts_email already exist 
+                // Returns true if there is a user and false if there is not
+                $repeatTS = $test_subject->check_if_ts_user_exists($cs_id, $ts_email);
+
+                // If the check for a repeat Test Subject comes back false
+                // Then I suppose we can let them in
+                if ($repeatTS == false) 
+                { 
+                    //create a new test subject row               
+                    $test_subject->saveTS();
+                    // This works!
+                    // echo $test_subject->id;
+                    if ($test_subject->id)
+                    {
+                        // Now that we have our test subject
+                        // We can start a new test!
+                        $test = new TestModel();
+                        // Set the ts_id in the test table to the test subject's id
+                        // This links them together
+                        $test->ts_id = $test_subject->id;
+                        // Then save the test to the database
+                        $test->saveTest();
+                        // Now let's make sure we have a $test->id
+                        if ($test->id)
+                        {
+                            // So we can go to town on the cards!
+                            // JSON decode the
+                            $decoded_cards = json_decode($raw_cards);
+                            // For each card
+                            foreach ($decoded_cards as $tsCard => $tsCategory)
+                            {
+                                // Make a new card object
+                                $card = new TestCardModel;
+                                $card->card_id = $tsCard;
+                                $card->test_id = $test->id;
+                                $card->test_category = $tsCategory;
+                                // And save it to the database
+                                $card->save();
+                            }
+                            
+                            // With the test->id we can also take care of the demographics
+                            $decoded_dmgs = json_decode($raw_dmgs);
+                            // For each demographic
+                            foreach ($decoded_dmgs as $tsDmgID => $tsDmgValue)
+                            {
+                                // Get the right type from the Demographics table
+                                $demographics = DemographicModel::find_by_id($tsDmgID);
+                                // Check to make sure there is a type
+                                if ($demographics->dmg_type)
+                                {
+                                    // Make sure we have the right model & database table
+                                    switch ($demographics->dmg_type)
+                                    {
+                                        case 'date':
+                                            $dmg = new TestDmgDateModel();
+                                            break;
+                                        case 'int':
+                                            $dmg = new TestDmgIntModel();
+                                            break;
+                                        default:
+                                            $dmg = new TestDmgStringModel();
+                                    }
+                                    // Set the object parameters
+                                    $dmg->test_id = $test->id;
+                                    $dmg->dmg_id = $demographics->id;
+                                    $dmg->dmg_value = $tsDmgValue;
+                                    $dmg->save();
+                                    
+                                }
+                                else
+                                {
+                                    $err['dmg_type'] = "Sorry, we couldn't figure out the type of demographic.";
+                                }
+                            }
+                        $message['success'] = "Thanks for completing the cardsort!";    
+                        }
+                        else
+                        {
+                            $err['test_id'] = "Error with the test! Sorry.";
+                        }
+                    }
+                    else
+                    {
+                        $err['test_subject'] = "We had a problem with the test subject";
+                    }
+                }
+                else
+                {
+                    // Otherwise, throw an error
+                    $err['repeat_user'] = 'Are you trying to do this study more than once? If so, use a different email';
+                }
             }
-            
-            die;
-            
-//            $testCards = new TestCardModel();
-//            $testCards->card_id = ;
-//            $testCards->test_id = ;
-//            $testCards->test_category = ;
-//            $testCards->save();
-            //******************************************************
-            //THE BEAST - SAVE DMG data into (usort_test_dmg_text, usort_test_dmg_int, usort_test_dmg_string) 
-            //
-            //******************************************************
-        //
-            
-            
-            
-                
-                
-        }
-
-
-
+            else
+            {
+                $err['cardsort_id'] = "Sorry! We had an error with the cardsort id";
+            }
+        } // Otherwise the errors weren't empty
+        $error = $err;                
         // Return the data in an array
         $data_return = array(
             "error" => $error,

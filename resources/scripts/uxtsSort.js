@@ -64,7 +64,7 @@ $(document).ready(function()
             // of the required demographics
             
             // Start by opening and empty array
-            var dmgPairs = [];
+            var dmgPairs = {};
             
             // all we need is the dmg_id and the value and filter by type
             // loop through all the inputs that have a .dmgs class
@@ -110,19 +110,18 @@ $(document).ready(function()
                         // Set the type to string
                         var dmgType = "string";
                         // Set the value to the input value
-                        var dmgValue = $(this).val();
-                        
+                        var dmgValue = $(this).val();  
                     }
                     
-                    // set an empty dmgObj
-                    var dmgObj = {};
-                    // Set the dmg id as the "key" and the value as the "value"
-                    dmgObj[dmgID] = dmgValue;
-                    // Pass this new object to our dmgPairs array
-                    dmgPairs.push(dmgObj);
+//                    // set an empty dmgObj
+//                    var dmgObj = {};
+//                    // Set the dmg id as the "key" and the value as the "value"
+//                    dmgObj[dmgID] = dmgValue;
+//                    // Pass this new object to our dmgPairs array
+//                    dmgPairs.push(dmgObj);
+                    dmgPairs[dmgID] = dmgValue;
                 }
             });
-            //console.log(dmgPairs);
             
             // If the dmgPairs is empty, then send none
             if (dmgPairs.length <= 0)
@@ -183,25 +182,25 @@ $(document).ready(function()
                 
                 var datastring = "submit=save&cs_id="+cs_id+"&ts_email="+ts_email+"&cards="+cards+"&dmgs="+dmgs;
                 console.log(datastring);
-                // Make the ajax call
-//                $.ajax({
-//                    // Post
-//                    type: "POST",
-//                    // to this location
-//                    url: "includes/controllers/uxtsCardsortController.inc.php",
-//                    data: datastring,
-//                    success: function(data)
-//                    {
-//                        // Parse the JSON data
-//                        var msg = jQuery.parseJSON(data);
-//
-//                        // Assign a new value to error, using the msg object
-//                        csError = msg.error;
-//                        csMessage = msg.message;
-//                        // Check and display errors and messages
-//
-//                    }
-//                });
+                //Make the ajax call
+                $.ajax({
+                    // Post
+                    type: "POST",
+                    // to this location
+                    url: "includes/controllers/uxtsCardsortController.inc.php",
+                    data: datastring,
+                    success: function(data)
+                    {
+                        // Parse the JSON data
+                        var msg = jQuery.parseJSON(data);
+
+                        // Assign a new value to error, using the msg object
+                        csError = msg.error;
+                        csMessage = msg.message;
+                        // Check and display errors and messages
+
+                    }
+                });
                 
             }
             // Otherwise log the error for now
