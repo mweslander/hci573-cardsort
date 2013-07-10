@@ -182,26 +182,26 @@ $(document).ready(function()
                 var cards = JSON.stringify(cardPairs);
                 
                 var datastring = "submit=save&cs_id="+cs_id+"&ts_email="+ts_email+"&cards="+cards+"&dmgs="+dmgs;
-                
+                console.log(datastring);
                 // Make the ajax call
-                $.ajax({
-                    // Post
-                    type: "POST",
-                    // to this location
-                    url: "includes/controllers/uxtsCardsortController.inc.php",
-                    data: datastring,
-                    success: function(data)
-                    {
-                        // Parse the JSON data
-                        var msg = jQuery.parseJSON(data);
-
-                        // Assign a new value to error, using the msg object
-                        csError = msg.error;
-                        csMessage = msg.message;
-                        // Check and display errors and messages
-
-                    }
-                });
+//                $.ajax({
+//                    // Post
+//                    type: "POST",
+//                    // to this location
+//                    url: "includes/controllers/uxtsCardsortController.inc.php",
+//                    data: datastring,
+//                    success: function(data)
+//                    {
+//                        // Parse the JSON data
+//                        var msg = jQuery.parseJSON(data);
+//
+//                        // Assign a new value to error, using the msg object
+//                        csError = msg.error;
+//                        csMessage = msg.message;
+//                        // Check and display errors and messages
+//
+//                    }
+//                });
                 
             }
             // Otherwise log the error for now

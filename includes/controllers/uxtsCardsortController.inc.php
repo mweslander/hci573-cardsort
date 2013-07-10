@@ -127,7 +127,7 @@ class UxtsCardsortController extends Basecontroller {
             $rowUnique = $user->check_if_ts_user_exists($cs_id, $ts_email);
 
             var_dump($rowUnique);
-            
+            die;
             if (!isset($rowUnique[0]) && sizeof($rowUnique) == 0) {
                 
                 //create new users                
@@ -170,11 +170,22 @@ class UxtsCardsortController extends Basecontroller {
             //                  array[1] => array(
             //                                  [id]=>2,                
             var_dump($raw_cards);
-            die;
+            $decoded_cards = json_decode($raw_cards);
+            var_dump($decoded_cards);
+            
             //Loop through $raw_cards to create array or save one card at a time
-            foreach ($raw_cards as $key => $value) {
-                $arrCard[$key] = $value;
+//            foreach ($decoded_cards as $key => $value) {
+//                $arrCard[$key] = $value;
+//            }
+            foreach ($decoded_cards as $tsCard => $tsCategory)
+            {
+                $card = new TestCardModel;
+                $card->card_id = $tsCard;
+                $card->test_category = $tsCategory;
+                var_dump($card);
             }
+            
+            die;
             
 //            $testCards = new TestCardModel();
 //            $testCards->card_id = ;

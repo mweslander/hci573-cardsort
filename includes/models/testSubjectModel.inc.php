@@ -49,13 +49,22 @@ class TestSubjectModel extends BaseModel
     //This method check if the user has already been created
     public function check_if_ts_user_exists($cs_id, $ts_email){
                 
-        $sql = "SELECT id, cs_id, AES_DECRYPT(ts_email,'" . USER_EMAIL_SALT . "') as ts_email
+//        $sql = "SELECT id, cs_id, AES_DECRYPT(ts_email,'" . USER_EMAIL_SALT . "') as ts_email
+//                FROM " . static::$table_name . " WHERE cs_id = $cs_id 
+//                AND ts_email = AES_ENCRYPT('".$ts_email. "','". USER_EMAIL_SALT ."')";
+        $sql = "SELECT COUNT(*)
                 FROM " . static::$table_name . " WHERE cs_id = $cs_id 
                 AND ts_email = AES_ENCRYPT('".$ts_email. "','". USER_EMAIL_SALT ."')";
-        //var_dump($sql);
+        // var_dump($sql);
         $stmt = $this->_db->prepare($sql);
         $stmt->execute();
-        $results = $stmt->fetchAll();
-        return $results;
+        if ($stmt->fetchColumn() > 0)
+        {
+            // Then we
+        }
+        else
+        {
+            echo "nah";
+        }
     }
 }
