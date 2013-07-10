@@ -25,19 +25,19 @@
             <!-- Name of Cardsort -->
             <h2>Cardsort Details</h2>
             <input type="hidden" id="user_id" name="user_id" value="<?php echo $user_id; ?>" />
-            <label for="cardsortName"><p>Cardsort Name</label>
-            <input id="cardsortName" name="cardsortName" type="text" /></p>
+            <label for="cardsortName">Cardsort Name</label>
+            <input id="cardsortName" name="cardsortName" type="text" />
             <br>
             <!-- Type of Cardsort (open / closed) -->
-            <label><p>Cardsort Type</label>
+            <label>Cardsort Type</label>
             <input id="openCardsort" type="radio" name="cardsortType" value="open" checked /><label for="openCardsort">Open</label>
-            <input id="closedCardsort" type="radio" name="cardsortType" value="closed" /><label for="closedCardsort">Closed</label></p>
+            <input id="closedCardsort" type="radio" name="cardsortType" value="closed" /><label for="closedCardsort">Closed</label>
             <br>
             <p>If you would like your Cardsort to be password protected, enter it here. Note: this is a very low level of security, you will send the same password to all your participants in a given cardsort.</p>
-            <label for="uxrCardsortPassword"><p>Password?</label>
+            <label for="uxrCardsortPassword">Password?</label>
             <input id="yesPassword" type="radio" name="passwordToggle" value="yes" /><label for="yesPassword">Yes</label>
             <input id="noPassword" type="radio" name="passwordToggle" value="no" checked /><label for="noPassword">No</label>
-            <input id="uxrCardsortPassword" name="uxrCardSortPassword" type="text" value="Type Password if applicable" /></p>
+            <input id="uxrCardsortPassword" name="uxrCardSortPassword" type="text" value="Type Password if applicable" />
             <br>
             <!-- Add Cardsort -->
             <input id ="addCardsortName" type="submit" value="Create / Update" /> 
@@ -66,14 +66,14 @@
         <!-- This form submits to an AJAX page which adds the demographic -->
         <form id="uxrCardsortDemographics">
             <h3>Demographics</h3>
-            <label for="cardsortDemographicsLabel"><p>Label:</label> 
-            <input id="cardsortDemographicsLabel" type="text" /></p>
+            <label for="cardsortDemographicsLabel">Label:</label> 
+            <input id="cardsortDemographicsLabel" type="text" />
             <br>
-            <label for="cardsortDemographicsType"><p>Type:</label> 
+            <label for="cardsortDemographicsType">Type:</label> 
             <!-- Radio buttons for type of data -->
             <input id="demographicsString" type="radio" name="demographicsType" value="string" checked /><label for="demographicsString">Text</label>
             <input id="demographicsInt" type="radio" name="demographicsType" value="int" /><label for="demographicsInt">Number</label>
-            <input id="demographicsDate" type="radio" name="demographicsType" value="date" /><label for="demographicsDate">Date</label></p>
+            <input id="demographicsDate" type="radio" name="demographicsType" value="date" /><label for="demographicsDate">Date</label>
             <br>
             <input id ="addCardsortDemographic" type="submit" value="Add" />
         </form>
