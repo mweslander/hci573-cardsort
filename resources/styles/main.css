@@ -38,11 +38,17 @@ body
     background-image:url('../images/retina_dust.png');
 }
 
-p 
+p, #cardAdditions, th, #dmgAdditions, #noDmgs, td 
 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 130%;
+    color:#575757;
+    text-align:left;
 } 
+
+td {
+    padding-right:1em;
+}
 
 #home_p {
     width: 72%;
@@ -60,6 +66,13 @@ h1
 h2
 {
     color:white;
+    font-family: Arial, Gadget, sans-serif;
+}
+
+h3
+{
+    color:#666666;
+    font-family: Arial, Gadget, sans-serif;
 }
 
 h5 {
@@ -124,7 +137,7 @@ h5 {
 .register_two{
     margin: 0 auto;
     width: 80%;
-    height: 5em;
+    height: auto;
     border: solid 2px gray;
     border-radius: 2em 2em 2em 2em;
     cursor: pointer;
@@ -387,14 +400,37 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
     background-color: #CCCCCC;
     width: 20%;
     float: left;
+    padding: 2em;
+    margin-left: 15%;
+    border-radius:2em;
+    border: .15em solid #00adef;
+    box-shadow: 0 3px 11px #CDCDCD;
+
 }
 
 #uxrView
 {
-    background-color: #DDDDDD;
-    width: 80%;
+    background-color: #CCCCCC;
+    width: 50%;
     float: left;
+    margin-left: 3em;
+    padding: 2em;
+    border-radius: 2em;
+    border: .15em solid #00adef;
+    box-shadow: 0 3px 11px #CDCDCD;
 }
+
+#cardsortName, 
+#uxrCardsortPassword, 
+#uxtsEmail, 
+#cardsortDemographicsLabel, 
+#cardsortCardLabel  {
+    width:16em;
+    height:2em;
+    font-size:105%;
+    color:gray;
+}
+
 
 #studyList table
 {
@@ -417,12 +453,31 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
     background-color: #eee;
 }
 
+#csEdit, #csList, #createURL, #addCardsortName, #addCardsortCard {
+    color: grey;
+    width: auto;
+    height:50px;
+    border-radius:.5em;
+    padding: 0 2.7em;
+    border:1px solid #575757;
+    margin:.25em;
+    box-shadow: 1px 1px 4px gray;
+    font-size: 105%;
+}
+
+#csEdit:hover, #csList:hover, #createURL:hover, #addCardsortName:hover, #addCardsortCard:hover {
+    color: white;
+    background-color:#00adef;
+}
 
 /*
 * Member Menu - 
 */
 #member_menu{
     float: right;
+    margin-right:10%;
+    margin-top:-2em;
+    font-family: Arial, Helvetica, sans-serif;
 }
 #member_menu ul{
    list-style-type: none;
@@ -430,21 +485,28 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
 }
 #member_menu ul li{    
     float:left;
-    background-color: gainsboro;
+    background-color: #CDCDCD;
     margin: 5px;
-    padding: 5px;
+    border-radius:.5em;
+    width:auto;
+    padding: .5em;
 }
 #member_menu ul li a{
     color: grey;
-    width: 50px;
+    width: auto;
     height:50px;
     text-decoration: none;
+    border-radius:1em;
+    padding: .5em;
     
 }
 #member_menu ul li a:hover{
     color: white;
-   
+    background-color:#00adef;
+    border:none;
     text-decoration: none;
+    border-radius:.5em;
+    padding: .5em;
     
     
 }
