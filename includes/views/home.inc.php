@@ -8,7 +8,7 @@
 </section>
 <nav>
     <div id='main_nav'>
-        <button id='demo-trigger' class='demo_two'><h2>Try Our Demo</h2></button>
+        <button id='demo-trigger' class='demo_two'><h4>Try Our Demo</h4></button>
         <div id="demo-content">
             <form name="demo" action="?url=login/login"  method="post">
                 <fieldset id="inputs">
@@ -42,19 +42,19 @@
                 </fieldset>
             </form>
         </div>   
-        <button id='register-trigger' class='register_two'><h2>Create your account</h2></button>
+        <button id='register-trigger' class='register_two'><h4>Create your account</h4></button>
         <div id="register-content">
             <form id="registerForm"  >
                 <fieldset id="inputs">
-                    First Name 
+                    <p>First Name</p> 
                     <input type="text" id="register_user_first_name" name="register_user_first_name" placeholder="First Name" required /><br />
-                    Last Name 
+                    <p>Last Name</p> 
                     <input type="text" id="register_user_last_name" name="register_user_last_name" placeholder="Last Name" required /><br />
-                    Email 
+                    <p>Email</p> 
                     <input type="email" id="register_user_email" name="register_user_email" placeholder="Email" required /><br />
-                    User Name 
+                    <p>User Name</p> 
                     <input type="text" id="register_user_name" name="register_user_name" autofocus placeholder="Type a Username" required /><br />
-                    Password 
+                    <p>Password</p> 
                     <input type="password" id="register_user_password" name="register_user_password" placeholder="Type a Password" required /><br />
                     
                 </fieldset>
