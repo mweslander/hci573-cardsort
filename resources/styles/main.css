@@ -38,7 +38,14 @@ body
     background-image:url('../images/retina_dust.png');
 }
 
-p, #cardAdditions, th, #dmgAdditions, #noDmgs, td 
+p, #cardAdditions, 
+th, 
+#dmgAdditions, 
+#noDmgs, 
+td, 
+#uxtsCsId, 
+#uxtsEmail, 
+#uxtsDmgs 
 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 130%;
@@ -65,7 +72,7 @@ h1
 
 h2
 {
-    color:white;
+    color:#00adef;
     font-family: Arial, Gadget, sans-serif;
 }
 
@@ -78,6 +85,13 @@ h3
 h5 {
     font-family: Arial, Gadget, sans-serif;
     color: gray;
+}
+
+h6 {
+    color: #162252; 
+    font-family: Arial, Gadget, sans-serif;
+    font-size:1.5em;
+    margin-top: 1em;
 }
 
 #top-bar
@@ -395,14 +409,16 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
 ================================================================================
 */
 
+
+
 #uxrControl, #uxtsControl
 {
-    background-color: #CCCCCC;
+    background-color: #DEDEDE;
     width: 20%;
     float: left;
     padding: 2em;
     margin-left: 15%;
-    border-radius:2em;
+    border-radius:.5em;
     border: .15em solid #00adef;
     box-shadow: 0 3px 11px #CDCDCD;
 
@@ -410,12 +426,12 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
 
 #uxrView
 {
-    background-color: #CCCCCC;
+    background-color: #DEDEDE;
     width: 50%;
     float: left;
     margin-left: 3em;
     padding: 2em;
-    border-radius: 2em;
+    border-radius: .5em;
     border: .15em solid #00adef;
     box-shadow: 0 3px 11px #CDCDCD;
 }
@@ -424,12 +440,25 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
 #uxrCardsortPassword, 
 #uxtsEmail, 
 #cardsortDemographicsLabel, 
-#cardsortCardLabel  {
-    width:16em;
+#cardsortCardLabel,
+input{
+    width:95%;
     height:2em;
     font-size:105%;
     color:gray;
+    margin-top:.25em;
+    margin-bottom:1em;
+    border:1px solid gray;
+    border-radius:.25em;
 }
+
+#unsortedCards {
+    border:1px solid gray;
+    border-radius:.25em;
+    padding: 0em 1.5em 1.5em 1.5em;
+    background-color:#eee;
+}
+
 
 
 #studyList table
@@ -515,16 +544,30 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
     margin: 0; padding: 0; 
     float: left; 
     margin-right: 10px; 
-    background: #eee; 
-    padding: 5px; 
+    background: #00adef; 
+    padding: 1em; 
     width: 160px;
+    border:1px solid gray;
+    border-radius:.25em;
+    font-family: Arial, Gadget, sans-serif;
+    color:white;
 }
+
+
 .sortable li{
-    margin: 5px; 
-    padding: 5px; 
+    margin: .5em auto; 
+    padding: .5em; 
     font-size: 1.2em; 
-    width: 140px; 
+    width: 140px;
+    border:3px dashed #ccc;
 }
+
+.immovable {
+    font-size: 1em;
+    color:white;
+    font-family: Arial, Gadget, sans-serif;    
+}
+
 
 
 #sortable1, #sortable2, #sortable3, #sortable4, #sortable5 
@@ -561,3 +604,36 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
 ** 6. UXTS AREA
 ================================================================================
 */
+
+.uxtsCatUI {
+    color:white;
+}
+
+#uxtsFCSubmit {
+    color: grey;
+    width: auto;
+    height:50px;
+    border-radius:.5em;
+    padding: 0 2.7em;
+    border:1px solid #575757;
+    margin:.25em;
+    box-shadow: 1px 1px 4px gray;
+    font-size: 105%;
+}
+
+#uxtsFCSubmit:hover {
+    color: white;
+    background-color:#00adef;
+}
+
+#uxtsfcsubmitline {
+    border:1px solid #666666;
+    border-radius:.5em;
+    padding: .5em 1em;
+    width:43.5%;
+    margin-top:2em;
+    margin-right:5%;
+    float:right;
+    text-align:center;
+    padding-left: 1em;
+}
