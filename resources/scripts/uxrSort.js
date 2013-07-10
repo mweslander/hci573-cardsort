@@ -103,6 +103,7 @@ $(document).ready(function(){
                         showCardsortPassword(csMessage.cs_password);
                         showCardAdd(cs_id);
                         showDemographicsAdd(cs_id);
+                        addUrlToButton(cs_id);
                     }
 
                 }
@@ -374,6 +375,14 @@ $(document).ready(function(){
             $('.noDmgs').hide();
             $('<tr id='+dmg_id+'><td>'+dmg_label+'</td><td>'+dmg_type+'</td><td class="dmg_delete">X</td></tr>').appendTo('#dmgAdditions');
         }
+    }
+    
+    // This adds functionality to the create url button
+    function addUrlToButton(cs_id)
+    {
+        $('#createURL').on('click', function(){
+            $(this).parent().append('<h4>http://localhost/hci573-cardsort/?url=uxts/index/'+cs_id+'</h4>');
+        });
     }
     
     // This is for when you click the delete button in the dmgs table
