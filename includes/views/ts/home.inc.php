@@ -75,7 +75,7 @@
                     {
                         echo "<div id='uxtsCardCol' >";
                         echo "<ul id='unsortedCards' class='sortable' class='droptrue'>";
-                        echo "<label>Unsorted Cards:</label>";
+                        echo "<label><p>Unsorted Cards</p></label>";
                         foreach ($cards as $card) 
                         {                        
                             echo "<li class='ui-state-default uxtsCardLi'>";
@@ -96,7 +96,7 @@
                         {
                             echo "<ul class='sortable sortableCol uxtsCatUl' class='dropfalse'>";    
                                 // echo "<li class='ui-state-highlight immovable'>";
-                                    echo "<label class='immovable'>Category Name: </label>";
+                                    echo "<label class='immovable'>Category Name </label>";
                                     echo "<strong>" . $category->cat_label . "</strong>";
                                     echo "<input class='uxtsCatLabel' type='hidden' value='" . $category->cat_label . "' />";
                                 // echo "</li>"; 
@@ -122,8 +122,10 @@
         </section>
     </section>
     <div class="clear"></div>
-    <label for="uxtsFCSubmit">Have you completed the <em>About you</em> form and sorted all the cards?</label>
-    <input id="uxtsFCSubmit" type="submit" value="Submit" />
+    <div id="uxtsfcsubmitline">
+    <label for="uxtsFCSubmit"><p>Have you completed the <em>About you</em> form and sorted all the cards?</label>
+    <input id="uxtsFCSubmit" type="submit" value="Submit" /></p>
+    </div>
 </form>
 <div class="clear"></div>
 <?php
