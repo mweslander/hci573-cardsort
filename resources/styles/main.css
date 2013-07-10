@@ -82,6 +82,12 @@ h3
     font-family: Arial, Gadget, sans-serif;
 }
 
+h4 {
+    color:white;
+    font-family: Arial, Gadget, sans-serif;
+    font-size:1.5em;
+}
+
 h5 {
     font-family: Arial, Gadget, sans-serif;
     color: gray;
@@ -129,9 +135,9 @@ h6 {
     
 }
 .demo_two{
-    background-color:gray;
+    background-color:#00adef;
     margin-right: 20px;
-    border: solid 2px #00adef;
+    border: solid 2px gray;
     border-radius: 2em 2em 2em 2em;
     width:200px;
     height:100px;
@@ -140,8 +146,8 @@ h6 {
 }
 
 .demo_two:hover {
-    background-color:#00adef;
-    border-color:gray;
+    background-color:gray;
+    border-color:#00adef;
 }
 #login_content_two{
     float: left;
@@ -213,9 +219,9 @@ footer{
     border-radius: .5em;
     box-shadow: 0 3px 11px #CDCDCD;
     border: 1px solid #ccc;
-    padding: .5em 1em;
+    padding: 0em 1em;
     color: white;
-    margin-left: 11.7em;
+    margin-left: 7.7em;
     margin-top: -2em;
     width:6em;
 
@@ -272,16 +278,16 @@ nav #demo-trigger, nav #register-trigger, nav #login-trigger {
 }
 
 #register-trigger{
-    background-color:gray;
-    border: solid 2px #00adef;
+    background-color:#00adef;
+    border: solid 2px gray ;
 }
 
 #register-trigger:hover {
-    background-color:#00adef;
-    border-color:gray;
+    background-color:gray;
+    border-color:#00adef;
 }
 
-nav #demo-content, nav #register-content, nav #login-content {
+nav #demo-content, nav #register-content, nav #login-content, #register-content {
     display: none;
     /*position: absolute;*/
     top: 35px;
@@ -300,7 +306,9 @@ nav #demo-content, nav #register-content, nav #login-content {
     box-shadow: 0 2px 2px -1px rgba(0,0,0,.9);
     -moz-border-radius: 3px 0 3px 3px;
     -webkit-border-radius: 3px 0 3px 3px;
-    border-radius: 3px 3px 3px 3px;
+    border-radius: 1em;
+    border:2px solid #CCCCCC;
+    margin-bottom:2em;
 }
 
 nav li #demo-content, nav li #register-content, nav li #login-content {
@@ -482,7 +490,7 @@ input{
     background-color: #eee;
 }
 
-#csEdit, #csList, #createURL, #addCardsortName, #addCardsortCard {
+#csEdit, #csList, #createURL, #addCardsortName, #addCardsortCard, #submit, #submit_register {
     color: grey;
     width: auto;
     height:50px;
@@ -494,9 +502,13 @@ input{
     font-size: 105%;
 }
 
-#csEdit:hover, #csList:hover, #createURL:hover, #addCardsortName:hover, #addCardsortCard:hover {
+#csEdit:hover, #csList:hover, #createURL:hover, #addCardsortName:hover, #addCardsortCard:hover, #submit:hover, #submit_register:hover {
     color: white;
     background-color:#00adef;
+}
+
+#submit {
+    margin-left:12em;
 }
 
 /*
