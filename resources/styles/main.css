@@ -456,8 +456,10 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
 #cardsortCardLabel,
 #cardsortCategoryLabel,
 #uxtsDmgs dmg_string,
-#dmg7,
-#dmg8
+.dmgs.dmg_string,
+.dmgs.dmg_int,
+.dmgs.dmg_date
+
 {
     width:95%;
     height:2em;
@@ -581,6 +583,9 @@ nav li #demo-content, nav li #register-content, nav li #login-content {
     font-size: 1.2em; 
     width: 140px;
     border:3px dashed #ccc;
+}
+.sortable li:hover{
+    cursor:move;
 }
 
 .immovable {
