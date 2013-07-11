@@ -104,7 +104,7 @@
                                 {
 
                                     // echo "<li><a href='?url=uxts/index/$key'>". $value . "</a></li>";
-                                    echo "<tr id={$key}><td class='csListView'>{$value}</td><td class='csListEdit'>E</td><td class='csListDelete'>X</td></tr>";
+                                    echo "<tr id={$key}><td class='csListView'>{$value}</td><td class='csListEdit'><span class='ui-icon ui-icon-pencil'></span></td><td class='csListDelete'><span class='ui-icon ui-icon-trash'></span></td></tr>";
                                 }
                         ?>
                     </tbody>
